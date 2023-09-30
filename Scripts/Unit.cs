@@ -12,11 +12,13 @@ public partial class Unit : Node2D
     private Godot.Collections.Dictionary<string, NodePath> pathSprites;
     [Export]
     private string initSprite;
+    [Export]
+    public bool Forward;
     // Properties
     public int Health;
-    public Stats Stats;
-    public List<StatsMod> Modifiers;
-    public List<AStatus> Statuses;
+    public Stats Stats = new Stats();
+    public List<StatsMod> Modifiers = new List<StatsMod>();
+    public List<AStatus> Statuses = new List<AStatus>();
     public List<AUnitAction> Actions { get; } = new List<AUnitAction>();
     public Unit Enemy;
     private Stats finalStats
@@ -100,17 +102,15 @@ public partial class Unit : Node2D
         sprites[currentSprite = name].Visible = true;
     }
 
-    public void TakeDamage(Stats attackerStats, float amount, Element element, bool physical)
+    public void TakeDamage(Stats attackerStats, float amount, Element element, bool physical, string vfx = "Pound")
     {
         Health -= physical ? attackerStats.GetPhysDamage(finalStats, amount, element) : attackerStats.GetMagDamage(finalStats, amount, element);
-        SetSpriteAnimation(UnitSprite.Animation.Hurt);
-        interpolator.Interpolate(1, new Interpolator.InterpolateObject(
-            SetSpriteAnimation,
-            UnitSprite.Animation.Hurt,
-            UnitSprite.Animation.Idle));
+        QueueAnimation(new AnimTakeDamage(), new AnimTakeDamage.AnimTakeDamageArgs(vfx, Forward));
+        // TEMP
+        QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(Forward));
     }
 
-    public void TakeDamage(Unit attacker, float amount, Element element, bool physical)
+    public void TakeDamage(Unit attacker, float amount, Element element, bool physical, string vfx = "Pound")
     {
         TakeDamage(attacker.finalStats, amount, element, physical);
     }
@@ -131,6 +131,7 @@ public partial class Unit : Node2D
     public void BeginTurn()
     {
         Statuses.ForEach(a => a.BeginTurn());
+        state = State.Upkeep;
     }
 
     // Animations

@@ -37,6 +37,10 @@ public partial class Interpolator : Node
 
     public void Interpolate(float time, params InterpolateObject[] objects)
     {
+        if (active)
+        {
+            GD.PushWarning("Interpolator is active!");
+        }
         this.objects = objects.ToList();
         timer.WaitTime = time;
         timer.Start();
@@ -45,6 +49,10 @@ public partial class Interpolator : Node
 
     public void Delay(float time)
     {
+        if (active)
+        {
+            GD.PushWarning("Interpolator is active!");
+        }
         objects.Clear();
         timer.WaitTime = time;
         timer.Start();

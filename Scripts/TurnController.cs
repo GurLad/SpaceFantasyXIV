@@ -12,6 +12,8 @@ public partial class TurnController : Node2D
     public override void _Ready()
     {
         base._Ready();
+        Player.Enemy = Enemy;
+        Enemy.Enemy = Player;
         Player.FinishedTurn += () => Enemy.BeginTurn();
         Enemy.FinishedTurn += () => Player.BeginTurn();
         // TEMP

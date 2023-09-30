@@ -109,10 +109,12 @@ pathSprites = {
 "Saturn": NodePath("Sprites/Saturn")
 }
 initSprite = "MC"
+Forward = true
 
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Base" type="Node2D" parent="Sprites" node_paths=PackedStringArray("idleSprite", "attackSprite", "hurtSprite")]
+visible = false
 script = ExtResource("2_u56ey")
 idleSprite = NodePath("Player")
 attackSprite = NodePath("Player")

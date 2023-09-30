@@ -13,7 +13,7 @@ public partial class AnimTakeDamage : AAnimation<AnimTakeDamage.AnimTakeDamageAr
             new Interpolator.InterpolateObject(
                 a => unit.Position = a,
                 unit.Position,
-                unit.Position - Vector2.Right * args.Sign * args.MoveBackTime,
+                unit.Position - Vector2.Right * args.Sign * args.MoveBackDistance,
                 Easing.EaseOutElastic));
         interpolator.OnFinish = () =>
         {
@@ -21,7 +21,7 @@ public partial class AnimTakeDamage : AAnimation<AnimTakeDamage.AnimTakeDamageAr
             interpolator.OnFinish = () =>
             {
                 args.VFX.QueueFree();
-                interpolator.OnFinish = () => Done = true;
+                Done = true;
             };
         };
     }

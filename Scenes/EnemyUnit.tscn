@@ -75,6 +75,7 @@ initSprite = "Phase1"
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Phase1" type="Node2D" parent="Sprites" node_paths=PackedStringArray("idleSprite", "attackSprite", "hurtSprite")]
+visible = false
 script = ExtResource("2_8s2i3")
 idleSprite = NodePath("Idle")
 attackSprite = NodePath("Attack")

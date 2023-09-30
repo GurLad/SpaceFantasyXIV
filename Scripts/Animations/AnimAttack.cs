@@ -10,7 +10,7 @@ public class AnimAttack : AAnimation<AnimAttack.AnimAttackArgs>
                 a => unit.Position = a,
                 unit.Position,
                 unit.Position + Vector2.Right * args.Sign * args.MoveForwardDistance,
-                Easing.EaseOutQuart),
+                Easing.EaseInQuart),
             new Interpolator.InterpolateObject(
                 a => unit.SetSpriteAnimation(a),
                 UnitSprite.Animation.Idle,
@@ -28,7 +28,7 @@ public class AnimAttack : AAnimation<AnimAttack.AnimAttackArgs>
                         a => unit.Position = a,
                         unit.Position,
                         unit.Position - Vector2.Right * args.Sign * args.MoveForwardDistance,
-                        Easing.EaseInQuart));
+                        Easing.EaseOutQuart));
                 interpolator.OnFinish = () => Done = true;
             };
         };
