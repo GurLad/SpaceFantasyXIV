@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MercuryAttack1 : AUAAttack
+public partial class UAMercuryAttack1 : AUAAttack
 {
     public override bool Physical => true;
 

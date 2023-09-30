@@ -13,7 +13,7 @@ public abstract class AUAAttack<T> : AUnitAction where T : AStatus
     {
         if (Power > 0)
         {
-            thisUnit.QueueAnimation(new AnimAttack(), new AnimAttack.AnimAttackArgs(() => enemy.TakeDamage(thisUnit, Power, Element, Physical), thisUnit.Forward));
+            thisUnit.QueueAnimation(new AnimAttack(), new AnimAttack.AnimAttackArgs(() => enemy.TakeDamage(thisUnit, Power, Element, Physical, VFXName), thisUnit.Forward));
         }
         if (NewT != null)
         {

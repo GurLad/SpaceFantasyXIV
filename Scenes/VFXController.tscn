@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://wb3r872itxwc"]
+[gd_scene load_steps=29 format=3 uid="uid://wb3r872itxwc"]
 
 [ext_resource type="Script" path="res://Scripts/VFXController.cs" id="1_jhdtd"]
 [ext_resource type="Texture2D" uid="uid://cbvsd87ssepgb" path="res://Sprites/VFX/Pound.png" id="2_37rg5"]
 [ext_resource type="Texture2D" uid="uid://mu6so648shyx" path="res://Sprites/VFX/Boom2.png" id="3_xa414"]
 [ext_resource type="Texture2D" uid="uid://b0sy4xkiqxmqk" path="res://Sprites/VFX/BlueBuff.png" id="4_yfgkh"]
+[ext_resource type="Texture2D" uid="uid://cwj8btkqknkpq" path="res://Sprites/VFX/Poison2.png" id="5_ehoq1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lyf6p"]
 atlas = ExtResource("2_37rg5")
@@ -41,7 +42,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 9.0
+"speed": 12.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_howds"]
@@ -87,7 +88,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 9.0
+"speed": 12.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpcqg"]
@@ -133,7 +134,53 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 9.0
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn73i"]
+atlas = ExtResource("5_ehoq1")
+region = Rect2(0, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pss0w"]
+atlas = ExtResource("5_ehoq1")
+region = Rect2(66, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1353"]
+atlas = ExtResource("5_ehoq1")
+region = Rect2(132, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8tfl"]
+atlas = ExtResource("5_ehoq1")
+region = Rect2(198, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rweo7"]
+atlas = ExtResource("5_ehoq1")
+region = Rect2(264, 0, 66, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wxcb5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn73i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pss0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1353")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8tfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rweo7")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
 }]
 
 [node name="VFXController" type="Node"]
@@ -152,3 +199,7 @@ frame_progress = 1.0
 [node name="BlueBuff" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_087px")
+
+[node name="Poison" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wxcb5")

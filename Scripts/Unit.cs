@@ -52,7 +52,7 @@ public partial class Unit : Node2D
         pathSprites.Keys.ToList().ForEach(a => sprites.Add(a, GetNode<UnitSprite>(pathSprites[a])));
         SetSprite(currentSprite = initSprite);
         // TEMP - Add UASaturnAttack1
-        AttachAction(new UASaturnAttack1());
+        AttachAction(new UAMercuryAttack1());
     }
 
     public override void _Process(double delta)
@@ -79,7 +79,7 @@ public partial class Unit : Node2D
                 case State.Upkeep:
                     // Use AI/show player UI
                     // TEMP - always use UASaturnAttack1
-                    UseAction<UASaturnAttack1>();
+                    UseAction<UAMercuryAttack1>();
                     state = State.Wait;
                     break;
                 case State.Main:
@@ -104,7 +104,7 @@ public partial class Unit : Node2D
         sprites[currentSprite = name].Visible = true;
     }
 
-    public void TakeDamage(Stats attackerStats, float amount, Element element, bool physical, string vfx = "Pound")
+    public void TakeDamage(Stats attackerStats, float amount, Element element, bool physical, string vfx)
     {
         int damageTaken = physical ? attackerStats.GetPhysDamage(finalStats, amount, element) : attackerStats.GetMagDamage(finalStats, amount, element);
         Health -= damageTaken;
@@ -116,9 +116,9 @@ public partial class Unit : Node2D
         QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(Forward));
     }
 
-    public void TakeDamage(Unit attacker, float amount, Element element, bool physical, string vfx = "Pound")
+    public void TakeDamage(Unit attacker, float amount, Element element, bool physical, string vfx)
     {
-        TakeDamage(attacker.finalStats, amount, element, physical);
+        TakeDamage(attacker.finalStats, amount, element, physical, vfx);
     }
 
     public void AddStatus<T>(T newT) where T : AStatus

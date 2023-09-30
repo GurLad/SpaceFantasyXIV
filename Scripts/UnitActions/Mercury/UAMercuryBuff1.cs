@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MercuryBuff1 : AUABuff<StatusDefenseBuff>
+public partial class UAMercuryBuff1 : AUABuff<StatusDefenseBuff>
 {
     public override string Name => "Shields Up";
 
