@@ -5,12 +5,18 @@ using System.Linq;
 
 public partial class Interpolator : Node
 {
-    // Exports
-    [Export]
-    private Timer timer;
     // Properties
+    public Action OnFinish { private get; set; } = null;
+    private Timer timer = new Timer();
     private bool active;
-    private List<InterpolateObject> objects;
+    private List<InterpolateObject> objects = new List<InterpolateObject>();
+
+    public override void _Ready()
+    {
+        base._Ready();
+        timer.OneShot = true;
+        AddChild(timer);
+    }
 
     public override void _Process(double delta)
     {
@@ -20,7 +26,11 @@ public partial class Interpolator : Node
             objects.ForEach(a => a.SetValue(a.LerpFunc(a.BaseValue, a.TargetValue, a.EasingFunction(timer.Percent()))));
             if (timer.TimeLeft <= 0)
             {
+                objects.Clear();
                 active = false;
+                Action onFinish = OnFinish;
+                OnFinish = null;
+                onFinish?.Invoke();
             }
         }
     }
@@ -28,6 +38,14 @@ public partial class Interpolator : Node
     public void Interpolate(float time, params InterpolateObject[] objects)
     {
         this.objects = objects.ToList();
+        timer.WaitTime = time;
+        timer.Start();
+        active = true;
+    }
+
+    public void Delay(float time)
+    {
+        objects.Clear();
         timer.WaitTime = time;
         timer.Start();
         active = true;
@@ -56,7 +74,8 @@ public partial class Interpolator : Node
                 (a, b, t) => addFunc(mulFunc(a, 1 - t), mulFunc(b, t)),
                 baseValue,
                 targetValue,
-                easingFunction) { }
+                easingFunction)
+        { }
 
         public InterpolateObject(Action<Vector3> setValue, Vector3 baseValue, Vector3 targetValue, Func<float, float> easingFunction = null) :
             this(
@@ -65,7 +84,18 @@ public partial class Interpolator : Node
                 (a, b) => (Vector3)a + (Vector3)b,
                 baseValue,
                 targetValue,
-                easingFunction) { }
+                easingFunction)
+        { }
+
+        public InterpolateObject(Action<Vector2> setValue, Vector2 baseValue, Vector2 targetValue, Func<float, float> easingFunction = null) :
+            this(
+                (a) => setValue((Vector2)a),
+                (a, t) => (Vector2)a * t,
+                (a, b) => (Vector2)a + (Vector2)b,
+                baseValue,
+                targetValue,
+                easingFunction)
+        { }
 
         public InterpolateObject(Action<float> setValue, float baseValue, float targetValue, Func<float, float> easingFunction = null) :
             this(
@@ -74,7 +104,8 @@ public partial class Interpolator : Node
                 (a, b) => (float)a + (float)b,
                 baseValue,
                 targetValue,
-                easingFunction) { }
+                easingFunction)
+        { }
 
         public InterpolateObject(Action<Quaternion> setValue, Quaternion baseValue, Quaternion targetValue, Func<float, float> easingFunction = null) :
             this(

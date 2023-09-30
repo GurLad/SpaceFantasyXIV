@@ -14,4 +14,6 @@ public class UASaturnAttack1 : AUAAttack
     public override string Description => "Punch people in the face!";
 
     public override int SortOrder => 2;
+
+    public override string VFXPath => "Pound";
 }

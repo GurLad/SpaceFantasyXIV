@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class Unit : Node
+public partial class Unit : Node2D
 {
     // Exports
     [Export]
@@ -27,7 +27,9 @@ public partial class Unit : Node
     }
     private Dictionary<string, UnitSprite> sprites = new Dictionary<string, UnitSprite>();
     private string currentSprite;
-        
+    private AAnimation currentAnimation;
+    private Queue<Action> actionQueue = new Queue<Action>();
+
     private Interpolator interpolator = new Interpolator();
 
     public override void _Ready()
@@ -36,6 +38,22 @@ public partial class Unit : Node
         AddChild(interpolator);
         pathSprites.Keys.ToList().ForEach(a => sprites.Add(a, GetNode<UnitSprite>(pathSprites[a])));
         SetSprite(currentSprite = initSprite);
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        if (currentAnimation?.Done ?? actionQueue.Count > 0)
+        {
+            if (currentAnimation != null)
+            {
+                currentAnimation = null;
+            }
+            if (actionQueue.Count > 0)
+            {
+                actionQueue.Dequeue().Invoke();
+            }
+        }
     }
 
     public void SetSprite(string name)
@@ -47,9 +65,9 @@ public partial class Unit : Node
     public void TakeDamage(Stats attackerStats, float amount, Element element, bool physical)
     {
         Health -= physical ? attackerStats.GetPhysDamage(finalStats, amount, element) : attackerStats.GetMagDamage(finalStats, amount, element);
-        SetAnimation(UnitSprite.Animation.Hurt);
+        SetSpriteAnimation(UnitSprite.Animation.Hurt);
         interpolator.Interpolate(1, new Interpolator.InterpolateObject(
-            SetAnimation,
+            SetSpriteAnimation,
             UnitSprite.Animation.Hurt,
             UnitSprite.Animation.Idle));
     }
@@ -72,7 +90,20 @@ public partial class Unit : Node
         }
     }
 
-    private void SetAnimation(UnitSprite.Animation animation)
+    public void QueueAnimation<T, S>(T animation, S animationArgs) where S : AAnimationArgs where T : AAnimation<S>
+    {
+        actionQueue.Enqueue(() =>
+        {
+            currentAnimation = animation.Begin(this, interpolator, animationArgs);
+        });
+    }
+
+    public void QueueImmediateAction(Action action)
+    {
+        actionQueue.Enqueue(action);
+    }
+
+    public void SetSpriteAnimation(UnitSprite.Animation animation)
     {
         sprites[currentSprite].SetAnimation(animation);
     }

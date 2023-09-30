@@ -7,6 +7,7 @@ public abstract class AUAAttack<T> : AUnitAction where T : AStatus
     public abstract float Power { get; }
     public abstract Element Element { get; }
     public abstract Func<T> NewT { get; }
+    public abstract string VFXPath { get; }
 
     protected override void ActivateEffect(Unit enemy)
     {
