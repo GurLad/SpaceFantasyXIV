@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgv86vy7aiq11"]
+
+[ext_resource type="Texture2D" uid="uid://bj5r4bl57rwue" path="res://Sprites/MC.png" id="1_v2cak"]
+[ext_resource type="Texture2D" uid="uid://b562fchgv2j0y" path="res://Sprites/EnemyAlt.png" id="2_sry84"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwmqr"]
+atlas = ExtResource("1_v2cak")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yoyuc"]
+atlas = ExtResource("1_v2cak")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on8vi"]
+atlas = ExtResource("1_v2cak")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81bvs"]
+atlas = ExtResource("1_v2cak")
+region = Rect2(144, 0, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0o4ph"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwmqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yoyuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on8vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81bvs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4isn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sry84")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(60, 96)
+sprite_frames = SubResource("SpriteFrames_0o4ph")
+frame_progress = 0.691336
+
+[node name="Boss" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(192, 101)
+sprite_frames = SubResource("SpriteFrames_g4isn")
