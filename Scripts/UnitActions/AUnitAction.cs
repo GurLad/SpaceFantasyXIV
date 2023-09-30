@@ -13,5 +13,5 @@ public abstract class AUnitAction
         thisUnit = unit;
     }
 
-    protected abstract void ActivateEffect(Unit enemy);
+    public abstract void ActivateEffect(Unit enemy);
 }

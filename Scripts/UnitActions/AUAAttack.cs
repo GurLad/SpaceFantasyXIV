@@ -9,7 +9,7 @@ public abstract class AUAAttack<T> : AUnitAction where T : AStatus
     public abstract Func<T> NewT { get; }
     public abstract string VFXName { get; }
 
-    protected override void ActivateEffect(Unit enemy)
+    public override void ActivateEffect(Unit enemy)
     {
         if (Power > 0)
         {

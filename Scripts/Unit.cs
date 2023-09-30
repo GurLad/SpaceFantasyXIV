@@ -17,6 +17,8 @@ public partial class Unit : Node2D
     public Stats Stats;
     public List<StatsMod> Modifiers;
     public List<AStatus> Statuses;
+    public List<AUnitAction> Actions { get; } = new List<AUnitAction>();
+    public Unit Enemy;
     private Stats finalStats
     {
         get
@@ -27,8 +29,9 @@ public partial class Unit : Node2D
             return result;
         }
     }
-    private Dictionary<string, UnitSprite> sprites = new Dictionary<string, UnitSprite>();
     private State state = State.Wait;
+    // Animations
+    private Dictionary<string, UnitSprite> sprites = new Dictionary<string, UnitSprite>();
     private string currentSprite;
     private AAnimation currentAnimation;
     private Queue<Action> actionQueue = new Queue<Action>();
@@ -44,6 +47,8 @@ public partial class Unit : Node2D
         AddChild(interpolator);
         pathSprites.Keys.ToList().ForEach(a => sprites.Add(a, GetNode<UnitSprite>(pathSprites[a])));
         SetSprite(currentSprite = initSprite);
+        // TEMP - Add UASaturnAttack1
+        AttachAction(new UASaturnAttack1());
     }
 
     public override void _Process(double delta)
@@ -69,10 +74,19 @@ public partial class Unit : Node2D
                     break;
                 case State.Upkeep:
                     // Use AI/show player UI
+                    // TEMP - always use UASaturnAttack1
+                    UseAction<UASaturnAttack1>();
+                    state = State.Wait;
                     break;
                 case State.Main:
+                    // Activate end turn statuses
+                    Statuses.ForEach(a => a.EndTurn());
+                    state = State.Endstep;
                     break;
                 case State.Endstep:
+                    // Finish turn
+                    EmitSignal(SignalName.FinishedTurn);
+                    state = State.Wait;
                     break;
                 default:
                     break;
@@ -119,6 +133,8 @@ public partial class Unit : Node2D
         Statuses.ForEach(a => a.BeginTurn());
     }
 
+    // Animations
+
     public void QueueAnimation<T, S>(T animation, S animationArgs) where S : AAnimationArgs where T : AAnimation<S>
     {
         actionQueue.Enqueue(() =>
@@ -135,5 +151,43 @@ public partial class Unit : Node2D
     public void SetSpriteAnimation(UnitSprite.Animation animation)
     {
         sprites[currentSprite].SetAnimation(animation);
+    }
+
+    // Actions
+
+    public void AttachAction(AUnitAction unitAction)
+    {
+        unitAction.AttachToUnit(this);
+        Actions.Add(unitAction);
+        Actions.Sort((a, b) => a.SortOrder > b.SortOrder ? 1 : (a.SortOrder < b.SortOrder ? -1 : 0));
+    }
+
+    public bool CanUseAction<T>() where T : AUnitAction
+    {
+        T target = (T)Actions.Find(a => a is T);
+        return target != null;
+    }
+
+    public void RemoveAction<T>() where T : AUnitAction
+    {
+        T target = (T)Actions.Find(a => a is T);
+        if (target != null)
+        {
+            Actions.Remove(target);
+        }
+    }
+
+    public void UseAction<T>() where T : AUnitAction
+    {
+        T target = (T)Actions.Find(a => a is T);
+        if (target != null)
+        {
+            target.ActivateEffect(Enemy);
+            QueueImmediateAction(() => state = State.Main);
+        }
+        else
+        {
+            throw new Exception("Unit can't use " + nameof(T) + "!");
+        }
     }
 }

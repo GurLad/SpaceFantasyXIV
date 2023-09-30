@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://wb3r872itxwc"]
+
+[ext_resource type="Script" path="res://Scripts/VFXController.cs" id="1_jhdtd"]
+[ext_resource type="Texture2D" uid="uid://cbvsd87ssepgb" path="res://Sprites/VFX/Pound.png" id="2_37rg5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyf6p"]
+atlas = ExtResource("2_37rg5")
+region = Rect2(0, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2hl8"]
+atlas = ExtResource("2_37rg5")
+region = Rect2(66, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7rfa"]
+atlas = ExtResource("2_37rg5")
+region = Rect2(132, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk7ai"]
+atlas = ExtResource("2_37rg5")
+region = Rect2(198, 0, 66, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nf0ta"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyf6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2hl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7rfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk7ai")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="VFXController" type="Node"]
+script = ExtResource("1_jhdtd")
+
+[node name="Pound" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_nf0ta")
