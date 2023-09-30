@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://wb3r872itxwc"]
+[gd_scene load_steps=22 format=3 uid="uid://wb3r872itxwc"]
 
 [ext_resource type="Script" path="res://Scripts/VFXController.cs" id="1_jhdtd"]
 [ext_resource type="Texture2D" uid="uid://cbvsd87ssepgb" path="res://Sprites/VFX/Pound.png" id="2_37rg5"]
+[ext_resource type="Texture2D" uid="uid://mu6so648shyx" path="res://Sprites/VFX/Boom2.png" id="3_xa414"]
+[ext_resource type="Texture2D" uid="uid://b0sy4xkiqxmqk" path="res://Sprites/VFX/BlueBuff.png" id="4_yfgkh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lyf6p"]
 atlas = ExtResource("2_37rg5")
@@ -42,9 +44,111 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_howds"]
+atlas = ExtResource("3_xa414")
+region = Rect2(0, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eti7a"]
+atlas = ExtResource("3_xa414")
+region = Rect2(66, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8gfl"]
+atlas = ExtResource("3_xa414")
+region = Rect2(132, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8mlr"]
+atlas = ExtResource("3_xa414")
+region = Rect2(198, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m67os"]
+atlas = ExtResource("3_xa414")
+region = Rect2(264, 0, 66, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_03t3t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_howds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eti7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8gfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8mlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m67os")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpcqg"]
+atlas = ExtResource("4_yfgkh")
+region = Rect2(0, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sb6m"]
+atlas = ExtResource("4_yfgkh")
+region = Rect2(66, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wcdc"]
+atlas = ExtResource("4_yfgkh")
+region = Rect2(132, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmgvw"]
+atlas = ExtResource("4_yfgkh")
+region = Rect2(198, 0, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4qmd"]
+atlas = ExtResource("4_yfgkh")
+region = Rect2(264, 0, 66, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_087px"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpcqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sb6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wcdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmgvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4qmd")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
+
 [node name="VFXController" type="Node"]
 script = ExtResource("1_jhdtd")
 
 [node name="Pound" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_nf0ta")
+
+[node name="Boom" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_03t3t")
+frame = 5
+frame_progress = 1.0
+
+[node name="BlueBuff" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_087px")
