@@ -8,10 +8,16 @@ public abstract class AStatus
     public abstract string Description { get; }
     public abstract int SortOrder { get; }
     public int Lifespan;
-    public Unit Unit;
+    protected Unit thisUnit;
 
     public virtual StatsMod StatsMod => null;
 
     public virtual void BeginTurn() { }
     public virtual void EndTurn() { }
+
+    public AStatus(Unit unit, int lifespan)
+    {
+        thisUnit = unit;
+        Lifespan = lifespan;
+    }
 }

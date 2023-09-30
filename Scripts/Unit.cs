@@ -54,6 +54,24 @@ public partial class Unit : Node
             UnitSprite.Animation.Idle));
     }
 
+    public void TakeDamage(Unit attacker, float amount, Element element, bool physical)
+    {
+        TakeDamage(attacker.finalStats, amount, element, physical);
+    }
+
+    public void AddStatus<T>(T newT) where T : AStatus
+    {
+        T current = (T)Statuses.Find(a => a is T);
+        if (current != null)
+        {
+            current.Lifespan += newT.Lifespan;
+        }
+        else
+        {
+            Statuses.Add(newT);
+        }
+    }
+
     private void SetAnimation(UnitSprite.Animation animation)
     {
         sprites[currentSprite].SetAnimation(animation);

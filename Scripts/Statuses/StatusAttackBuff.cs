@@ -12,4 +12,6 @@ public class StatusAttackBuff : AStatus
     public override int SortOrder => -1;
 
     public override StatsMod StatsMod => new StatsMod(1, 3, 1, 3, 1, 1);
+
+    public StatusAttackBuff(Unit unit, int lifespan) : base(unit, lifespan) { }
 }

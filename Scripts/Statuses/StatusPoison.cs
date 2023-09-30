@@ -14,6 +14,8 @@ public class StatusPoison : AStatus
     public override void EndTurn()
     {
         base.EndTurn();
-        Unit.TakeDamage(new Stats(), 40 * Lifespan, Element.Poison, true);
+        thisUnit.TakeDamage(new Stats(), 40 * Lifespan, Element.Poison, true);
     }
+
+    public StatusPoison(Unit unit, int lifespan) : base(unit, lifespan) { }
 }
