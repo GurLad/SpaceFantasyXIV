@@ -15,5 +15,5 @@ public class UASaturnAttack1 : AUAAttack
 
     public override int SortOrder => 2;
 
-    public override string VFXPath => "Pound";
+    public override string VFXName => "Pound";
 }

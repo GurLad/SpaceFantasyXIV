@@ -3,7 +3,7 @@ using System;
 
 public abstract class AAnimation
 {
-    public bool Done { get; private set; }
+    public bool Done { get; protected set; }
 }
 
 public abstract class AAnimation<T> : AAnimation where T : AAnimationArgs

@@ -5,6 +5,8 @@ using System.Linq;
 
 public partial class Unit : Node2D
 {
+    private enum State { Wait, Upkeep, Main, Endstep }
+
     // Exports
     [Export]
     private Godot.Collections.Dictionary<string, NodePath> pathSprites;
@@ -26,11 +28,15 @@ public partial class Unit : Node2D
         }
     }
     private Dictionary<string, UnitSprite> sprites = new Dictionary<string, UnitSprite>();
+    private State state = State.Wait;
     private string currentSprite;
     private AAnimation currentAnimation;
     private Queue<Action> actionQueue = new Queue<Action>();
 
     private Interpolator interpolator = new Interpolator();
+
+    [Signal]
+    public delegate void FinishedTurnEventHandler();
 
     public override void _Ready()
     {
@@ -52,6 +58,24 @@ public partial class Unit : Node2D
             if (actionQueue.Count > 0)
             {
                 actionQueue.Dequeue().Invoke();
+            }
+        }
+        else if (currentAnimation == null && actionQueue.Count <= 0)
+        {
+            switch (state)
+            {
+                case State.Wait:
+                    // Not our turn - do nothing
+                    break;
+                case State.Upkeep:
+                    // Use AI/show player UI
+                    break;
+                case State.Main:
+                    break;
+                case State.Endstep:
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -88,6 +112,11 @@ public partial class Unit : Node2D
         {
             Statuses.Add(newT);
         }
+    }
+
+    public void BeginTurn()
+    {
+        Statuses.ForEach(a => a.BeginTurn());
     }
 
     public void QueueAnimation<T, S>(T animation, S animationArgs) where S : AAnimationArgs where T : AAnimation<S>

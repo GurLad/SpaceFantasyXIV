@@ -5,7 +5,6 @@ public class AnimAttack : AAnimation<AnimAttack.AnimAttackArgs>
 {
     protected override void Animate()
     {
-        unit.SetSpriteAnimation(UnitSprite.Animation.Attack);
         interpolator.Interpolate(args.MoveForwardTime,
             new Interpolator.InterpolateObject(
                 a => unit.Position = a,
@@ -30,6 +29,7 @@ public class AnimAttack : AAnimation<AnimAttack.AnimAttackArgs>
                         unit.Position,
                         unit.Position - Vector2.Right * args.Sign * args.MoveForwardDistance,
                         Easing.EaseInQuart));
+                interpolator.OnFinish = () => Done = true;
             };
         };
     }
