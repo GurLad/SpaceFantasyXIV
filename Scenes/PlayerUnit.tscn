@@ -102,6 +102,7 @@ animations = [{
 }]
 
 [node name="PlayerUnit" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_t602i")
 pathSprites = {
 "MC": NodePath("Sprites/Base"),
@@ -120,7 +121,7 @@ hurtSprite = NodePath("Player")
 [node name="Player" type="AnimatedSprite2D" parent="Sprites/Base"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_c8x4f")
-frame_progress = 0.558416
+frame_progress = 0.614838
 
 [node name="Saturn" type="Node2D" parent="Sprites" node_paths=PackedStringArray("idleSprite", "attackSprite", "hurtSprite")]
 visible = false
@@ -132,7 +133,7 @@ hurtSprite = NodePath("Hurt")
 [node name="Idle" type="AnimatedSprite2D" parent="Sprites/Saturn"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_iryso")
-frame_progress = 0.337363
+frame_progress = 0.393784
 
 [node name="Attack" type="AnimatedSprite2D" parent="Sprites/Saturn"]
 visible = false

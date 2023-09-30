@@ -1,50 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgv86vy7aiq11"]
+[gd_scene load_steps=3 format=3 uid="uid://cgv86vy7aiq11"]
 
 [ext_resource type="PackedScene" uid="uid://c2vyfkisnmjru" path="res://Scenes/PlayerUnit.tscn" id="1_o3i6x"]
-[ext_resource type="Texture2D" uid="uid://csmpeq4rkwi2q" path="res://Sprites/Enemy/Phase1/Enemy1Idle.png" id="1_wdmb4"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8ig8"]
-atlas = ExtResource("1_wdmb4")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hry2m"]
-atlas = ExtResource("1_wdmb4")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_soqtw"]
-atlas = ExtResource("1_wdmb4")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8afj0"]
-atlas = ExtResource("1_wdmb4")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_g4isn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e8ig8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hry2m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_soqtw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8afj0")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://h6i37kho266w" path="res://Scenes/EnemyUnit.tscn" id="2_r2eu6"]
 
 [node name="Game" type="Node2D"]
 
 [node name="PlayerUnit" parent="." instance=ExtResource("1_o3i6x")]
 position = Vector2(70, 98)
 
-[node name="Boss" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(192, 101)
-sprite_frames = SubResource("SpriteFrames_g4isn")
+[node name="EnemyUnit" parent="." instance=ExtResource("2_r2eu6")]
+position = Vector2(187, 103)

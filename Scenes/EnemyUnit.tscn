@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://h6i37kho266w"]
+
+[ext_resource type="Script" path="res://Scripts/Unit.cs" id="1_5rt6s"]
+[ext_resource type="Script" path="res://Scripts/UnitSprite.cs" id="2_8s2i3"]
+[ext_resource type="Texture2D" uid="uid://csmpeq4rkwi2q" path="res://Sprites/Enemy/Phase1/Enemy1Idle.png" id="2_jhul4"]
+[ext_resource type="Texture2D" uid="uid://d0xsrpp77cpf8" path="res://Sprites/Enemy/Phase1/Enemy1Attack.png" id="3_skda0"]
+[ext_resource type="Texture2D" uid="uid://c6qlrcmq1iwge" path="res://Sprites/Enemy/Phase1/Enemy1Hurt.png" id="4_3jl4w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8d1tc"]
+atlas = ExtResource("2_jhul4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrdmq"]
+atlas = ExtResource("2_jhul4")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkf4f"]
+atlas = ExtResource("2_jhul4")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hvaa"]
+atlas = ExtResource("2_jhul4")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vyawb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8d1tc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrdmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkf4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hvaa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2yqy6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_skda0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mu6nh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3jl4w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyUnit" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_5rt6s")
+pathSprites = {
+"Phase1": NodePath("Sprites/Phase1")
+}
+initSprite = "Phase1"
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Phase1" type="Node2D" parent="Sprites" node_paths=PackedStringArray("idleSprite", "attackSprite", "hurtSprite")]
+script = ExtResource("2_8s2i3")
+idleSprite = NodePath("Idle")
+attackSprite = NodePath("Attack")
+hurtSprite = NodePath("Hurt")
+
+[node name="Idle" type="AnimatedSprite2D" parent="Sprites/Phase1"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_vyawb")
+
+[node name="Attack" type="AnimatedSprite2D" parent="Sprites/Phase1"]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_2yqy6")
+
+[node name="Hurt" type="AnimatedSprite2D" parent="Sprites/Phase1"]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_mu6nh")
