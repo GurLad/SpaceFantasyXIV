@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://djfnri5luetfv"]
+
+[ext_resource type="Theme" uid="uid://ditjn8xjdcg2d" path="res://DefaultTheme.tres" id="1_dp4q1"]
+[ext_resource type="Script" path="res://Scripts/DamageText.cs" id="1_jfhx2"]
+[ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="2_6hmyn"]
+
+[node name="DamageText" type="Node" node_paths=PackedStringArray("display")]
+script = ExtResource("1_jfhx2")
+display = NodePath("Label")
+UpSpeed = 20.0
+DisplayTime = 1.0
+FadeTime = 0.2
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+theme = ExtResource("1_dp4q1")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_6hmyn")
+text = "9999"

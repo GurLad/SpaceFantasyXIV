@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgv86vy7aiq11"]
+[gd_scene load_steps=4 format=3 uid="uid://cdne4behqpj1x"]
 
 [ext_resource type="Script" path="res://Scripts/TurnController.cs" id="1_imvwt"]
 [ext_resource type="PackedScene" uid="uid://c2vyfkisnmjru" path="res://Scenes/PlayerUnit.tscn" id="1_o3i6x"]
 [ext_resource type="PackedScene" uid="uid://h6i37kho266w" path="res://Scenes/EnemyUnit.tscn" id="2_r2eu6"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("Player", "Enemy")]
+[node name="Game" type="Node" node_paths=PackedStringArray("Player", "Enemy")]
 script = ExtResource("1_imvwt")
 Player = NodePath("PlayerUnit")
 Enemy = NodePath("EnemyUnit")

@@ -13,6 +13,8 @@ public partial class Unit : Node2D
     [Export]
     private string initSprite;
     [Export]
+    private PackedScene damageTextScene;
+    [Export]
     public bool Forward;
     // Properties
     public int Health;
@@ -104,8 +106,12 @@ public partial class Unit : Node2D
 
     public void TakeDamage(Stats attackerStats, float amount, Element element, bool physical, string vfx = "Pound")
     {
-        Health -= physical ? attackerStats.GetPhysDamage(finalStats, amount, element) : attackerStats.GetMagDamage(finalStats, amount, element);
+        int damageTaken = physical ? attackerStats.GetPhysDamage(finalStats, amount, element) : attackerStats.GetMagDamage(finalStats, amount, element);
+        Health -= damageTaken;
         QueueAnimation(new AnimTakeDamage(), new AnimTakeDamage.AnimTakeDamageArgs(vfx, Forward));
+        DamageText damageText = damageTextScene.Instantiate<DamageText>();
+        AddChild(damageText);
+        damageText.Display(damageTaken, Position);
         // TEMP
         QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(Forward));
     }

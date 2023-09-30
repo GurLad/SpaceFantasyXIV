@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class TurnController : Node2D
+public partial class TurnController : Node
 {
     // Exports
     [Export]

@@ -29,3 +29,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="SpaceFantasyXIV"
+
+[gui]
+
+theme/custom="res://DefaultTheme.tres"
+theme/default_font_antialiasing=0
+theme/default_font_subpixel_positioning=0
+theme/lcd_subpixel_layout=0

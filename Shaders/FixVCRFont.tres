@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b5i2oua5sjskf"]
+
+[ext_resource type="Shader" path="res://Shaders/FixFont.gdshader" id="1_sqjll"]
+
+[resource]
+shader = ExtResource("1_sqjll")
+shader_parameter/threshold = 0.1
+shader_parameter/color = Color(1, 1, 1, 1)
