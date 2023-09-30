@@ -11,8 +11,8 @@ public partial class VFXController : Node
         Current = this;
     }
 
-    public AnimatedSprite2D GetVFX(string name)
+    public VFX GetVFX(string name)
     {
-        return (AnimatedSprite2D)GetNode<AnimatedSprite2D>(name).Duplicate();
+        return (VFX)GetNode<VFX>(name).Duplicate();
     }
 }

@@ -16,7 +16,7 @@ public class AnimBuff : AAnimation<AnimBuff.AnimBuffArgs>
             args.BuffAction();
             unit.AddChild(args.VFX);
             args.VFX.Reparent(unit.GetParent());
-            args.VFX.Play();
+            args.VFX.PlayWithSound();
             interpolator.Delay(args.MoveDelayTime);
             interpolator.OnFinish = () =>
             {
@@ -33,7 +33,7 @@ public class AnimBuff : AAnimation<AnimBuff.AnimBuffArgs>
 
     public class AnimBuffArgs : AAnimationArgs
     {
-        public AnimatedSprite2D VFX;
+        public VFX VFX;
         public Action BuffAction;
         private bool forward;
         public int Sign => forward ? 1 : -1;

@@ -8,7 +8,7 @@ public partial class AnimTakeDamage : AAnimation<AnimTakeDamage.AnimTakeDamageAr
         unit.SetSpriteAnimation(UnitSprite.Animation.Hurt);
         unit.AddChild(args.VFX);
         args.VFX.Reparent(unit.GetParent());
-        args.VFX.Play();
+        args.VFX.PlayWithSound();
         interpolator.Interpolate(args.MoveBackTime,
             new Interpolator.InterpolateObject(
                 a => unit.Position = a,
@@ -28,7 +28,7 @@ public partial class AnimTakeDamage : AAnimation<AnimTakeDamage.AnimTakeDamageAr
 
     public class AnimTakeDamageArgs : AAnimationArgs
     {
-        public AnimatedSprite2D VFX;
+        public VFX VFX;
         private bool forward;
         public int Sign => forward ? 1 : -1;
         public float MoveBackDistance = 20;

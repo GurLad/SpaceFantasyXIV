@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp2st0d1ogm23"]
+
+[ext_resource type="Script" path="res://Scripts/UI/MainMenu.cs" id="1_pry3a"]
+[ext_resource type="Material" uid="uid://b4ltxb4f3c6tp" path="res://Shaders/ScrollingStars.tres" id="1_r783l"]
+[ext_resource type="Texture2D" uid="uid://bt4m2noeinkwq" path="res://Sprites/Misc/StarsBG.png" id="2_ypl6p"]
+[ext_resource type="Texture2D" uid="uid://c7yeqq0x2epva" path="res://Sprites/Misc/Logo.png" id="3_du5e8"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pry3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = ExtResource("1_r783l")
+texture = ExtResource("2_ypl6p")
+offset = Vector2(128, 112)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_du5e8")
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start"
+flat = true
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="Start"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="Quit"]

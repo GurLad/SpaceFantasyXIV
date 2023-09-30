@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://wahj7v0wx047"]
+[gd_scene load_steps=5 format=3 uid="uid://wahj7v0wx047"]
 
 [ext_resource type="Script" path="res://Scripts/GodotUtils/SceneController.cs" id="1_wnwya"]
 [ext_resource type="PackedScene" uid="uid://cdne4behqpj1x" path="res://Scenes/Game.tscn" id="2_7q53s"]
 [ext_resource type="AudioStream" uid="uid://cy5cxi4wi2bmn" path="res://FinalSpace1.mp3" id="3_21u46"]
+[ext_resource type="PackedScene" uid="uid://cp2st0d1ogm23" path="res://Scenes/UI/MainMenu.tscn" id="3_t6uvj"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("Timer", "BlackScreen", "ScenesNode")]
 script = ExtResource("1_wnwya")
-FirstScene = "Game"
+FirstScene = "Menu"
 Scenes = {
-"Game": ExtResource("2_7q53s")
+"Game": ExtResource("2_7q53s"),
+"Menu": ExtResource("3_t6uvj")
 }
 Timer = NodePath("Timer")
 BlackScreen = NodePath("Control/ColorRect")

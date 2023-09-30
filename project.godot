@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 VfxController="*res://Scenes/VFXController.tscn"
 StatusIconController="*res://Scenes/StatusIconController.tscn"
+SoundController="*res://Scenes/SoundController.tscn"
 
 [display]
 

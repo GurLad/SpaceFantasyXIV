@@ -1,10 +1,15 @@
-[gd_scene load_steps=29 format=3 uid="uid://wb3r872itxwc"]
+[gd_scene load_steps=34 format=3 uid="uid://wb3r872itxwc"]
 
 [ext_resource type="Script" path="res://Scripts/VFXController.cs" id="1_jhdtd"]
 [ext_resource type="Texture2D" uid="uid://cbvsd87ssepgb" path="res://Sprites/VFX/Pound.png" id="2_37rg5"]
+[ext_resource type="Script" path="res://Scripts/VFX.cs" id="3_lh8f0"]
 [ext_resource type="Texture2D" uid="uid://mu6so648shyx" path="res://Sprites/VFX/Boom2.png" id="3_xa414"]
+[ext_resource type="AudioStream" uid="uid://cioai4y3lijfm" path="res://SFX/Pound.wav" id="4_qbe87"]
 [ext_resource type="Texture2D" uid="uid://b0sy4xkiqxmqk" path="res://Sprites/VFX/BlueBuff.png" id="4_yfgkh"]
 [ext_resource type="Texture2D" uid="uid://cwj8btkqknkpq" path="res://Sprites/VFX/Poison2.png" id="5_ehoq1"]
+[ext_resource type="AudioStream" uid="uid://s7su8h1ev7qs" path="res://SFX/Boom2.wav" id="6_3uvj2"]
+[ext_resource type="AudioStream" uid="uid://cgnkkiuapqwpu" path="res://SFX/Shield.wav" id="8_niv7d"]
+[ext_resource type="AudioStream" uid="uid://bnrijbwiqkc0t" path="res://SFX/Poison.wav" id="10_s2y48"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lyf6p"]
 atlas = ExtResource("2_37rg5")
@@ -189,17 +194,25 @@ script = ExtResource("1_jhdtd")
 [node name="Pound" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_nf0ta")
+script = ExtResource("3_lh8f0")
+SFX = ExtResource("4_qbe87")
 
 [node name="Boom" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_03t3t")
 frame = 5
 frame_progress = 1.0
+script = ExtResource("3_lh8f0")
+SFX = ExtResource("6_3uvj2")
 
 [node name="BlueBuff" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_087px")
+script = ExtResource("3_lh8f0")
+SFX = ExtResource("8_niv7d")
 
 [node name="Poison" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_wxcb5")
+script = ExtResource("3_lh8f0")
+SFX = ExtResource("10_s2y48")
