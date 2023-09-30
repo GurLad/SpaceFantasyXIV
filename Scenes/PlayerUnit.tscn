@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c2vyfkisnmjru"]
+[gd_scene load_steps=29 format=3 uid="uid://c2vyfkisnmjru"]
 
 [ext_resource type="Script" path="res://Scripts/Unit.cs" id="1_t602i"]
 [ext_resource type="Texture2D" uid="uid://bj5r4bl57rwue" path="res://Sprites/MC/MC.png" id="2_8kg8t"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://Scripts/UnitSprite.cs" id="2_u56ey"]
 [ext_resource type="Texture2D" uid="uid://bmg5nxfnxsqu5" path="res://Sprites/MC/Saturn/SaturnHogAttack.png" id="3_ui3fw"]
 [ext_resource type="Texture2D" uid="uid://fehqphf64b0b" path="res://Sprites/MC/Saturn/SaturnHogHurt.png" id="4_8to6j"]
+[ext_resource type="Texture2D" uid="uid://b7m7xt50nq2fp" path="res://Sprites/MC/Mercury/MercuryMechaIdle.png" id="7_h66mw"]
+[ext_resource type="Texture2D" uid="uid://dlgsfmnn7xbj8" path="res://Sprites/MC/Mercury/MercuryMechaAttack.png" id="8_oi5o5"]
+[ext_resource type="Texture2D" uid="uid://cw601k4wdg0ao" path="res://Sprites/MC/Mercury/MercuryMechaHurt.png" id="9_vpuxo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ghqos"]
 atlas = ExtResource("2_8kg8t")
@@ -101,11 +104,70 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r0jy"]
+atlas = ExtResource("7_h66mw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehas6"]
+atlas = ExtResource("7_h66mw")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rw68h"]
+atlas = ExtResource("7_h66mw")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8p1e"]
+atlas = ExtResource("7_h66mw")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kno1b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r0jy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehas6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rw68h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8p1e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l6ns2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_oi5o5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dmays"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_vpuxo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="PlayerUnit" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_t602i")
 pathSprites = {
 "MC": NodePath("Sprites/Base"),
+"Mercury": NodePath("Sprites/Mercury"),
 "Saturn": NodePath("Sprites/Saturn")
 }
 initSprite = "MC"
@@ -146,3 +208,24 @@ sprite_frames = SubResource("SpriteFrames_e5mwx")
 visible = false
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_phabr")
+
+[node name="Mercury" type="Node2D" parent="Sprites" node_paths=PackedStringArray("idleSprite", "attackSprite", "hurtSprite")]
+visible = false
+script = ExtResource("2_u56ey")
+idleSprite = NodePath("Idle")
+attackSprite = NodePath("Attack")
+hurtSprite = NodePath("Hurt")
+
+[node name="Idle" type="AnimatedSprite2D" parent="Sprites/Mercury"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_kno1b")
+
+[node name="Attack" type="AnimatedSprite2D" parent="Sprites/Mercury"]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_l6ns2")
+
+[node name="Hurt" type="AnimatedSprite2D" parent="Sprites/Mercury"]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_dmays")
