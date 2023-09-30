@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://clijpqbs3x8t7"]
+
+[ext_resource type="StyleBox" uid="uid://3dk7mbmpqng4" path="res://Theme/AttackPanel.tres" id="1_ktwlk"]
+[ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="2_541em"]
+
+[node name="AttackInfoPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_ktwlk")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_541em")
+text = "LIMIT BREAK"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Power" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(57, 0)
+layout_mode = 2
+text = "Pow: 9999"
+
+[node name="MagPhys" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Physical"
+
+[node name="Seperator" type="Label" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Elem" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Type: Lightning"
+
+[node name="Status" type="Label" parent="HBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Apply 5 Poison"
+
+[node name="Description" type="Label" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "This is a very long line of text."
+autowrap_mode = 3

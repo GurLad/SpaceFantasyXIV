@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://3kprk4fxms17"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgb2y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xt6oq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7r5km"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vv64d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pdt0k"]
+
+[node name="AttackButton" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 6
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wgb2y")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xt6oq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7r5km")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vv64d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pdt0k")
+text = "Rifle"

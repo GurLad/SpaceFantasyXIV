@@ -38,6 +38,7 @@ public partial class AnimTakeDamage : AAnimation<AnimTakeDamage.AnimTakeDamageAr
         public AnimTakeDamageArgs(string vfx, bool forward)
         {
             VFX = VFXController.Current.GetVFX(vfx);
+            VFX.FlipH = forward;
             this.forward = forward;
         }
     }

@@ -61,6 +61,7 @@ public class AnimBuff : AAnimation<AnimBuff.AnimBuffArgs>
         public AnimBuffArgs(string vfx, Action buffAction, bool forward)
         {
             VFX = VFXController.Current.GetVFX(vfx);
+            VFX.FlipH = forward;
             BuffAction = buffAction;
             this.forward = forward;
         }

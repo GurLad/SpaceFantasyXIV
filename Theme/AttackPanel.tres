@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://3dk7mbmpqng4"]
+
+[ext_resource type="Texture2D" uid="uid://cqnmoyyh5qysx" path="res://Sprites/UI/AttackPanel.png" id="1_7xh68"]
+
+[resource]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+texture = ExtResource("1_7xh68")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
