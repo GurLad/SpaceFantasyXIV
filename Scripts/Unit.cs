@@ -136,7 +136,7 @@ public partial class Unit : Node2D
         }
         else
         {
-            QueueAnimation(new AnimDie(), new AnimDie.AnimDieArgs(0.3f));
+            QueueAnimation(new AnimDie(), new AnimDie.AnimDieArgs());
         }
     }
 
@@ -187,8 +187,7 @@ public partial class Unit : Node2D
 
     public ShaderMaterial AddDissolveToSpriteAnimation()
     {
-        sprites[currentSprite].Material = dissolveMaterial;
-        return dissolveMaterial;
+        return (ShaderMaterial)(sprites[currentSprite].SetMaterial(dissolveMaterial));
     }
 
     public void RemoveDissolveFromSpriteAnimation()

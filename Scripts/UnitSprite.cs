@@ -41,4 +41,9 @@ public partial class UnitSprite : Node2D
                 break;
         }
     }
+
+    public ShaderMaterial SetMaterial(ShaderMaterial material)
+    {
+        return (ShaderMaterial)(currentAnimation.Material = material);
+    }
 }

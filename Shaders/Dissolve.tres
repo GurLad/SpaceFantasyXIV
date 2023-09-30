@@ -1,6 +1,15 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://fe5l01edh1fd"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://fe5l01edh1fd"]
 
 [ext_resource type="Shader" path="res://Shaders/Dissolve.gdshader" id="1_p7fqb"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l2t3h"]
+frequency = 0.0717
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_64lao"]
+seamless = true
+noise = SubResource("FastNoiseLite_l2t3h")
+
 [resource]
 shader = ExtResource("1_p7fqb")
+shader_parameter/percent = 0.0
+shader_parameter/noise = SubResource("NoiseTexture2D_64lao")
