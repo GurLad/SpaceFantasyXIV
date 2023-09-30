@@ -9,13 +9,8 @@ public class AnimBuff : AAnimation<AnimBuff.AnimBuffArgs>
             new Interpolator.InterpolateObject(
                 a => unit.Position = a,
                 unit.Position,
-                unit.Position + Vector2.Right * args.Sign * args.MoveUpDistance,
-                Easing.EaseInQuart),
-            new Interpolator.InterpolateObject(
-                a => unit.SetSpriteAnimation(a),
-                UnitSprite.Animation.Idle,
-                UnitSprite.Animation.Attack,
-                (a) => a > 0.5f ? 1 : 0));
+                unit.Position + Vector2.Up * args.MoveUpDistance,
+                Easing.EaseInQuart));
         interpolator.OnFinish = () =>
         {
             args.BuffAction();
@@ -29,7 +24,7 @@ public class AnimBuff : AAnimation<AnimBuff.AnimBuffArgs>
                     new Interpolator.InterpolateObject(
                         a => unit.Position = a,
                         unit.Position,
-                        unit.Position - Vector2.Right * args.Sign * args.MoveUpDistance,
+                        unit.Position - Vector2.Up * args.MoveUpDistance,
                         Easing.EaseOutQuart));
                 interpolator.OnFinish = () => Done = true;
             };

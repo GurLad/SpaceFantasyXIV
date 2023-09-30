@@ -56,6 +56,8 @@ public partial class Unit : Node2D
         SetSprite(currentSprite = initSprite);
         // TEMP - Add UASaturnAttack1
         AttachAction(new UAMercuryAttack1());
+        AttachAction(new UAMercuryBuff1());
+        AttachAction(new UASaturnAttack1());
     }
 
     public override void _Process(double delta)
@@ -91,6 +93,8 @@ public partial class Unit : Node2D
                     break;
                 case State.Endstep:
                     // Finish turn
+                    Statuses.ForEach(a => a.Lifespan--);
+                    Statuses = Statuses.FindAll(a => a.Lifespan > 0);
                     EmitSignal(SignalName.FinishedTurn);
                     state = State.Wait;
                     break;
@@ -200,17 +204,9 @@ public partial class Unit : Node2D
         }
     }
 
-    public void UseAction<T>(T action) where T : AUnitAction
+    public void UseAction(AUnitAction action)
     {
-        T target = (T)Actions.Find(a => a is T);
-        if (target != null)
-        {
-            target.ActivateEffect(Enemy);
-            QueueImmediateAction(() => state = State.Main);
-        }
-        else
-        {
-            throw new Exception("Unit can't use " + nameof(T) + "!");
-        }
+        action.ActivateEffect(Enemy);
+        QueueImmediateAction(() => state = State.Main);
     }
 }
