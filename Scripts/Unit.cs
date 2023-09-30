@@ -15,9 +15,11 @@ public partial class Unit : Node2D
     [Export]
     private PackedScene damageTextScene;
     [Export]
+    private ShaderMaterial dissolveMaterial;
+    [Export]
     public bool Forward;
     // Properties
-    public int Health = 9999;
+    public int Health = 999;
     public float ATB = 0;
     public Stats Stats = new Stats();
     public List<StatsMod> Modifiers = new List<StatsMod>();
@@ -51,6 +53,9 @@ public partial class Unit : Node2D
 
     [Signal]
     public delegate void StateChangedEventHandler();
+
+    [Signal]
+    public delegate void DiedEventHandler();
 
     public override void _Ready()
     {
@@ -125,8 +130,14 @@ public partial class Unit : Node2D
         AddChild(damageText);
         damageText.Display(damageTaken, Position);
         EmitSignal(SignalName.StateChanged);
-        // TEMP
-        QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(Forward));
+        if (Health > 0)
+        {
+            QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(Forward));
+        }
+        else
+        {
+            QueueAnimation(new AnimDie(), new AnimDie.AnimDieArgs(0.3f));
+        }
     }
 
     public void TakeDamage(Unit attacker, float amount, Element element, bool physical, string vfx)
@@ -172,6 +183,17 @@ public partial class Unit : Node2D
     public void SetSpriteAnimation(UnitSprite.Animation animation)
     {
         sprites[currentSprite].SetAnimation(animation);
+    }
+
+    public ShaderMaterial AddDissolveToSpriteAnimation()
+    {
+        sprites[currentSprite].Material = dissolveMaterial;
+        return dissolveMaterial;
+    }
+
+    public void RemoveDissolveFromSpriteAnimation()
+    {
+        sprites[currentSprite].Material = null;
     }
 
     // Actions

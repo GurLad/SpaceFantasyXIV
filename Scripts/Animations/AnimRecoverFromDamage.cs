@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class AnimRecoverFromDamage : AAnimation<AnimRecoverFromDamage.AnimRecoverFromDamageArgs>
+public class AnimRecoverFromDamage : AAnimation<AnimRecoverFromDamage.AnimRecoverFromDamageArgs>
 {
     protected override void Animate()
     {

@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://h6i37kho266w"]
+[gd_scene load_steps=15 format=3 uid="uid://h6i37kho266w"]
 
 [ext_resource type="Script" path="res://Scripts/Unit.cs" id="1_5rt6s"]
 [ext_resource type="Script" path="res://Scripts/UnitSprite.cs" id="2_8s2i3"]
 [ext_resource type="PackedScene" uid="uid://djfnri5luetfv" path="res://Scenes/UI/DamageText.tscn" id="2_bjogd"]
 [ext_resource type="Texture2D" uid="uid://csmpeq4rkwi2q" path="res://Sprites/Enemy/Phase1/Enemy1Idle.png" id="2_jhul4"]
+[ext_resource type="Material" uid="uid://fe5l01edh1fd" path="res://Shaders/Dissolve.tres" id="3_2m4k6"]
 [ext_resource type="Texture2D" uid="uid://d0xsrpp77cpf8" path="res://Sprites/Enemy/Phase1/Enemy1Attack.png" id="3_skda0"]
 [ext_resource type="Texture2D" uid="uid://c6qlrcmq1iwge" path="res://Sprites/Enemy/Phase1/Enemy1Hurt.png" id="4_3jl4w"]
 
@@ -73,6 +74,7 @@ pathSprites = {
 }
 initSprite = "Phase1"
 damageTextScene = ExtResource("2_bjogd")
+dissolveMaterial = ExtResource("3_2m4k6")
 
 [node name="Sprites" type="Node2D" parent="."]
 

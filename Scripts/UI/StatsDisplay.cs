@@ -59,7 +59,7 @@ public partial class StatsDisplay : Control
             new Interpolator.InterpolateObject(
                 a => hpBar.Scale = new Vector2(baseScale * (hp = a) / hpMax, hpBar.Scale.Y),
                 hp,
-                unit.Health));
+                Mathf.Max(0, unit.Health)));
     }
 
     public void UpdateDisplay()
