@@ -9,6 +9,8 @@ public partial class AttackUI : Control
     [Export]
     private Node buttonsHolder;
     [Export]
+    private AttackInfoPanel attackInfoPanel;
+    [Export]
     private float showHideTime;
     private Interpolator interpolator;
     private float shownHeight;
@@ -27,6 +29,7 @@ public partial class AttackUI : Control
 
     public void ShowUI(Unit unit)
     {
+        attackInfoPanel.Hide();
         foreach (var item in unit.Actions)
         {
             AttackButton attackButton = attackButtonScene.Instantiate<AttackButton>();
@@ -39,6 +42,7 @@ public partial class AttackUI : Control
                 unit.UseAction(attackButton.Action);
                 HideUI();
             };
+            attackButton.MouseEntered += () => attackInfoPanel.Display(item);
             generatedButtons.Add(attackButton);
         }
         interpolator.Interpolate(showHideTime,

@@ -7,6 +7,7 @@ public abstract class AStatus
     public abstract string Name { get; }
     public abstract string Description { get; }
     public abstract int SortOrder { get; }
+    public virtual string ShortName => Name;
     public int Lifespan;
     protected Unit thisUnit;
 

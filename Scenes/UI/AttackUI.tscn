@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://3kprk4fxms17" path="res://Scenes/UI/AttackButton.tscn" id="3_1rqjs"]
 [ext_resource type="PackedScene" uid="uid://clijpqbs3x8t7" path="res://Scenes/UI/AttackInfoPanel.tscn" id="4_0hma5"]
 
-[node name="AttackUI" type="Control" node_paths=PackedStringArray("buttonsHolder")]
+[node name="AttackUI" type="Control" node_paths=PackedStringArray("buttonsHolder", "attackInfoPanel")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -16,6 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_r82ct")
 attackButtonScene = ExtResource("3_1rqjs")
 buttonsHolder = NodePath("HBoxContainer/PanelContainer/HBoxContainer")
+attackInfoPanel = NodePath("HBoxContainer/AttackInfoPanel")
 showHideTime = 0.2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
