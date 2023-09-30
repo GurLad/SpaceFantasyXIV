@@ -1,9 +1,16 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class Unit : Node
 {
+    // Exports
+    [Export]
+    private Godot.Collections.Dictionary<string, NodePath> pathSprites;
+    [Export]
+    private string initSprite;
+    // Properties
     public int Health;
     public Stats Stats;
     public List<StatsMod> Modifiers;
@@ -18,6 +25,8 @@ public partial class Unit : Node
             return result;
         }
     }
+    private Dictionary<string, UnitSprite> sprites = new Dictionary<string, UnitSprite>();
+    private string currentSprite;
         
     private Interpolator interpolator = new Interpolator();
 
@@ -25,10 +34,28 @@ public partial class Unit : Node
     {
         base._Ready();
         AddChild(interpolator);
+        pathSprites.Keys.ToList().ForEach(a => sprites.Add(a, GetNode<UnitSprite>(pathSprites[a])));
+        SetSprite(currentSprite = initSprite);
+    }
+
+    public void SetSprite(string name)
+    {
+        sprites[currentSprite].Visible = false;
+        sprites[currentSprite = name].Visible = true;
     }
 
     public void TakeDamage(Stats attackerStats, float amount, Element element, bool physical)
     {
         Health -= physical ? attackerStats.GetPhysDamage(finalStats, amount, element) : attackerStats.GetMagDamage(finalStats, amount, element);
+        SetAnimation(UnitSprite.Animation.Hurt);
+        interpolator.Interpolate(1, new Interpolator.InterpolateObject(
+            SetAnimation,
+            UnitSprite.Animation.Hurt,
+            UnitSprite.Animation.Idle));
+    }
+
+    private void SetAnimation(UnitSprite.Animation animation)
+    {
+        sprites[currentSprite].SetAnimation(animation);
     }
 }

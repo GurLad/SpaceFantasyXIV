@@ -1,0 +1,145 @@
+[gd_scene load_steps=19 format=3 uid="uid://c2vyfkisnmjru"]
+
+[ext_resource type="Script" path="res://Scripts/Unit.cs" id="1_t602i"]
+[ext_resource type="Texture2D" uid="uid://bj5r4bl57rwue" path="res://Sprites/MC/MC.png" id="2_8kg8t"]
+[ext_resource type="Texture2D" uid="uid://ddxugi0okev3h" path="res://Sprites/MC/Saturn/SaturnHogIdle.png" id="2_cb81e"]
+[ext_resource type="Script" path="res://Scripts/UnitSprite.cs" id="2_u56ey"]
+[ext_resource type="Texture2D" uid="uid://bmg5nxfnxsqu5" path="res://Sprites/MC/Saturn/SaturnHogAttack.png" id="3_ui3fw"]
+[ext_resource type="Texture2D" uid="uid://fehqphf64b0b" path="res://Sprites/MC/Saturn/SaturnHogHurt.png" id="4_8to6j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghqos"]
+atlas = ExtResource("2_8kg8t")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvonc"]
+atlas = ExtResource("2_8kg8t")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s7uo"]
+atlas = ExtResource("2_8kg8t")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0wbx"]
+atlas = ExtResource("2_8kg8t")
+region = Rect2(144, 0, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c8x4f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghqos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvonc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s7uo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0wbx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyb8a"]
+atlas = ExtResource("2_cb81e")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cahw2"]
+atlas = ExtResource("2_cb81e")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smte8"]
+atlas = ExtResource("2_cb81e")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0px63"]
+atlas = ExtResource("2_cb81e")
+region = Rect2(144, 0, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iryso"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyb8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cahw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smte8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0px63")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e5mwx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ui3fw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phabr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_8to6j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PlayerUnit" type="Node2D"]
+script = ExtResource("1_t602i")
+pathSprites = {
+"MC": NodePath("Sprites/Base"),
+"Saturn": NodePath("Sprites/Saturn")
+}
+initSprite = "MC"
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Base" type="Node2D" parent="Sprites" node_paths=PackedStringArray("idleSprite", "attackSprite", "hurtSprite")]
+script = ExtResource("2_u56ey")
+idleSprite = NodePath("Player")
+attackSprite = NodePath("Player")
+hurtSprite = NodePath("Player")
+
+[node name="Player" type="AnimatedSprite2D" parent="Sprites/Base"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_c8x4f")
+frame_progress = 0.558416
+
+[node name="Saturn" type="Node2D" parent="Sprites" node_paths=PackedStringArray("idleSprite", "attackSprite", "hurtSprite")]
+visible = false
+script = ExtResource("2_u56ey")
+idleSprite = NodePath("Idle")
+attackSprite = NodePath("Attack")
+hurtSprite = NodePath("Hurt")
+
+[node name="Idle" type="AnimatedSprite2D" parent="Sprites/Saturn"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_iryso")
+frame_progress = 0.337363
+
+[node name="Attack" type="AnimatedSprite2D" parent="Sprites/Saturn"]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_e5mwx")
+
+[node name="Hurt" type="AnimatedSprite2D" parent="Sprites/Saturn"]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_phabr")

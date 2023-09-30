@@ -1,49 +1,38 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgv86vy7aiq11"]
+[gd_scene load_steps=8 format=3 uid="uid://cgv86vy7aiq11"]
 
-[ext_resource type="Texture2D" uid="uid://bj5r4bl57rwue" path="res://Sprites/MC/MC.png" id="1_860d5"]
-[ext_resource type="Texture2D" uid="uid://b562fchgv2j0y" path="res://Sprites/Enemy/EnemyAlt.png" id="2_offri"]
+[ext_resource type="PackedScene" uid="uid://c2vyfkisnmjru" path="res://Scenes/PlayerUnit.tscn" id="1_o3i6x"]
+[ext_resource type="Texture2D" uid="uid://csmpeq4rkwi2q" path="res://Sprites/Enemy/Phase1/Enemy1Idle.png" id="1_wdmb4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lwmqr"]
-atlas = ExtResource("1_860d5")
-region = Rect2(0, 0, 48, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8ig8"]
+atlas = ExtResource("1_wdmb4")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yoyuc"]
-atlas = ExtResource("1_860d5")
-region = Rect2(48, 0, 48, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hry2m"]
+atlas = ExtResource("1_wdmb4")
+region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_on8vi"]
-atlas = ExtResource("1_860d5")
-region = Rect2(96, 0, 48, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_soqtw"]
+atlas = ExtResource("1_wdmb4")
+region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_81bvs"]
-atlas = ExtResource("1_860d5")
-region = Rect2(144, 0, 48, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0o4ph"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lwmqr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yoyuc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_on8vi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_81bvs")
-}],
-"loop": true,
-"name": &"default",
-"speed": 9.0
-}]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8afj0"]
+atlas = ExtResource("1_wdmb4")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g4isn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_offri")
+"texture": SubResource("AtlasTexture_e8ig8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hry2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_soqtw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8afj0")
 }],
 "loop": true,
 "name": &"default",
@@ -52,11 +41,8 @@ animations = [{
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(60, 96)
-sprite_frames = SubResource("SpriteFrames_0o4ph")
-frame_progress = 0.31283
+[node name="PlayerUnit" parent="." instance=ExtResource("1_o3i6x")]
+position = Vector2(70, 98)
 
 [node name="Boss" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
