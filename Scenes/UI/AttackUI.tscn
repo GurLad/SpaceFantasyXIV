@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccb4b6sxjc4pp"]
+[gd_scene load_steps=5 format=3 uid="uid://cmdxdtt4gkq61"]
 
-[ext_resource type="Script" path="res://Scripts/AttackUI.cs" id="1_34xjc"]
 [ext_resource type="StyleBox" uid="uid://3dk7mbmpqng4" path="res://Theme/AttackPanel.tres" id="1_r5et7"]
+[ext_resource type="Script" path="res://Scripts/UI/AttackUI.cs" id="1_r82ct"]
+[ext_resource type="PackedScene" uid="uid://3kprk4fxms17" path="res://Scenes/UI/AttackButton.tscn" id="3_1rqjs"]
 [ext_resource type="PackedScene" uid="uid://clijpqbs3x8t7" path="res://Scenes/UI/AttackInfoPanel.tscn" id="4_0hma5"]
 
-[node name="AttackUI" type="Control"]
+[node name="AttackUI" type="Control" node_paths=PackedStringArray("buttonsHolder")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -12,7 +13,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_34xjc")
+script = ExtResource("1_r82ct")
+attackButtonScene = ExtResource("3_1rqjs")
+buttonsHolder = NodePath("HBoxContainer/PanelContainer/HBoxContainer")
+showHideTime = 0.2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

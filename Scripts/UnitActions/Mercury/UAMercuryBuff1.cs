@@ -3,7 +3,7 @@ using System;
 
 public partial class UAMercuryBuff1 : AUABuff<StatusDefenseBuff>
 {
-    public override string Name => "Shields Up";
+    public override string Name => "Shield";
 
     public override string Description => "Massively buff defense for 5 turns.";
 

@@ -45,6 +45,9 @@ public partial class Unit : Node2D
     [Signal]
     public delegate void FinishedTurnEventHandler();
 
+    [Signal]
+    public delegate void BeganTurnEventHandler();
+
     public override void _Ready()
     {
         base._Ready();
@@ -78,8 +81,7 @@ public partial class Unit : Node2D
                     break;
                 case State.Upkeep:
                     // Use AI/show player UI
-                    // TEMP - always use UASaturnAttack1
-                    UseAction<UAMercuryAttack1>();
+                    EmitSignal(SignalName.BeganTurn);
                     state = State.Wait;
                     break;
                 case State.Main:
@@ -185,6 +187,20 @@ public partial class Unit : Node2D
     }
 
     public void UseAction<T>() where T : AUnitAction
+    {
+        T target = (T)Actions.Find(a => a is T);
+        if (target != null)
+        {
+            target.ActivateEffect(Enemy);
+            QueueImmediateAction(() => state = State.Main);
+        }
+        else
+        {
+            throw new Exception("Unit can't use " + nameof(T) + "!");
+        }
+    }
+
+    public void UseAction<T>(T action) where T : AUnitAction
     {
         T target = (T)Actions.Find(a => a is T);
         if (target != null)

@@ -3,12 +3,13 @@
 [ext_resource type="Script" path="res://Scripts/TurnController.cs" id="1_imvwt"]
 [ext_resource type="PackedScene" uid="uid://c2vyfkisnmjru" path="res://Scenes/PlayerUnit.tscn" id="1_o3i6x"]
 [ext_resource type="PackedScene" uid="uid://h6i37kho266w" path="res://Scenes/EnemyUnit.tscn" id="2_r2eu6"]
-[ext_resource type="PackedScene" uid="uid://ccb4b6sxjc4pp" path="res://Scenes/UI/AttackUI.tscn" id="4_iudij"]
+[ext_resource type="PackedScene" uid="uid://cmdxdtt4gkq61" path="res://Scenes/UI/AttackUI.tscn" id="4_iudij"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("Player", "Enemy")]
+[node name="Game" type="Node" node_paths=PackedStringArray("player", "enemy", "attackUI")]
 script = ExtResource("1_imvwt")
-Player = NodePath("PlayerUnit")
-Enemy = NodePath("EnemyUnit")
+player = NodePath("PlayerUnit")
+enemy = NodePath("EnemyUnit")
+attackUI = NodePath("Control/AttackUI")
 
 [node name="PlayerUnit" parent="." instance=ExtResource("1_o3i6x")]
 position = Vector2(70, 98)
@@ -33,4 +34,6 @@ anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
+offset_top = -78.0
+offset_bottom = 0.000152588
 grow_vertical = 0

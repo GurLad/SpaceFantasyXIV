@@ -9,7 +9,7 @@ public partial class UAMercuryAttack1 : AUAAttack
 
     public override Element Element => Element.Fire;
 
-    public override string Name => "Beam Rifle";
+    public override string Name => "Rifle";
 
     public override string Description => "Shoot people in the face!";
 
