@@ -1,9 +1,11 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class StatsDisplay : Control
 {
     // Exports
+    [ExportCategory("Bars")]
     [Export]
     private TextureRect hpBar;
     [Export]
@@ -12,10 +14,16 @@ public partial class StatsDisplay : Control
     private int hpMax;
     [Export]
     private float atbMax;
-    [Export]
-    private float lerpStrength;
+    //[Export]
+    //private float lerpStrength;
     [Export]
     private float updateTime;
+    [ExportCategory("Status")]
+    [Export]
+    private HBoxContainer statusContainer;
+    [Export]
+    private PackedScene statusIconScene;
+    [ExportCategory("Both")]
     [Export]
     private Vector2 offset;
     // Properties
@@ -23,6 +31,7 @@ public partial class StatsDisplay : Control
     private float hp;
     private float atb;
     private float baseScale;
+    private List<StatusUI> statusIcons = new List<StatusUI>();
     private Interpolator interpolator = new Interpolator();
 
     public override void _Ready()
@@ -44,7 +53,7 @@ public partial class StatsDisplay : Control
         atbBar.Scale = new Vector2(baseScale * unit.ATB / atbMax, atbBar.Scale.Y);
     }
 
-    public void UpdateHealth()
+    private void UpdateHealth()
     {
         interpolator.Interpolate(updateTime,
             new Interpolator.InterpolateObject(
@@ -53,10 +62,24 @@ public partial class StatsDisplay : Control
                 unit.Health));
     }
 
-    private float Lerp(TextureRect rect, float current, float target, float max, float delta)
+    public void UpdateDisplay()
     {
-        current = Mathf.Lerp(current, target, Mathf.Min(1, lerpStrength * delta));
-        rect.Scale = new Vector2(baseScale * current / max, rect.Scale.Y);
-        return current;
+        UpdateHealth();
+        statusIcons.ForEach(a => a.QueueFree());
+        statusIcons.Clear();
+        unit.Statuses.ForEach(a =>
+        {
+            StatusUI newIcon = statusIconScene.Instantiate<StatusUI>();
+            statusContainer.AddChild(newIcon);
+            newIcon.Update(a.Name, a.Lifespan);
+            statusIcons.Add(newIcon);
+        });
     }
+
+    //private float Lerp(TextureRect rect, float current, float target, float max, float delta)
+    //{
+    //    current = Mathf.Lerp(current, target, Mathf.Min(1, lerpStrength * delta));
+    //    rect.Scale = new Vector2(baseScale * current / max, rect.Scale.Y);
+    //    return current;
+    //}
 }

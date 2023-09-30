@@ -50,7 +50,7 @@ public partial class Unit : Node2D
     public delegate void BeganTurnEventHandler();
 
     [Signal]
-    public delegate void TookDamageEventHandler();
+    public delegate void StateChangedEventHandler();
 
     public override void _Ready()
     {
@@ -100,6 +100,7 @@ public partial class Unit : Node2D
                     Statuses.ForEach(a => a.Lifespan--);
                     Statuses = Statuses.FindAll(a => a.Lifespan > 0);
                     ATB = 0;
+                    EmitSignal(SignalName.StateChanged);
                     EmitSignal(SignalName.FinishedTurn);
                     state = State.Wait;
                     break;
@@ -123,7 +124,7 @@ public partial class Unit : Node2D
         DamageText damageText = damageTextScene.Instantiate<DamageText>();
         AddChild(damageText);
         damageText.Display(damageTaken, Position);
-        EmitSignal(SignalName.TookDamage);
+        EmitSignal(SignalName.StateChanged);
         // TEMP
         QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(Forward));
     }
@@ -138,12 +139,13 @@ public partial class Unit : Node2D
         T current = (T)Statuses.Find(a => a is T);
         if (current != null)
         {
-            current.Lifespan += newT.Lifespan;
+            current.Lifespan = newT.Stacks ? (current.Lifespan + newT.Lifespan) : Mathf.Max(current.Lifespan, newT.Lifespan);
         }
         else
         {
             Statuses.Add(newT);
         }
+        EmitSignal(SignalName.StateChanged);
     }
 
     public void BeginTurn()

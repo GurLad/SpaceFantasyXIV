@@ -11,6 +11,8 @@ public class StatusBurn : AStatus
 
     public override int SortOrder => 3;
 
+    public override bool Stacks => true;
+
     public override StatsMod StatsMod => new StatsMod(1, 0.5f, 1, 0.5f, 1, 1);
 
     public override void EndTurn()

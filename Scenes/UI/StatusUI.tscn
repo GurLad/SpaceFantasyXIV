@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://4cy7u4ugg0fx"]
+
+[ext_resource type="Script" path="res://Scripts/UI/StatusUI.cs" id="1_8s7jw"]
+[ext_resource type="Texture2D" uid="uid://qunlupxhmmya" path="res://Sprites/StatusIcons/Poison.png" id="1_kabuw"]
+[ext_resource type="FontFile" uid="uid://ih64pscrssk" path="res://3X5.ttf" id="2_dd3ln"]
+
+[node name="StatusUI" type="Control" node_paths=PackedStringArray("lifespanLabel", "icon")]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8s7jw")
+lifespanLabel = NodePath("TextureRect/Label")
+icon = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("1_kabuw")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.152941, 0.152941, 0.211765, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 0.921569, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_dd3ln")
+theme_override_font_sizes/font_size = 5
+text = "5"
+horizontal_alignment = 2
+vertical_alignment = 2

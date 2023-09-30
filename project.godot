@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 VfxController="*res://Scenes/VFXController.tscn"
+StatusIconController="*res://Scenes/StatusIconController.tscn"
 
 [display]
 

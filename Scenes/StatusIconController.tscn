@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cffa01ntwv7px"]
+
+[ext_resource type="Script" path="res://Scripts/StatusIconController.cs" id="1_niwvj"]
+[ext_resource type="Texture2D" uid="uid://qunlupxhmmya" path="res://Sprites/StatusIcons/Poison.png" id="2_ank3e"]
+[ext_resource type="Texture2D" uid="uid://ch6xvy57dffmf" path="res://Sprites/StatusIcons/Attack.png" id="3_piv81"]
+[ext_resource type="Texture2D" uid="uid://crjegxb5pdiy2" path="res://Sprites/StatusIcons/Defense.png" id="4_on2rg"]
+
+[node name="StatusIconController" type="Node"]
+script = ExtResource("1_niwvj")
+
+[node name="Poison" type="Sprite2D" parent="."]
+texture = ExtResource("2_ank3e")
+
+[node name="Powerful" type="Sprite2D" parent="."]
+texture = ExtResource("3_piv81")
+
+[node name="Sturdy" type="Sprite2D" parent="."]
+texture = ExtResource("4_on2rg")

@@ -11,6 +11,8 @@ public class StatusPoison : AStatus
 
     public override int SortOrder => 1;
 
+    public override bool Stacks => true;
+
     public override void EndTurn()
     {
         base.EndTurn();

@@ -11,6 +11,8 @@ public partial class StatusDefenseBuff : AStatus
 
     public override int SortOrder => -1;
 
+    public override bool Stacks => false;
+
     public override StatsMod StatsMod => new StatsMod(1, 1, 3, 1, 3, 1);
 
     public StatusDefenseBuff(Unit unit, int lifespan) : base(unit, lifespan) { }

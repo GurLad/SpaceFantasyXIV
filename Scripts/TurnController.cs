@@ -29,7 +29,7 @@ public partial class TurnController : Node
             StatsDisplay statsDisplay = statsDisplayScene.Instantiate<StatsDisplay>();
             statsDisplay.unit = unit;
             AddChild(statsDisplay);
-            unit.TookDamage += () => statsDisplay.UpdateHealth();
+            unit.StateChanged += () => statsDisplay.UpdateDisplay();
         }
         // Temp?
         player.ATB = enemy.ATB = 100;
