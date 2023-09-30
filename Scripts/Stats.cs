@@ -33,6 +33,6 @@ public class Stats
 
     public float GetATBIncrease(double delta)
     {
-        return (float)(Speed * delta / 80f);
+        return (float)(Speed * delta * 0.8f);
     }
 }

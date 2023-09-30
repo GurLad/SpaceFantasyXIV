@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://bux63eu7dted5"]
+
+[ext_resource type="Texture2D" uid="uid://d361th1j2w1hr" path="res://Sprites/UI/HP ATB.png" id="1_re3k6"]
+[ext_resource type="Script" path="res://Scripts/UI/StatsDisplay.cs" id="1_sw8kk"]
+[ext_resource type="Texture2D" uid="uid://y1vuu4p42jrs" path="res://Sprites/UI/HPBar.png" id="2_8vheq"]
+[ext_resource type="Texture2D" uid="uid://bkij8kcu7pcpr" path="res://Sprites/UI/ATBBar.png" id="3_qh1cm"]
+
+[node name="StatsDisplay" type="Control" node_paths=PackedStringArray("hpBar", "atbBar")]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -192.0
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sw8kk")
+hpBar = NodePath("Background/HPBar")
+atbBar = NodePath("Background/ATBBar")
+hpMax = 9999
+atbMax = 100.0
+lerpStrength = 2.0
+updateTime = 0.5
+offset = Vector2(-32, 40)
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 16.0
+texture = ExtResource("1_re3k6")
+
+[node name="HPBar" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 8.0
+offset_right = 26.0
+offset_bottom = 13.0
+texture = ExtResource("2_8vheq")
+expand_mode = 1
+
+[node name="ATBBar" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 8.0
+offset_right = 58.0
+offset_bottom = 13.0
+texture = ExtResource("3_qh1cm")
+expand_mode = 1

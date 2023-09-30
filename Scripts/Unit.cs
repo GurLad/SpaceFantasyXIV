@@ -17,7 +17,8 @@ public partial class Unit : Node2D
     [Export]
     public bool Forward;
     // Properties
-    public int Health;
+    public int Health = 9999;
+    public float ATB = 0;
     public Stats Stats = new Stats();
     public List<StatsMod> Modifiers = new List<StatsMod>();
     public List<AStatus> Statuses = new List<AStatus>();
@@ -47,6 +48,9 @@ public partial class Unit : Node2D
 
     [Signal]
     public delegate void BeganTurnEventHandler();
+
+    [Signal]
+    public delegate void TookDamageEventHandler();
 
     public override void _Ready()
     {
@@ -95,6 +99,7 @@ public partial class Unit : Node2D
                     // Finish turn
                     Statuses.ForEach(a => a.Lifespan--);
                     Statuses = Statuses.FindAll(a => a.Lifespan > 0);
+                    ATB = 0;
                     EmitSignal(SignalName.FinishedTurn);
                     state = State.Wait;
                     break;
@@ -118,6 +123,7 @@ public partial class Unit : Node2D
         DamageText damageText = damageTextScene.Instantiate<DamageText>();
         AddChild(damageText);
         damageText.Display(damageTaken, Position);
+        EmitSignal(SignalName.TookDamage);
         // TEMP
         QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(Forward));
     }

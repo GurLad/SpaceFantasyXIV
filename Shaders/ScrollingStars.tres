@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b4ltxb4f3c6tp"]
+
+[ext_resource type="Shader" path="res://Shaders/ScrollingStars.gdshader" id="1_t72yx"]
+
+[resource]
+shader = ExtResource("1_t72yx")
+shader_parameter/Speed = -1.0

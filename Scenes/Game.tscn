@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdne4behqpj1x"]
+[gd_scene load_steps=8 format=3 uid="uid://cdne4behqpj1x"]
 
 [ext_resource type="Script" path="res://Scripts/TurnController.cs" id="1_imvwt"]
 [ext_resource type="PackedScene" uid="uid://c2vyfkisnmjru" path="res://Scenes/PlayerUnit.tscn" id="1_o3i6x"]
+[ext_resource type="PackedScene" uid="uid://bux63eu7dted5" path="res://Scenes/UI/StatsDisplay.tscn" id="2_6kehy"]
+[ext_resource type="Material" uid="uid://b4ltxb4f3c6tp" path="res://Shaders/ScrollingStars.tres" id="2_d43x7"]
+[ext_resource type="Texture2D" uid="uid://bt4m2noeinkwq" path="res://Sprites/Misc/StarsBG.png" id="2_kb38v"]
 [ext_resource type="PackedScene" uid="uid://h6i37kho266w" path="res://Scenes/EnemyUnit.tscn" id="2_r2eu6"]
 [ext_resource type="PackedScene" uid="uid://cmdxdtt4gkq61" path="res://Scenes/UI/AttackUI.tscn" id="4_iudij"]
 
@@ -10,13 +13,21 @@ script = ExtResource("1_imvwt")
 player = NodePath("PlayerUnit")
 enemy = NodePath("EnemyUnit")
 attackUI = NodePath("Control/AttackUI")
+statsDisplayScene = ExtResource("2_6kehy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = ExtResource("2_d43x7")
+texture = ExtResource("2_kb38v")
+offset = Vector2(128, 112)
 
 [node name="PlayerUnit" parent="." instance=ExtResource("1_o3i6x")]
-position = Vector2(70, 98)
+position = Vector2(70, 64)
 initSprite = "Mercury"
 
 [node name="EnemyUnit" parent="." instance=ExtResource("2_r2eu6")]
-position = Vector2(187, 103)
+position = Vector2(186, 64)
 
 [node name="Control" type="Control" parent="."]
 texture_filter = 1
