@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj5r4bl57rwue"
-path="res://.godot/imported/MC.png-68c04e24e62b906a4ee30f9f235ef633.ctex"
+uid="uid://bmg5nxfnxsqu5"
+path="res://.godot/imported/SaturnHogAttack.png-6c8f8634048f2e284d0cfb2c0d1e4d6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/MC.png"
-dest_files=["res://.godot/imported/MC.png-68c04e24e62b906a4ee30f9f235ef633.ctex"]
+source_file="res://Sprites/MC/Saturn/SaturnHogAttack.png"
+dest_files=["res://.godot/imported/SaturnHogAttack.png-6c8f8634048f2e284d0cfb2c0d1e4d6c.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

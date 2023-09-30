@@ -1,22 +1,22 @@
 [gd_scene load_steps=9 format=3 uid="uid://cgv86vy7aiq11"]
 
-[ext_resource type="Texture2D" uid="uid://bj5r4bl57rwue" path="res://Sprites/MC.png" id="1_v2cak"]
-[ext_resource type="Texture2D" uid="uid://b562fchgv2j0y" path="res://Sprites/EnemyAlt.png" id="2_sry84"]
+[ext_resource type="Texture2D" uid="uid://bj5r4bl57rwue" path="res://Sprites/MC/MC.png" id="1_860d5"]
+[ext_resource type="Texture2D" uid="uid://b562fchgv2j0y" path="res://Sprites/Enemy/EnemyAlt.png" id="2_offri"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwmqr"]
-atlas = ExtResource("1_v2cak")
+atlas = ExtResource("1_860d5")
 region = Rect2(0, 0, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yoyuc"]
-atlas = ExtResource("1_v2cak")
+atlas = ExtResource("1_860d5")
 region = Rect2(48, 0, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_on8vi"]
-atlas = ExtResource("1_v2cak")
+atlas = ExtResource("1_860d5")
 region = Rect2(96, 0, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_81bvs"]
-atlas = ExtResource("1_v2cak")
+atlas = ExtResource("1_860d5")
 region = Rect2(144, 0, 48, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0o4ph"]
@@ -43,7 +43,7 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sry84")
+"texture": ExtResource("2_offri")
 }],
 "loop": true,
 "name": &"default",
@@ -56,7 +56,7 @@ animations = [{
 texture_filter = 1
 position = Vector2(60, 96)
 sprite_frames = SubResource("SpriteFrames_0o4ph")
-frame_progress = 0.691336
+frame_progress = 0.31283
 
 [node name="Boss" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
