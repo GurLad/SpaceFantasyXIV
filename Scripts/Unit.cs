@@ -158,7 +158,7 @@ public partial class Unit : Node2D
 
     public void AddStatus<T>(T newT) where T : AStatus
     {
-        T current = (T)Statuses.Find(a => a is T);
+        T current = (T)Statuses.Find(a => a.Name == newT.Name);
         if (current != null)
         {
             current.Lifespan = newT.Stacks ? (current.Lifespan + newT.Lifespan) : Mathf.Max(current.Lifespan, newT.Lifespan);

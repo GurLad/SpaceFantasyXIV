@@ -121,7 +121,8 @@ public partial class TurnController : Node
             {
                 conversationPlayer.BeginConversation(ConversationController.Current.GetConversation("Finale"));
                 conversationPlayer.FinishedConversation -= PostConversation;
-                conversationPlayer.FinishedConversation -= () => SceneController.Current.TransitionToScene("Win");
+                conversationPlayer.FinishedConversation += () => SceneController.Current.TransitionToScene("Win");
+                return;
             }
             unit.QueueImmediateAction(() => unit.SetForm(FormController.GetNextBossForm()));
             unit.QueueImmediateAction(() =>
