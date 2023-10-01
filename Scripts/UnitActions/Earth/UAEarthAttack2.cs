@@ -15,5 +15,5 @@ public class UAEarthAttack2 : AUAAttack
 
     public override int SortOrder => 3;
 
-    public override string VFXName => "DarkSlash";
+    public override string VFXName => "IcePound";
 }

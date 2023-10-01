@@ -92,7 +92,10 @@ public partial class TurnController : Node
         if (Paused)
         {
             // Problem
-            postPause = () => UnitDeath(unit);
+            if (postPause == null)
+            {
+                postPause = () => UnitDeath(unit);
+            }
             return;
         }
         Paused = true;
@@ -147,6 +150,7 @@ public partial class TurnController : Node
         else
         {
             postPause?.Invoke();
+            postPause = null;
         }
     }
 

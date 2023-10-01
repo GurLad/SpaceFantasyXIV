@@ -124,9 +124,10 @@ public partial class Unit : Node2D
         sprites[currentSprite = Form.Name].Visible = true;
     }
 
-    public void TakeDamage(Stats attackerStats, float amount, Element element, bool physical, string vfx)
+    public void TakeDamage(Stats attackerStats, float amount, Element element, bool physical, string vfx, bool cannotKill = false)
     {
         int damageTaken = physical ? attackerStats.GetPhysDamage(finalStats, amount, element) : attackerStats.GetMagDamage(finalStats, amount, element);
+        if (cannotKill) damageTaken = Mathf.Min(damageTaken, Health - 1);
         Health -= damageTaken;
         QueueAnimation(new AnimTakeDamage(), new AnimTakeDamage.AnimTakeDamageArgs(vfx, Forward));
         DamageText damageText = damageTextScene.Instantiate<DamageText>();
@@ -143,14 +144,13 @@ public partial class Unit : Node2D
         }
     }
 
-    public void TakeDamage(Unit attacker, float amount, Element element, bool physical, string vfx)
+    public void TakeDamage(Unit attacker, float amount, Element element, bool physical, string vfx, bool cannotKill = false)
     {
         TakeDamage(attacker.finalStats, amount, element, physical, vfx);
     }
 
     public double GetATBIncrease(double delta)
     {
-        GD.Print(finalStats.Speed + " which leads to " + finalStats.GetATBIncrease(delta));
         return finalStats.GetATBIncrease(delta);
     }
 
