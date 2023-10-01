@@ -19,8 +19,8 @@ public partial class AnimDie : AAnimation<AnimDie.AnimDieArgs>
                 (a) => Mathf.Sin(a * Mathf.Pi * 16)));
         interpolator.OnFinish = () =>
         {
-            //Done = true;
-            unit.EmitSignal(Unit.SignalName.Died);
+            Done = true;
+            //unit.EmitSignal(Unit.SignalName.Died);
         };
     }
 

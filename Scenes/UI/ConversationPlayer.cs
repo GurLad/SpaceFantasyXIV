@@ -30,6 +30,9 @@ public partial class ConversationPlayer : Control
     private string currentLine;
     private int currentSpeaker;
 
+    [Signal]
+    public delegate void FinishedConversationEventHandler();
+
     public override void _Ready()
     {
         base._Ready();
@@ -42,7 +45,6 @@ public partial class ConversationPlayer : Control
         shownHeight = Position.Y;
         hiddenHeight = Position.Y + Size.Y;
         Position = new Vector2(Position.X, hiddenHeight);
-        BeginConversation("1,MC,Normal: Yo this is an awesome text about me.\n2,MC,Angry: How dare you do that! awawwadafs");
     }
 
     public override void _Input(InputEvent @event)
@@ -68,6 +70,7 @@ public partial class ConversationPlayer : Control
 
     public void BeginConversation(string content)
     {
+        text.Text = "";
         lines = content.Replace("\r", "").Split("\n").ToList();
         interpolator.Interpolate(showHideTime,
             new Interpolator.InterpolateObject(
@@ -138,6 +141,7 @@ public partial class ConversationPlayer : Control
         interpolator.OnFinish = () =>
         {
             text.Text = "";
+            EmitSignal(SignalName.FinishedConversation);
         };
     }
 }

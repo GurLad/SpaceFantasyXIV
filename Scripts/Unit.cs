@@ -136,7 +136,7 @@ public partial class Unit : Node2D
         }
         else
         {
-            QueueAnimation(new AnimDie(), new AnimDie.AnimDieArgs());
+            EmitSignal(SignalName.Died);
         }
     }
 

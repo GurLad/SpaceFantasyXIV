@@ -11,21 +11,26 @@ public partial class TurnController : Node
     [Export]
     private AttackUI attackUI;
     [Export]
+    private ConversationPlayer conversationPlayer;
+    [Export]
     private PackedScene statsDisplayScene;
     // Properties
     private bool Idling = true;
+    private bool Paused = false;
 
     public override void _Ready()
     {
         base._Ready();
         player.Enemy = enemy;
         enemy.Enemy = player;
-            player.BeganTurn += BeginPlayerTurn;
-            enemy.BeganTurn += BeginEnemyTurn;
+        player.BeganTurn += BeginPlayerTurn;
+        enemy.BeganTurn += BeginEnemyTurn;
+        conversationPlayer.FinishedConversation += PostConversation;
         for (int i = 0; i < 2; i++)
         {
             Unit unit = i == 0 ? player : enemy;
             unit.FinishedTurn += () => Idling = true;
+            unit.Died += () => UnitDeath(unit);
             StatsDisplay statsDisplay = statsDisplayScene.Instantiate<StatsDisplay>();
             statsDisplay.unit = unit;
             AddChild(statsDisplay);
@@ -38,7 +43,7 @@ public partial class TurnController : Node
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if (Idling)
+        if (Idling && !Paused)
         {
             if (player.ATB >= 100)
             {
@@ -66,5 +71,23 @@ public partial class TurnController : Node
     {
         // TEMP
         enemy.UseAction(enemy.Actions[ExtensionMethods.RNG.Next(0, enemy.Actions.Count)]);
+    }
+
+    private void UnitDeath(Unit unit)
+    {
+        Paused = true;
+        unit.QueueAnimation(new AnimDie(), new AnimDie.AnimDieArgs());
+        // TBA: change phase
+        unit.QueueImmediateAction(() => { unit.RemoveDissolveFromSpriteAnimation(); unit.Health = 9999; unit.ATB = 100; unit.EmitSignal(Unit.SignalName.StateChanged); });
+        unit.QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(unit.Forward));
+        unit.QueueImmediateAction(() =>
+        {
+            conversationPlayer.BeginConversation("1,MC,Sad: I am very sad.");
+        });
+    }
+
+    private void PostConversation()
+    {
+        Paused = false;
     }
 }

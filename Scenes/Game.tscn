@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdne4behqpj1x"]
+[gd_scene load_steps=9 format=3 uid="uid://cdne4behqpj1x"]
 
 [ext_resource type="Script" path="res://Scripts/TurnController.cs" id="1_imvwt"]
 [ext_resource type="PackedScene" uid="uid://c2vyfkisnmjru" path="res://Scenes/PlayerUnit.tscn" id="1_o3i6x"]
@@ -7,12 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://bt4m2noeinkwq" path="res://Sprites/Misc/StarsBG.png" id="2_kb38v"]
 [ext_resource type="PackedScene" uid="uid://h6i37kho266w" path="res://Scenes/EnemyUnit.tscn" id="2_r2eu6"]
 [ext_resource type="PackedScene" uid="uid://cmdxdtt4gkq61" path="res://Scenes/UI/AttackUI.tscn" id="4_iudij"]
+[ext_resource type="PackedScene" uid="uid://mu32bvdlio4i" path="res://Scenes/UI/ConversationPlayer.tscn" id="8_mijxu"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("player", "enemy", "attackUI")]
+[node name="Game" type="Node" node_paths=PackedStringArray("player", "enemy", "attackUI", "conversationPlayer")]
 script = ExtResource("1_imvwt")
 player = NodePath("PlayerUnit")
 enemy = NodePath("EnemyUnit")
 attackUI = NodePath("Control/AttackUI")
+conversationPlayer = NodePath("Control/ConversationPlayer")
 statsDisplayScene = ExtResource("2_6kehy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -48,3 +50,6 @@ anchor_right = 0.5
 offset_top = -78.0
 offset_bottom = 0.000152588
 grow_vertical = 0
+
+[node name="ConversationPlayer" parent="Control" instance=ExtResource("8_mijxu")]
+layout_mode = 1

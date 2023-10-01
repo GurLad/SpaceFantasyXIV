@@ -6,10 +6,10 @@ using static ExtensionMethods;
 public class Stats
 {
     public int Health = 10000;
-    public int PhysAttack = 100;
-    public int PhysDefense = 100;
-    public int MagAttack = 100;
-    public int MagDefense = 100;
+    public int PhysAttack = 837;
+    public int PhysDefense = 837;
+    public int MagAttack = 837;
+    public int MagDefense = 837;
     public int Speed = 100;
     public Dictionary<Element, float> ElementMultipliers = new Dictionary<Element, float>();
 
