@@ -50,6 +50,7 @@ PlanetHolder = NodePath("BossPanel/VBoxContainer/HBoxContainer2")
 holder = NodePath(".")
 
 [node name="BossPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 170)
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -94,19 +95,18 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("2_1vgeb")
-text = "The Saturn Hedgehog"
+text = "Click on a planet"
 horizontal_alignment = 1
 
 [node name="Desc1" type="Label" parent="BossPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
-text = "Has a cat. Doesn't believe in magic."
 autowrap_mode = 3
 
 [node name="Desc2" type="Label" parent="BossPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 theme_override_constants/line_spacing = 0
-text = "Uses physical Dark & Normal attacks. Hates Fighting, resists Dark."
 autowrap_mode = 3
 
 [node name="Go" type="Button" parent="BossPanel/VBoxContainer"]

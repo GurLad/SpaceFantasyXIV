@@ -86,38 +86,55 @@ public partial class ConversationPlayer : Control
 
     public void NextLine()
     {
-        void TrueBegin()
+        try
         {
-            text.Text = "";
-            timer.Start();
-            state = State.Writing;
-            lines.RemoveAt(0);
-        }
+            void TrueBegin()
+            {
+                text.Text = "";
+                timer.Start();
+                state = State.Writing;
+                lines.RemoveAt(0);
+            }
 
-        if (lines.Count <= 0)
-        {
-            HideUI();
-            return;
+            if (lines.Count <= 0)
+            {
+                HideUI();
+                return;
+            }
+            string[] parts = lines[0].Split(":");
+            string[] portraitParts = parts[0].Split(",");
+            int id = int.Parse(portraitParts[0]) - 1;
+            portraits[id].Texture = PortraitController.Current.GetPortrait(id == 0 ? "MC" : (FormController.BossPhase > 4 ? "EnemyNkd" : "Enemy"), portraitParts[1]);
+            currentLine = parts[1].Trim();
+            if (id != currentSpeaker)
+            {
+                interpolator.Interpolate(moveTime,
+                    new Interpolator.InterpolateObject(
+                        a => container.Position = new Vector2(a, container.Position.Y),
+                        container.Position.X,
+                        id == 0 ? leftX : rightX,
+                        Easing.EaseOutQuad));
+                interpolator.OnFinish = TrueBegin;
+                currentSpeaker = id;
+            }
+            else
+            {
+                TrueBegin();
+            }
         }
-        string[] parts = lines[0].Split(":");
-        string[] portraitParts = parts[0].Split(",");
-        int id = int.Parse(portraitParts[0]) - 1;
-        portraits[id].Texture = PortraitController.Current.GetPortrait(id == 0 ? "MC" : (FormController.BossPhase > 4 ? "EnemyNkd" : "Enemy"), portraitParts[1]);
-        currentLine = parts[1].Trim();
-        if (id != currentSpeaker)
+        catch
         {
-            interpolator.Interpolate(moveTime,
-                new Interpolator.InterpolateObject(
-                    a => container.Position = new Vector2(a, container.Position.Y),
-                    container.Position.X,
-                    id == 0 ? leftX : rightX,
-                    Easing.EaseOutQuad));
-            interpolator.OnFinish = TrueBegin;
-            currentSpeaker = id;
-        }
-        else
-        {
-            TrueBegin();
+            if (lines.Count > 0)
+            {
+                GD.PrintErr("Error in line " + lines[0] + "!");
+                lines.RemoveAt(0);
+                NextLine();
+            }
+            else
+            {
+                GD.PrintErr("Error no lines!");
+                HideUI();
+            }
         }
     }
 

@@ -5,7 +5,7 @@ public class UAMarsAttack1 : AUAAttack
 {
     public override bool Physical => true;
 
-    public override float Power => 150;
+    public override float Power => 90;
 
     public override Element Element => Element.None;
 

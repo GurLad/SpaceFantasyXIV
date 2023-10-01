@@ -110,7 +110,7 @@ public partial class TurnController : Node
             unit.QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(unit.Forward));
             unit.QueueImmediateAction(() =>
             {
-                conversationPlayer.BeginConversation(unit.Form.Name);
+                conversationPlayer.BeginConversation(ConversationController.Current.GetConversation(unit.Form.Name));
             });
         }
     }

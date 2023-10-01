@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://mu32bvdlio4i"]
+[gd_scene load_steps=5 format=3 uid="uid://mu32bvdlio4i"]
 
 [ext_resource type="StyleBox" uid="uid://wpj61yhwfwkf" path="res://Theme/SpacePanelAltLessMargin.tres" id="1_80v4e"]
 [ext_resource type="Script" path="res://Scripts/UI/ConversationPlayer.cs" id="1_u1jlj"]
 [ext_resource type="Texture2D" uid="uid://b74efbjpxv80c" path="res://Sprites/Portraits/MC/Normal.png" id="2_noj81"]
+[ext_resource type="Texture2D" uid="uid://b7a6y71ud7hqs" path="res://Sprites/Portraits/Enemy/Normal/Normal.png" id="4_k627a"]
 
 [node name="ConversationPlayer" type="Control" node_paths=PackedStringArray("container", "portraits", "text")]
 texture_filter = 1
@@ -55,4 +56,4 @@ theme_override_styles/panel = ExtResource("1_80v4e")
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/Portrait2"]
 layout_mode = 2
-texture = ExtResource("2_noj81")
+texture = ExtResource("4_k627a")
