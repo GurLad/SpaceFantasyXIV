@@ -72,7 +72,6 @@ script = ExtResource("1_5rt6s")
 pathSprites = {
 "Phase1": NodePath("Sprites/Phase1")
 }
-initSprite = "Phase1"
 damageTextScene = ExtResource("2_bjogd")
 dissolveMaterial = ExtResource("3_2m4k6")
 

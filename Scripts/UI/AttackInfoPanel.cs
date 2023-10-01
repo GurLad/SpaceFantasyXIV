@@ -26,8 +26,7 @@ public partial class AttackInfoPanel : PanelContainer
             powerLabel.Text = "Pow: " + attack.Power;
             physMagLabel.Text = attack.Physical ? "Physical" : "Magical";
             typeLabel.Text = "Type: " + attack.Element.ToString();
-            AStatus status = attack.NewT?.Invoke() ?? null;
-            statusLabel.Text = status != null ? "Apply " + status.Lifespan + " " + status.ShortName : "";
+            statusLabel.Text = attack.StatusDesc;
             descriptionLabel.Visible = false;
             detailsHolder.Visible = true;
         }

@@ -290,13 +290,13 @@ animations = [{
 texture_filter = 1
 script = ExtResource("1_t602i")
 pathSprites = {
+"Earth": NodePath("Sprites/Base"),
 "MC": NodePath("Sprites/Base"),
 "Mars": NodePath("Sprites/Mars"),
 "Mercury": NodePath("Sprites/Mercury"),
 "Saturn": NodePath("Sprites/Saturn"),
 "Venus": NodePath("Sprites/Venus")
 }
-initSprite = "MC"
 damageTextScene = ExtResource("2_56qmi")
 dissolveMaterial = ExtResource("4_xiw7f")
 Forward = true
@@ -368,7 +368,7 @@ hurtSprite = NodePath("Hurt")
 [node name="Idle" type="AnimatedSprite2D" parent="Sprites/Venus"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0k26a")
-frame_progress = 0.957767
+frame_progress = 0.942567
 
 [node name="Attack" type="AnimatedSprite2D" parent="Sprites/Venus"]
 visible = false
@@ -390,7 +390,7 @@ hurtSprite = NodePath("../Venus/Hurt")
 [node name="Idle" type="AnimatedSprite2D" parent="Sprites/Mars"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_t61dp")
-frame_progress = 0.373947
+frame_progress = 0.358747
 
 [node name="Attack" type="AnimatedSprite2D" parent="Sprites/Mars"]
 visible = false

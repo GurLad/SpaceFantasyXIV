@@ -14,7 +14,7 @@ public class FormVenus : AForm
 
     public override int SortOrder => 2;
 
-    public override List<AUnitAction> Actions => throw new NotImplementedException();
+    public override List<AUnitAction> Actions => new List<AUnitAction> { new UAVenusAttack1(), new UAVenusAttack2() };
 
     public override StatsMod StatsMod => new StatsMod(1, 0.5f, 0.4f, 2.0f, 1.8f, 1.0f,
         new KeyValuePair<Element, float>(Element.Wind, 0),

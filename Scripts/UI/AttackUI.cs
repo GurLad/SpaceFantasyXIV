@@ -30,7 +30,6 @@ public partial class AttackUI : Control
     public void ShowUI(Unit unit)
     {
         attackInfoPanel.Hide();
-        unit.Actions.Sort((a, b) => a.SortOrder.CompareTo(b.SortOrder));
         foreach (var item in unit.Actions)
         {
             AttackButton attackButton = attackButtonScene.Instantiate<AttackButton>();

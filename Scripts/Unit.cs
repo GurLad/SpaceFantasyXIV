@@ -11,8 +11,6 @@ public partial class Unit : Node2D
     [Export]
     private Godot.Collections.Dictionary<string, NodePath> pathSprites;
     [Export]
-    private string initSprite;
-    [Export]
     private PackedScene damageTextScene;
     [Export]
     private ShaderMaterial dissolveMaterial;
@@ -22,6 +20,7 @@ public partial class Unit : Node2D
     public int Health = 9999;
     public float ATB = 0;
     public Stats Stats = new Stats();
+    public AForm Form;
     public List<StatsMod> Modifiers = new List<StatsMod>();
     public List<AStatus> Statuses = new List<AStatus>();
     public List<AUnitAction> Actions { get; } = new List<AUnitAction>();
@@ -30,7 +29,7 @@ public partial class Unit : Node2D
     {
         get
         {
-            Stats result = Stats;
+            Stats result = Form.StatsMod.Apply(Stats);
             Modifiers.ForEach(a => result = a.Apply(result));
             Statuses.ForEach(a => result = a.StatsMod?.Apply(result) ?? result);
             return result;
@@ -39,7 +38,7 @@ public partial class Unit : Node2D
     private State state = State.Wait;
     // Animations
     private Dictionary<string, UnitSprite> sprites = new Dictionary<string, UnitSprite>();
-    private string currentSprite;
+    private string currentSprite = null;
     private AAnimation currentAnimation;
     private Queue<Action> actionQueue = new Queue<Action>();
 
@@ -62,11 +61,6 @@ public partial class Unit : Node2D
         base._Ready();
         AddChild(interpolator);
         pathSprites.Keys.ToList().ForEach(a => sprites.Add(a, GetNode<UnitSprite>(pathSprites[a])));
-        SetSprite(currentSprite = initSprite);
-        // TEMP - Add UASaturnAttack1
-        AttachAction(new UAMercuryAttack1());
-        AttachAction(new UAMercuryBuff1());
-        AttachAction(new UASaturnAttack1());
     }
 
     public override void _Process(double delta)
@@ -115,10 +109,16 @@ public partial class Unit : Node2D
         }
     }
 
-    public void SetSprite(string name)
+    public void SetForm(AForm form)
     {
-        sprites[currentSprite].Visible = false;
-        sprites[currentSprite = name].Visible = true;
+        Form = form;
+        Actions.Clear();
+        Form.Actions.ForEach(a => AttachAction(a));
+        if (currentSprite != null)
+        {
+            sprites[currentSprite].Visible = false;
+        }
+        sprites[currentSprite = Form.Name].Visible = true;
     }
 
     public void TakeDamage(Stats attackerStats, float amount, Element element, bool physical, string vfx)

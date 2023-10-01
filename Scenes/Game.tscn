@@ -26,7 +26,6 @@ offset = Vector2(128, 112)
 
 [node name="PlayerUnit" parent="." instance=ExtResource("1_o3i6x")]
 position = Vector2(70, 64)
-initSprite = "Venus"
 
 [node name="EnemyUnit" parent="." instance=ExtResource("2_r2eu6")]
 position = Vector2(186, 64)

@@ -21,6 +21,9 @@ public partial class TurnController : Node
     public override void _Ready()
     {
         base._Ready();
+        FormController.Reset();
+        player.SetForm(FormController.PlayerForms[2]); // Hardcoding~
+        enemy.SetForm(FormController.GetNextBossForm());
         player.Enemy = enemy;
         enemy.Enemy = player;
         player.BeganTurn += BeginPlayerTurn;

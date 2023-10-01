@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dipnjmh7x1b6l"]
+[gd_scene load_steps=4 format=3 uid="uid://dipnjmh7x1b6l"]
 
 [ext_resource type="Texture2D" uid="uid://duiub8mrh0j35" path="res://Sprites/UI/PlanetEmpty.png" id="1_4yetk"]
 [ext_resource type="Texture2D" uid="uid://dpjsthv2wgusy" path="res://Sprites/PlanetsSmall/Mercury.png" id="1_jah0h"]
+[ext_resource type="Script" path="res://Scripts/UI/PlanetIcon.cs" id="1_vr086"]
 
 [node name="PlanetIcon" type="TextureButton"]
 texture_filter = 1
@@ -9,6 +10,7 @@ custom_minimum_size = Vector2(24, 32)
 offset_right = 24.0
 offset_bottom = 32.0
 size_flags_horizontal = 6
+script = ExtResource("1_vr086")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

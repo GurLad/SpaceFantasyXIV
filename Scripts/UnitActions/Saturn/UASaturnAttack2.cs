@@ -15,7 +15,7 @@ public class UASaturnAttack2 : AUAAttack<StatusChill>
 
     public override int SortOrder => 3;
 
-    public override string VFXName => "Pound";
+    public override string VFXName => "IcePound";
 
     public override Func<Unit, StatusChill> NewT => (a) => new StatusChill(a, 5);
 }
