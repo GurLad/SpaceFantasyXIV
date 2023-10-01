@@ -100,13 +100,26 @@ public partial class TurnController : Node
         // TBA: change phase
         if (unit.Forward) // Player
         {
-            unit.QueueImmediateAction(() =>
+            if (unit.Form.Name == "Earth")
             {
-                planetSelectUI.Begin();
-            });
+                SceneController.Current.TransitionToScene("Lose");
+            }
+            else
+            {
+                unit.QueueImmediateAction(() =>
+                {
+                    planetSelectUI.Begin();
+                });
+            }
         }
         else
         {
+            if (unit.Form.Name == "Phase6")
+            {
+                conversationPlayer.BeginConversation(ConversationController.Current.GetConversation("Finale"));
+                conversationPlayer.FinishedConversation -= PostConversation;
+                conversationPlayer.FinishedConversation -= () => SceneController.Current.TransitionToScene("Win");
+            }
             unit.QueueImmediateAction(() => unit.SetForm(FormController.GetNextBossForm()));
             unit.QueueImmediateAction(() =>
                 {

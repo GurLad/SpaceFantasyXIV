@@ -132,9 +132,12 @@ text = "2,Sad: Ach! You've ruined my favourite shirt!
 2,Angry: And I shall stop you, for the sake of my nefarious plan!
 2,Angry: ...
 2,Angry: And stop staring!
-1,Surprised: Sorry!
-~ Finale
-2,Angry: Rrgh...! No... I feel my power... Fading...
+1,Surprised: Sorry!"
+
+[node name="Finale" type="Label" parent="."]
+offset_right = 423.0
+offset_bottom = 448.0
+text = "2,Angry: Rrgh...! No... I feel my power... Fading...
 1,Normal: It's over, Phesithor. You will not harm another soul ever again!
 1,Sad: And yet... Why is it sadness that I feel?
 2,Sad: I failed... I'm sorry... I'm so sorry...

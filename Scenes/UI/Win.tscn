@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcv6w3m6nkkvr"]
+
+[ext_resource type="Script" path="res://Scripts/UI/MainMenu.cs" id="1_o7oxt"]
+[ext_resource type="Material" uid="uid://b4ltxb4f3c6tp" path="res://Shaders/ScrollingStars.tres" id="2_iv5e2"]
+[ext_resource type="Texture2D" uid="uid://bt4m2noeinkwq" path="res://Sprites/Misc/StarsBG.png" id="3_hmo2f"]
+[ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="4_ysf6w"]
+
+[node name="GameOVer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o7oxt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = ExtResource("2_iv5e2")
+texture = ExtResource("3_hmo2f")
+offset = Vector2(128, 112)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -21.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ysf6w")
+text = "A winner is you"
+horizontal_alignment = 1
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="Quit"]

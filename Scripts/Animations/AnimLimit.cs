@@ -27,7 +27,7 @@ public partial class AnimLimit : AAnimation<AnimLimit.AnimLimitArgs>
                     unit.SetForm(FormController.PlayerForms[2]);
                     Done = true;
                     unit.QueueAnimation(new AnimRecoverFromDamage(),
-                        new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(unit.Forward, args.MoveBackwardDistance));
+                        new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(unit.Forward, args.MoveBackwardDistance - 20));
                     unit.QueueImmediateAction(() => { unit.EmitSignal(Unit.SignalName.NeedReplace); });
                 });
             };
