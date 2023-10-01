@@ -23,7 +23,7 @@ public abstract class AUALimitBreak : AUnitAction
                         }
                         if (Gain != null)
                         {
-                            thisUnit.AddStatus(Inflict(thisUnit));
+                            thisUnit.AddStatus(Gain(thisUnit));
                         }
                     },
                     thisUnit.Forward));

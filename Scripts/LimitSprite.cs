@@ -4,9 +4,9 @@ using System;
 public partial class LimitSprite : Sprite2D
 {
     [Export]
-    private float rotSpeed = 1;
+    private float rotSpeed = 20;
     [Export]
-    private float movForwardSpeed = 2;
+    private float movForwardSpeed = 200;
     [Export]
     private float scale = 3;
 

@@ -11,7 +11,7 @@ public partial class UAMercuryLimit : AUALimitBreak
 
     public override string Name => "LIMIT!";
 
-    public override string Description => "KILLS SELF! Deals 150 physical Fire damage, and buffs Attack for 5 turns.";
+    public override string Description => "KILLS SELF! 150 Fire pow. Gain 5 Attack Buff.";
 
     public override int SortOrder => 1;
 

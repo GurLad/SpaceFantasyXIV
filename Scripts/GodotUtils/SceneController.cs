@@ -76,6 +76,7 @@ public partial class SceneController : Node
     public void Transition(Action midTransition, Action postTransition)
     {
         BlackScreen.MouseFilter = Control.MouseFilterEnum.Stop;
+        BlackScreen.Modulate = new Color(1, 1, 1, BlackScreen.Modulate.A);
         this.midTransition = midTransition;
         this.postTransition = postTransition;
         state = State.FadeOut;
@@ -89,6 +90,7 @@ public partial class SceneController : Node
             ClearCurrentScene();
             ScenesNode.AddChild(currentScene = Scenes[name].Instantiate<Node>());
         }, null);
+        BlackScreen.Modulate = new Color(0, 0, 0, BlackScreen.Modulate.A);
     }
 
     private void ClearCurrentScene()
