@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c2vyfkisnmjru"]
+[gd_scene load_steps=41 format=3 uid="uid://c2vyfkisnmjru"]
 
 [ext_resource type="Script" path="res://Scripts/Unit.cs" id="1_t602i"]
 [ext_resource type="Texture2D" uid="uid://bj5r4bl57rwue" path="res://Sprites/MC/MC.png" id="2_8kg8t"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://b7m7xt50nq2fp" path="res://Sprites/MC/Mercury/MercuryMechaIdle.png" id="7_h66mw"]
 [ext_resource type="Texture2D" uid="uid://dlgsfmnn7xbj8" path="res://Sprites/MC/Mercury/MercuryMechaAttack.png" id="8_oi5o5"]
 [ext_resource type="Texture2D" uid="uid://cw601k4wdg0ao" path="res://Sprites/MC/Mercury/MercuryMechaHurt.png" id="9_vpuxo"]
+[ext_resource type="Texture2D" uid="uid://ce4vv0ejawp66" path="res://Sprites/MC/Venus/VenusWarriorIdle.png" id="12_vd5qs"]
+[ext_resource type="Texture2D" uid="uid://b3ut1ip5s3rs3" path="res://Sprites/MC/Venus/VenusWarriorAttack.png" id="13_tec6o"]
+[ext_resource type="Texture2D" uid="uid://b88gmvuuctayl" path="res://Sprites/MC/Venus/VenusWarriorHurt.png" id="14_ma4pm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ghqos"]
 atlas = ExtResource("2_8kg8t")
@@ -164,13 +167,72 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g78k7"]
+atlas = ExtResource("12_vd5qs")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guo7s"]
+atlas = ExtResource("12_vd5qs")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3qok"]
+atlas = ExtResource("12_vd5qs")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcqo0"]
+atlas = ExtResource("12_vd5qs")
+region = Rect2(144, 0, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0k26a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g78k7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guo7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3qok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcqo0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tamxs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_tec6o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_brgc8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_ma4pm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="PlayerUnit" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_t602i")
 pathSprites = {
 "MC": NodePath("Sprites/Base"),
 "Mercury": NodePath("Sprites/Mercury"),
-"Saturn": NodePath("Sprites/Saturn")
+"Saturn": NodePath("Sprites/Saturn"),
+"Venus": NodePath("Sprites/Venus")
 }
 initSprite = "MC"
 damageTextScene = ExtResource("2_56qmi")
@@ -233,3 +295,25 @@ sprite_frames = SubResource("SpriteFrames_l6ns2")
 visible = false
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dmays")
+
+[node name="Venus" type="Node2D" parent="Sprites" node_paths=PackedStringArray("idleSprite", "attackSprite", "hurtSprite")]
+visible = false
+script = ExtResource("2_u56ey")
+idleSprite = NodePath("Idle")
+attackSprite = NodePath("Attack")
+hurtSprite = NodePath("Hurt")
+
+[node name="Idle" type="AnimatedSprite2D" parent="Sprites/Venus"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_0k26a")
+frame_progress = 0.919968
+
+[node name="Attack" type="AnimatedSprite2D" parent="Sprites/Venus"]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_tamxs")
+
+[node name="Hurt" type="AnimatedSprite2D" parent="Sprites/Venus"]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_brgc8")

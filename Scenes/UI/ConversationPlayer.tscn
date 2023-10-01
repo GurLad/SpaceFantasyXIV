@@ -17,7 +17,7 @@ script = ExtResource("1_sg8qv")
 container = NodePath("HBoxContainer")
 portraits = [NodePath("HBoxContainer/Portrait1/TextureRect"), NodePath("HBoxContainer/Portrait2/TextureRect")]
 text = NodePath("HBoxContainer/Text/Label")
-textSpeed = 12.0
+textSpeed = 24.0
 moveTime = 0.3
 showHideTime = 0.3
 
