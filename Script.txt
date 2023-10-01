@@ -1,0 +1,124 @@
+2,Normal: Ha ha ha! My plan is perfect! Nothing can stop me now!
+2,Normal: Not even you, Ed, my nemesis!
+1,Angry: Phesithor! I will not let you destroy the galaxy! Your life ends here!
+2,Normal: Do you really think you can stop me on your own?
+1,Normal: No…
+1,Shouting: I will stop you with the power of friendship!
+1,Normal: My friends… The planets in the night’s sky…
+1,Shouting: Grant me your power one final time!
+~ Mercury form
+1,Shouting:  Fire and metal, heed my call! Lend me the power of burning justice!
+2,Normal: Is this truly your justice, Ed? Burning all who stand in your path?
+1,Normal: Yes.
+2,Angry: And yet, I’m the villain in this story?
+1,Angry: Of course you are! The burning justice told me that!
+2,Normal: Right…
+~ Venus form
+1,Shouting: Ground and air, heed my call! Lend me the power of toxic relationships!
+2,Normal: …What?
+1,Sad: Uh, I think I mixed something up. Let me try that again.
+1,Shouting: Earth and sky, heed my call! Lend me the power of poisonous friendships!
+2,Normal: You truly are one of a kind, Ed.
+1,Angry: S-shut up! Let me try again!
+1,Normal: Uh… Rocks and… bad breath?
+1, Angry: Ugh, forget it!
+~ Earth form
+2,Normal: What happened, Ed? Did you run out of friends to sacrifice?
+1,Sad: Uh… Yes.
+2,Normal: Oh, how precious!
+2,Normal: I can feel my sweet victory approaching already!
+1,Shouting: No! I-I don’t really need friendship to save you!
+1,Shouting: I’ll just beat you myself!
+~ Mars form
+1,Shouting: Blood and darkness, heed my call! Lend me the power of felines!
+2,Normal: Felines? Wait, do you have a cat now?
+1,Normal: Yes.
+2,Sad: Gasp! Not the cat!
+1,Normal: Yes the cat!
+2,Sad: Whatever will I do?!
+~ Saturn
+1,Shouting: Speed and speed, heed my call! Lend me the power of speed!
+2,Normal: That seems a bit redundant, don’t you think?
+1,Normal: One can never have too much speed.
+2,Normal: Oh, of course. Silly me.
+~ Phase 2
+2,Normal: Oh ho, Ed! What a fiery fighting spirit you’ve got there!
+2,Normal: It would be a shame if something were to…
+2,Normal: Burn it.
+1,Shouting: I’m not afraid of your flaming tricks, villain!
+2,Normal: Oh, really? Even though my attack now inflict 3 Burn?
+2,Normal: Which reduces your attack power and deals damage each turn?
+1,Sad: What?
+2,Normal: Uh… I have no idea why I just said that.
+2,Angry: Anyway, burn to crisps or something!
+~ Phase 3
+2,Normal: Well, well, well! Congratulations!
+2,Normal: You managed to tear up my pants.
+1,Angry: Those pants are just the beginning!
+2,Angry: You fool! Those pants held my power back!
+2,Angry: With them ripped up, I’m stronger than ever!
+1,Shouting: Gasp!
+2,Angry: Prepare to feel my chilly fists!
+~ Phase 4
+2,Normal: Ha! Oh, how my blood is pumping! If this fight goes on any longer…
+2,Angry: I might just have to use my final form!
+1,Angry: How many more of those do you have anyway?!
+2,Angry: A villain never reveals his secrets!
+2,Normal: Two.
+1,Normal: Oh, thanks.
+2,Normal: Anything for my favourite hero!
+~ Phase 5
+2,Normal: Oh, now you’ve done it, Ed! Prepare to feel the wrath…
+2,Normal: Of my one wing!
+1,Normal: What happened to the other one?
+2,Angry: I’d rather not talk about it.
+1,Normal: Oka-
+2,Sad: When I was a little bird, I only wanted to eat worms.
+2,Sad: But my parents kept bringing me nuts instead!
+2,Sad: I hate nuts! I think I’m allergic to them!
+2,Sad: So anyway, I went on my own to the nearby grove…
+2,Sad: …and he promise me that I will get a worm if…
+2,Sad: …so the wizard said that I had to bring her…
+2,Sad: …in the city of light, there was only one place where…
+2,Sad: …and this is how I lost my other wing.
+1,Sad: Oh, wow. That sounds truly awful.
+2,Sad: Indeed.
+2,Angry: Now then, let’s get back to the fighting!
+~ Phase 6
+2,Sad: Ach! You’ve ruined my favourite shirt!
+2,Normal: O-oh…
+2,Angry: This is it now, Ed! No more holding back! Witness my true final form!
+1,Angry: R-right! I must stop you! For the sake of the galaxy!
+2,Angry: And I shall stop you, for the sake of my nefarious plan!
+2,Angry: …
+2,Angry: And stop staring!
+1,Sad: Sorry!
+~ Finale
+2,Angry: Rrgh…! No… I feel my power… Fading…
+1,Normal: It’s over, Phesithor. You will not harm another soul ever again!
+1,Sad: And yet… Why is it sadness that I feel?
+2,Sad: I failed… I’m sorry… I’m so sorry…
+1,Angry: What are you even sorry for?!
+2,Sad: Ed… There is something I must tell you…
+2,Sad: I…
+2,Sad: I love you…!
+1,Sad: …!
+1,Sad: I…
+1,Shouting: I love you too, Phesithor!
+2,Sad: And yet, it was never meant to be…
+2,Sad: For you are the hero… Whilst I am the villain…
+1,Shouting: No! No, don’t give up, Phesithor!
+2,Sad: I am doomed, Ed… Save yourself…
+2,Sad: And our son…
+1,Shouting: I…
+1,Normal: What?
+1,Shouting: Our son?!
+2,Sad: I never got the chance to tell you…
+1,Shouting: I… Hold on!
+2,Sad: Please, Ed…! You must… Take care of him…
+1,Shouting: We’ll take care of him together…!
+2,Sad: He’s in my… old… nest…
+2,Sad: Goodbye… Ed…
+1,Shouting: Wait, don’t die on me, Phesithor!
+1,Shouting: Phesithor!!!
+1,Shouting: NOOO!!!!!

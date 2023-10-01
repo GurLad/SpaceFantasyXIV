@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://c22jpefhceemb"]
+
+[ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="1_g3qbl"]
+
+[node name="BossPhaseIcon" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("1_g3qbl")
+text = "5"
+
+[node name="X" type="Label" parent="."]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0.921569, 0.337255, 0.294118, 1)
+theme_override_fonts/font = ExtResource("1_g3qbl")
+text = "X"

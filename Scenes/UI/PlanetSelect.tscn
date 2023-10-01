@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0fhmrhslupr4"]
+[gd_scene load_steps=11 format=3 uid="uid://b0fhmrhslupr4"]
 
+[ext_resource type="Script" path="res://Scripts/UI/PlanetSelect.cs" id="1_wxm45"]
 [ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="2_1vgeb"]
 [ext_resource type="Texture2D" uid="uid://d4fh2mxmufu35" path="res://Sprites/UI/PlanetPanel.png" id="2_d8qvn"]
 
@@ -29,6 +30,16 @@ texture_margin_bottom = 29.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_14ybb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t4mgy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m7bnm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88piv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l53vt"]
+
 [node name="PlanetSelect" type="Control"]
 texture_filter = 1
 layout_mode = 3
@@ -37,6 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wxm45")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -100,3 +112,14 @@ layout_mode = 2
 theme_override_constants/line_spacing = 0
 text = "Uses physical Dark & Normal attacks. Hates Fighting, resists Dark."
 autowrap_mode = 3
+
+[node name="Go" type="Button" parent="VBoxContainer/DescriptionLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_14ybb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_t4mgy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_m7bnm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_88piv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l53vt")
+disabled = true
+text = "GO!"
+flat = true
