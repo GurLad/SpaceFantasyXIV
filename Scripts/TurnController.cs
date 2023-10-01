@@ -22,6 +22,7 @@ public partial class TurnController : Node
     private bool Idling = true;
     private bool Paused = false;
     private bool hardcodedPostFirst = true;
+    private Action postPause = null;
 
     public override void _Ready()
     {
@@ -87,6 +88,12 @@ public partial class TurnController : Node
 
     private void UnitDeath(Unit unit)
     {
+        if (Paused)
+        {
+            // Problem
+            postPause = () => UnitDeath(unit);
+            return;
+        }
         Paused = true;
         unit.QueueAnimation(new AnimDie(), new AnimDie.AnimDieArgs());
         // TBA: change phase
@@ -122,6 +129,10 @@ public partial class TurnController : Node
         {
             Paused = true;
             planetSelectUI.Begin();
+        }
+        else
+        {
+            postPause?.Invoke();
         }
     }
 

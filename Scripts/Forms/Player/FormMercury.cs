@@ -14,7 +14,7 @@ public class FormMercury : AForm
 
     public override int SortOrder => 1;
 
-    public override List<AUnitAction> Actions => new List<AUnitAction> { new UAMercuryAttack1(), new UAMercuryBuff1() };
+    public override List<AUnitAction> Actions => new List<AUnitAction> { new UAMercuryLimit(), new UAMercuryAttack1(), new UAMercuryBuff1() };
 
     public override StatsMod StatsMod => new StatsMod(1, 1.2f, 1.5f, 1.2f, 1.5f, 0.6f,
         new KeyValuePair<Element, float>(Element.Poison, 0),

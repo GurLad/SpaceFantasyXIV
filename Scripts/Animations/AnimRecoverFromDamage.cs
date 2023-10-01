@@ -26,5 +26,11 @@ public class AnimRecoverFromDamage : AAnimation<AnimRecoverFromDamage.AnimRecove
         {
             this.forward = forward;
         }
+
+        public AnimRecoverFromDamageArgs(bool forward, float dist)
+        {
+            this.forward = forward;
+            MoveForwardDistance = dist;
+        }
     }
 }

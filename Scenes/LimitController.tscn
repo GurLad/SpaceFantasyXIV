@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bwvgme8q7kh2d"]
+
+[node name="LimitController" type="Node"]
+
+[node name="MercuryLimit" type="Sprite2D" parent="."]

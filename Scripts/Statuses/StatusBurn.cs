@@ -18,7 +18,7 @@ public class StatusBurn : AStatus
     public override void EndTurn()
     {
         base.EndTurn();
-        thisUnit.TakeDamage(new Stats(), 20 * Lifespan, Element.Fire, true, "Burn");
+        thisUnit.TakeDamage(new Stats(), 20 * Lifespan, Element.Fire, true, "Boom");
     }
 
     public StatusBurn(Unit unit, int lifespan) : base(unit, lifespan) { }

@@ -27,6 +27,7 @@ ConversationController="*res://Scenes/ConversationController.tscn"
 
 window/size/viewport_width=256
 window/size/viewport_height=224
+window/size/resizable=false
 window/size/window_width_override=1024
 window/size/window_height_override=896
 window/stretch/mode="viewport"
