@@ -8,7 +8,7 @@ public partial class FormPhase2 : AForm
 
     public override string FullName => "";
 
-    public override string Description1 => "Uses physical Fire, which Burns. Weak to Earth.";
+    public override string Description1 => "Uses physical Fire. Weak to Earth.";
 
     public override string Description2 => "";
 

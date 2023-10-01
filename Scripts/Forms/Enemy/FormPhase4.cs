@@ -8,11 +8,11 @@ public partial class FormPhase4 : AForm
 
     public override string FullName => "";
 
-    public override string Description1 => "Uses physical Poison, which Poisons. Weak to Ice.";
+    public override string Description1 => "Uses physical Poison. Weak to Ice.";
 
     public override string Description2 => "";
 
-    public override int SortOrder => 1;
+    public override int SortOrder => 3;
 
     public override List<AUnitAction> Actions => new List<AUnitAction> { new UAEPoisonBlast() };
 

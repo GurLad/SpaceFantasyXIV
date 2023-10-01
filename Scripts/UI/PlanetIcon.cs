@@ -18,26 +18,35 @@ public partial class PlanetIcon : TextureButton
     public override void _Ready()
     {
         base._Ready();
+        MouseEntered += OnMouseEnter;
+        MouseExited += OnMouseLeave;
     }
 
     public void SetPlanet(string name)
     {
         planetIcon = GetNode<TextureRect>(PlanetName = name);
+        planetIcon.Visible = true;
     }
 
     public void OnMouseEnter()
     {
-        planetIcon.Texture = Selected ? cursorSelect : cursorHover;
+        cursorIcon.Texture = Selected ? cursorSelect : cursorHover;
     }
 
     public void OnMouseLeave()
     {
-        planetIcon.Texture = Selected ? cursorSelect : cursorEmpty;
+        cursorIcon.Texture = Selected ? cursorSelect : cursorEmpty;
     }
 
     public void Select()
     {
-        planetIcon.Texture = cursorSelect;
         Selected = true;
+        cursorIcon.Texture = cursorSelect;
+    }
+
+    public void Unselect()
+    {
+        Selected = false;
+        cursorIcon.Texture = cursorEmpty;
     }
 }

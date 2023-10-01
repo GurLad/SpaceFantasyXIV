@@ -12,7 +12,12 @@ public static class FormController
         new FormSaturn() };
 
     public static List<AForm> EnemyForms { get; } = new List<AForm> {
-        new FormPhase1() };
+        new FormPhase1(),
+        new FormPhase2(),
+        new FormPhase3(),
+        new FormPhase4(),
+        new FormPhase5(),
+        new FormPhase6() };
 
     public static bool[] LivingPlayerForms { get; } = new bool[] { true, true, true, true, true };
 

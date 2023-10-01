@@ -8,11 +8,11 @@ public partial class FormPhase3 : AForm
 
     public override string FullName => "";
 
-    public override string Description1 => "Uses magical Ice, which Chills. Weak to Fire.";
+    public override string Description1 => "Uses magical Ice. Weak to Fire.";
 
     public override string Description2 => "";
 
-    public override int SortOrder => 1;
+    public override int SortOrder => 2;
 
     public override List<AUnitAction> Actions => new List<AUnitAction> { new UAEIceBlast() };
 

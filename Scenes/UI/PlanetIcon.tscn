@@ -1,18 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://dipnjmh7x1b6l"]
+[gd_scene load_steps=10 format=3 uid="uid://dipnjmh7x1b6l"]
 
 [ext_resource type="Texture2D" uid="uid://duiub8mrh0j35" path="res://Sprites/UI/PlanetEmpty.png" id="1_4yetk"]
 [ext_resource type="Texture2D" uid="uid://dpjsthv2wgusy" path="res://Sprites/PlanetsSmall/Mercury.png" id="1_jah0h"]
+[ext_resource type="Texture2D" uid="uid://bbrh1g25ou6t6" path="res://Sprites/UI/PlanetSelecting.png" id="1_toscv"]
 [ext_resource type="Script" path="res://Scripts/UI/PlanetIcon.cs" id="1_vr086"]
+[ext_resource type="Texture2D" uid="uid://c4babm4ud6w60" path="res://Sprites/PlanetsSmall/Venus.png" id="3_mwym7"]
+[ext_resource type="Texture2D" uid="uid://b78e7akf8rlp5" path="res://Sprites/UI/PlanetSelected.png" id="4_tdb2u"]
+[ext_resource type="Texture2D" uid="uid://d1d8m76xhy7xs" path="res://Sprites/PlanetsSmall/Earth.png" id="4_ywi0o"]
+[ext_resource type="Texture2D" uid="uid://cec38ohg0fleu" path="res://Sprites/PlanetsSmall/Mars.png" id="5_45d3r"]
+[ext_resource type="Texture2D" uid="uid://bl862hbf8qsd8" path="res://Sprites/PlanetsSmall/Saturn.png" id="6_dc0to"]
 
-[node name="PlanetIcon" type="TextureButton"]
+[node name="PlanetIcon" type="TextureButton" node_paths=PackedStringArray("cursorIcon")]
 texture_filter = 1
 custom_minimum_size = Vector2(24, 32)
 offset_right = 24.0
 offset_bottom = 32.0
 size_flags_horizontal = 6
 script = ExtResource("1_vr086")
+cursorIcon = NodePath("TextureRect2")
+cursorEmpty = ExtResource("1_4yetk")
+cursorHover = ExtResource("1_toscv")
+cursorSelect = ExtResource("4_tdb2u")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Mercury" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -26,6 +37,74 @@ offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_jah0h")
+stretch_mode = 2
+
+[node name="Venus" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mwym7")
+stretch_mode = 2
+
+[node name="Earth" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ywi0o")
+stretch_mode = 2
+
+[node name="Mars" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_45d3r")
+stretch_mode = 2
+
+[node name="Saturn" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_dc0to")
 stretch_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="."]

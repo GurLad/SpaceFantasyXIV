@@ -1,14 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://c22jpefhceemb"]
+[gd_scene load_steps=3 format=3 uid="uid://c22jpefhceemb"]
 
+[ext_resource type="Script" path="res://Scripts/UI/BossPhaseIcon.cs" id="1_6n05v"]
 [ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="1_g3qbl"]
 
-[node name="BossPhaseIcon" type="Control"]
-layout_mode = 3
+[node name="BossPhaseIcon" type="TextureButton" node_paths=PackedStringArray("number", "x")]
+custom_minimum_size = Vector2(12, 18)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 6
+script = ExtResource("1_6n05v")
+number = NodePath("Label")
+x = NodePath("X")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -18,6 +23,7 @@ theme_override_fonts/font = ExtResource("1_g3qbl")
 text = "5"
 
 [node name="X" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 12.0
 offset_bottom = 18.0

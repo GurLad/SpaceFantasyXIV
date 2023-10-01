@@ -12,7 +12,7 @@ public partial class FormPhase1 : AForm
 
     public override string Description2 => "";
 
-    public override int SortOrder => 1;
+    public override int SortOrder => 0;
 
     public override List<AUnitAction> Actions => new List<AUnitAction> { new UAEDarkBlast() };
 

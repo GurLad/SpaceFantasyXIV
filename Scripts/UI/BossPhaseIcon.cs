@@ -1,15 +1,16 @@
 using Godot;
 using System;
 
-public partial class BossPhaseIcon : Control
+public partial class BossPhaseIcon : TextureButton
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+    [Export]
+    private Label number;
+    [Export]
+    private Label x;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public void Init(int num)
+    {
+        number.Text = (num + 1).ToString();
+        x.Visible = FormController.BossPhase > num;
+    }
 }

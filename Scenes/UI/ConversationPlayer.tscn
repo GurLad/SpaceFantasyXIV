@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://mu32bvdlio4i"]
 
 [ext_resource type="StyleBox" uid="uid://wpj61yhwfwkf" path="res://Theme/SpacePanelAltLessMargin.tres" id="1_80v4e"]
-[ext_resource type="Script" path="res://Scenes/UI/ConversationPlayer.cs" id="1_sg8qv"]
+[ext_resource type="Script" path="res://Scripts/UI/ConversationPlayer.cs" id="1_u1jlj"]
 [ext_resource type="Texture2D" uid="uid://b74efbjpxv80c" path="res://Sprites/Portraits/MC/Normal.png" id="2_noj81"]
 
 [node name="ConversationPlayer" type="Control" node_paths=PackedStringArray("container", "portraits", "text")]
@@ -13,7 +13,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_right = 340.0
 grow_vertical = 0
-script = ExtResource("1_sg8qv")
+script = ExtResource("1_u1jlj")
 container = NodePath("HBoxContainer")
 portraits = [NodePath("HBoxContainer/Portrait1/TextureRect"), NodePath("HBoxContainer/Portrait2/TextureRect")]
 text = NodePath("HBoxContainer/Text/Label")
