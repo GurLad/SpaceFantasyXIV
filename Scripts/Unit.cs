@@ -19,7 +19,7 @@ public partial class Unit : Node2D
     [Export]
     public bool Forward;
     // Properties
-    public int Health = 999;
+    public int Health = 9999;
     public float ATB = 0;
     public Stats Stats = new Stats();
     public List<StatsMod> Modifiers = new List<StatsMod>();

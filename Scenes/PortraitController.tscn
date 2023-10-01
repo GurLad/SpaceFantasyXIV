@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://uppd38aha7kf"]
+
+[ext_resource type="Script" path="res://Scripts/PortraitController.cs" id="1_sk5l7"]
+[ext_resource type="Texture2D" uid="uid://b74efbjpxv80c" path="res://Sprites/Portraits/MC/Normal.png" id="2_nyae6"]
+[ext_resource type="Texture2D" uid="uid://bnjtj6dkddq3d" path="res://Sprites/Portraits/MC/Angry.png" id="3_on005"]
+[ext_resource type="Texture2D" uid="uid://b5j8qk3qerlko" path="res://Sprites/Portraits/MC/Sad.png" id="4_l4ms5"]
+[ext_resource type="Texture2D" uid="uid://c2b4xedy13bil" path="res://Sprites/Portraits/MC/Shouting.png" id="5_2ao7b"]
+[ext_resource type="Texture2D" uid="uid://dlt06tu2thlb2" path="res://Sprites/Portraits/MC/Surprised.png" id="6_6yq5m"]
+
+[node name="PortraitController" type="Node"]
+script = ExtResource("1_sk5l7")
+
+[node name="MC" type="Node" parent="."]
+
+[node name="Normal" type="Sprite2D" parent="MC"]
+texture = ExtResource("2_nyae6")
+
+[node name="Angry" type="Sprite2D" parent="MC"]
+texture = ExtResource("3_on005")
+
+[node name="Sad" type="Sprite2D" parent="MC"]
+texture = ExtResource("4_l4ms5")
+
+[node name="Shouting" type="Sprite2D" parent="MC"]
+texture = ExtResource("5_2ao7b")
+
+[node name="Surprised" type="Sprite2D" parent="MC"]
+texture = ExtResource("6_6yq5m")
