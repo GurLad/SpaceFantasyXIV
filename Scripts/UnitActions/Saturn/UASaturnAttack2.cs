@@ -5,7 +5,7 @@ public class UASaturnAttack2 : AUAAttack<StatusChill>
 {
     public override bool Physical => true;
 
-    public override float Power => 20;
+    public override float Power => 30;
 
     public override Element Element => Element.Ice;
 

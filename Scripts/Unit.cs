@@ -145,6 +145,12 @@ public partial class Unit : Node2D
         TakeDamage(attacker.finalStats, amount, element, physical, vfx);
     }
 
+    public double GetATBIncrease(double delta)
+    {
+        GD.Print(finalStats.Speed + " which leads to " + finalStats.GetATBIncrease(delta));
+        return finalStats.GetATBIncrease(delta);
+    }
+
     public void AddStatus<T>(T newT) where T : AStatus
     {
         T current = (T)Statuses.Find(a => a is T);

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cffa01ntwv7px"]
+[gd_scene load_steps=7 format=3 uid="uid://cffa01ntwv7px"]
 
 [ext_resource type="Script" path="res://Scripts/StatusIconController.cs" id="1_niwvj"]
 [ext_resource type="Texture2D" uid="uid://qunlupxhmmya" path="res://Sprites/StatusIcons/Poison.png" id="2_ank3e"]
 [ext_resource type="Texture2D" uid="uid://ch6xvy57dffmf" path="res://Sprites/StatusIcons/Attack.png" id="3_piv81"]
 [ext_resource type="Texture2D" uid="uid://crjegxb5pdiy2" path="res://Sprites/StatusIcons/Defense.png" id="4_on2rg"]
+[ext_resource type="Texture2D" uid="uid://beq2032nax2io" path="res://Sprites/StatusIcons/Burn.png" id="5_68eh2"]
+[ext_resource type="Texture2D" uid="uid://bdaqdbeqrb7jb" path="res://Sprites/StatusIcons/Chill.png" id="6_6np04"]
 
 [node name="StatusIconController" type="Node"]
 script = ExtResource("1_niwvj")
@@ -16,3 +18,9 @@ texture = ExtResource("3_piv81")
 
 [node name="Sturdy" type="Sprite2D" parent="."]
 texture = ExtResource("4_on2rg")
+
+[node name="Burn" type="Sprite2D" parent="."]
+texture = ExtResource("5_68eh2")
+
+[node name="Chill" type="Sprite2D" parent="."]
+texture = ExtResource("6_6np04")

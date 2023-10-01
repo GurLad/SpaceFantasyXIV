@@ -96,6 +96,7 @@ public partial class ConversationPlayer : Control
                 lines.RemoveAt(0);
             }
 
+            state = State.Idle;
             if (lines.Count <= 0)
             {
                 HideUI();
@@ -140,6 +141,10 @@ public partial class ConversationPlayer : Control
 
     private void NextLetter()
     {
+        if (state != State.Writing)
+        {
+            return;
+        }
         text.Text += currentLine[0];
         if (currentLine.Length <= 1)
         {

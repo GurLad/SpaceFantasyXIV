@@ -69,8 +69,8 @@ public partial class TurnController : Node
                 Idling = false;
                 return;
             }
-            player.ATB += player.Stats.GetATBIncrease(delta);
-            enemy.ATB += player.Stats.GetATBIncrease(delta);
+            player.ATB += (float)player.GetATBIncrease(delta);
+            enemy.ATB += (float)enemy.GetATBIncrease(delta);
         }
     }
 

@@ -14,7 +14,7 @@ public partial class FormSaturn : AForm
 
     public override int SortOrder => 5;
 
-    public override List<AUnitAction> Actions => new List<AUnitAction> { new UAMercuryAttack1(), new UAMercuryBuff1() };
+    public override List<AUnitAction> Actions => new List<AUnitAction> { new UASaturnAttack1(), new UASaturnAttack2() };
 
     public override StatsMod StatsMod => new StatsMod(1, 0.7f, 0.8f, 0.7f, 0.8f, 1.8f,
         new KeyValuePair<Element, float>(Element.Ice, 0),
