@@ -6,6 +6,8 @@ public class FormMercury : AForm
 {
     public override string Name => "Mercury";
 
+    public override string FullName => "The Mercury Mecha";
+
     public override string Description1 => "Strong and tough! But oh so slow.";
 
     public override string Description2 => "Uses magical Fire attacks. Can buff defense. Hates Fire, resists Poison.";

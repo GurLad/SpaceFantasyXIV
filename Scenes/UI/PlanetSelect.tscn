@@ -92,11 +92,11 @@ horizontal_alignment = 1
 [node name="Desc1" type="Label" parent="VBoxContainer/DescriptionLabel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
-text = "Gotta go fast! And hit like a wet noodle."
+text = "Has a cat. Doesn't believe in magic."
 autowrap_mode = 3
 
 [node name="Desc2" type="Label" parent="VBoxContainer/DescriptionLabel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
-text = "Uses physical Fire attacks. Can buff defense. Hates Fire, resists Poison."
+text = "Uses physical Dark & Normal attacks. Hates Fighting, resists Dark."
 autowrap_mode = 3

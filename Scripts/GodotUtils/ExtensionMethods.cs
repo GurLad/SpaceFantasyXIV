@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public enum Element { None, Wind, Earth, Fire, Water, Poison, Ice, Lightning, Light, Dark, EndMarker }
+public enum Element { None, Wind, Earth, Fire, Water, Poison, Ice, Lightning, Light, Dark, Fighting, EndMarker }
 
 public static class ExtensionMethods
 {

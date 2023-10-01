@@ -6,7 +6,7 @@ public abstract class AUAAttack<T> : AUnitAction where T : AStatus
     public abstract bool Physical { get; }
     public abstract float Power { get; }
     public abstract Element Element { get; }
-    public abstract Func<T> NewT { get; }
+    public abstract Func<Unit, T> NewT { get; }
     public abstract string VFXName { get; }
 
     public override void ActivateEffect(Unit enemy)
@@ -17,12 +17,12 @@ public abstract class AUAAttack<T> : AUnitAction where T : AStatus
         }
         if (NewT != null)
         {
-            enemy.AddStatus(NewT());
+            enemy.AddStatus(NewT(enemy));
         }
     }
 }
 
 public abstract class AUAAttack : AUAAttack<AStatus>
 {
-    public override Func<AStatus> NewT { get; } = null;
+    public override Func<Unit, AStatus> NewT { get; } = null;
 }
