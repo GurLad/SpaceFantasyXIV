@@ -3,25 +3,25 @@
 [ext_resource type="Script" path="res://Scripts/Unit.cs" id="1_5rt6s"]
 [ext_resource type="Script" path="res://Scripts/UnitSprite.cs" id="2_8s2i3"]
 [ext_resource type="PackedScene" uid="uid://djfnri5luetfv" path="res://Scenes/UI/DamageText.tscn" id="2_bjogd"]
-[ext_resource type="Texture2D" uid="uid://csmpeq4rkwi2q" path="res://Sprites/Enemy/Phase1/Enemy1Idle.png" id="2_jhul4"]
 [ext_resource type="Material" uid="uid://fe5l01edh1fd" path="res://Shaders/Dissolve.tres" id="3_2m4k6"]
-[ext_resource type="Texture2D" uid="uid://d0xsrpp77cpf8" path="res://Sprites/Enemy/Phase1/Enemy1Attack.png" id="3_skda0"]
-[ext_resource type="Texture2D" uid="uid://c6qlrcmq1iwge" path="res://Sprites/Enemy/Phase1/Enemy1Hurt.png" id="4_3jl4w"]
+[ext_resource type="Texture2D" uid="uid://csmpeq4rkwi2q" path="res://Sprites/Enemy/Enemy1/Enemy1Idle.png" id="5_5rfgq"]
+[ext_resource type="Texture2D" uid="uid://d0xsrpp77cpf8" path="res://Sprites/Enemy/Enemy1/Enemy1Attack.png" id="6_574k1"]
+[ext_resource type="Texture2D" uid="uid://c6qlrcmq1iwge" path="res://Sprites/Enemy/Enemy1/Enemy1Hurt.png" id="7_fwlwi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8d1tc"]
-atlas = ExtResource("2_jhul4")
+atlas = ExtResource("5_5rfgq")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrdmq"]
-atlas = ExtResource("2_jhul4")
+atlas = ExtResource("5_5rfgq")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lkf4f"]
-atlas = ExtResource("2_jhul4")
+atlas = ExtResource("5_5rfgq")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1hvaa"]
-atlas = ExtResource("2_jhul4")
+atlas = ExtResource("5_5rfgq")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vyawb"]
@@ -48,7 +48,7 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_skda0")
+"texture": ExtResource("6_574k1")
 }],
 "loop": true,
 "name": &"default",
@@ -59,7 +59,7 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_3jl4w")
+"texture": ExtResource("7_fwlwi")
 }],
 "loop": true,
 "name": &"default",

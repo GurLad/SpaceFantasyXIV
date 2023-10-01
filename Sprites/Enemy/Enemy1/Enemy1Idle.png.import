@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csmpeq4rkwi2q"
-path="res://.godot/imported/Enemy1Idle.png-6ae6cacf4b68d79dc10346e287cc7653.ctex"
+path="res://.godot/imported/Enemy1Idle.png-9779b0d6efd1d83835ce0d2097195c88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemy/Phase1/Enemy1Idle.png"
-dest_files=["res://.godot/imported/Enemy1Idle.png-6ae6cacf4b68d79dc10346e287cc7653.ctex"]
+source_file="res://Sprites/Enemy/Enemy1/Enemy1Idle.png"
+dest_files=["res://.godot/imported/Enemy1Idle.png-9779b0d6efd1d83835ce0d2097195c88.ctex"]
 
 [params]
 
