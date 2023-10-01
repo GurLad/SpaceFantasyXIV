@@ -16,5 +16,5 @@ public partial class FormPhase6 : AForm
 
     public override List<AUnitAction> Actions => new List<AUnitAction> { new UAEFightBlast() };
 
-    public override StatsMod StatsMod => new StatsMod(1, 2f, 2f, 2f, 2f, 1.5f);
+    public override StatsMod StatsMod => new StatsMod(1, 1.8f, 1.8f, 1.8f, 1.8f, 0.9f);
 }
