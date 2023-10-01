@@ -11,5 +11,3 @@ script = ExtResource("1_734o7")
 texture_filter = 1
 texture = ExtResource("2_8e7nn")
 script = ExtResource("2_t70n6")
-rotSpeed = 20.0
-movForwardSpeed = 200.0

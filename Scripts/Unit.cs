@@ -56,6 +56,9 @@ public partial class Unit : Node2D
     [Signal]
     public delegate void DiedEventHandler();
 
+    [Signal]
+    public delegate void NeedReplaceEventHandler();
+
     public override void _Ready()
     {
         base._Ready();

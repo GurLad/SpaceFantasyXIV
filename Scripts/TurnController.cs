@@ -34,6 +34,7 @@ public partial class TurnController : Node
         enemy.Enemy = player;
         player.BeganTurn += BeginPlayerTurn;
         enemy.BeganTurn += BeginEnemyTurn;
+        player.NeedReplace += NeedReplace;
         conversationPlayer.FinishedConversation += PostConversation;
         planetSelectUI.MidSelectedPlanet += PostMidSelect;
         planetSelectUI.FinishedSelection += PostSelect;
@@ -162,5 +163,20 @@ public partial class TurnController : Node
         }
         player.QueueImmediateAction(() =>
             conversationPlayer.BeginConversation(ConversationController.Current.GetConversation(player.Form.Name)));
+    }
+
+    private void NeedReplace()
+    {
+        if (Paused)
+        {
+            // Problem
+            postPause = () => NeedReplace();
+            return;
+        }
+        Paused = true;
+        player.QueueImmediateAction(() =>
+        {
+            planetSelectUI.Begin();
+        });
     }
 }
