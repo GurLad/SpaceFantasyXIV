@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://mu32bvdlio4i"]
+
+[ext_resource type="StyleBox" uid="uid://wpj61yhwfwkf" path="res://Theme/SpacePanelAltLessMargin.tres" id="1_80v4e"]
+[ext_resource type="Script" path="res://Scenes/UI/ConversationPlayer.cs" id="1_sg8qv"]
+[ext_resource type="Texture2D" uid="uid://b74efbjpxv80c" path="res://Sprites/Portraits/MC/Normal.png" id="2_noj81"]
+
+[node name="ConversationPlayer" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sg8qv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+offset_right = 320.0
+grow_vertical = 0
+
+[node name="Portrait1" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_80v4e")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Portrait1"]
+layout_mode = 2
+texture = ExtResource("2_noj81")
+
+[node name="Text" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_80v4e")
+
+[node name="Label" type="Label" parent="HBoxContainer/Text"]
+layout_mode = 2
+text = "Hello world! This is my awesome text with a ton of content that doesn't get cut off."
+autowrap_mode = 3
+
+[node name="Portrait2" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_80v4e")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Portrait2"]
+layout_mode = 2
+texture = ExtResource("2_noj81")

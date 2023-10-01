@@ -1,0 +1,16 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://wpj61yhwfwkf"]
+
+[ext_resource type="Texture2D" uid="uid://ducg32qaq83y7" path="res://Sprites/UI/PlanetPanelAlt.png" id="1_g7lp3"]
+
+[resource]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("1_g7lp3")
+texture_margin_left = 29.0
+texture_margin_top = 29.0
+texture_margin_right = 29.0
+texture_margin_bottom = 29.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

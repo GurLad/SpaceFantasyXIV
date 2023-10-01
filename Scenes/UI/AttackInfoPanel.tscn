@@ -1,17 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://clijpqbs3x8t7"]
 
-[ext_resource type="StyleBox" uid="uid://3dk7mbmpqng4" path="res://Theme/AttackPanel.tres" id="1_ktwlk"]
+[ext_resource type="StyleBox" uid="uid://boeornar3lhy3" path="res://Theme/SpacePanelAlt.tres" id="1_tmwhb"]
 [ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="2_541em"]
 [ext_resource type="Script" path="res://Scripts/UI/AttackInfoPanel.cs" id="2_st77p"]
 
 [node name="AttackInfoPanel" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "powerLabel", "physMagLabel", "typeLabel", "statusLabel", "descriptionLabel", "detailsHolder")]
+texture_filter = 1
 custom_minimum_size = Vector2(175, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("1_ktwlk")
+theme_override_styles/panel = ExtResource("1_tmwhb")
 script = ExtResource("2_st77p")
 nameLabel = NodePath("HBoxContainer/Name")
 powerLabel = NodePath("HBoxContainer/HBoxContainer/VBoxContainer/Power")

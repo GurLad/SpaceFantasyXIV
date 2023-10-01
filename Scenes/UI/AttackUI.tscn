@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cmdxdtt4gkq61"]
 
-[ext_resource type="StyleBox" uid="uid://3dk7mbmpqng4" path="res://Theme/AttackPanel.tres" id="1_r5et7"]
 [ext_resource type="Script" path="res://Scripts/UI/AttackUI.cs" id="1_r82ct"]
 [ext_resource type="PackedScene" uid="uid://3kprk4fxms17" path="res://Scenes/UI/AttackButton.tscn" id="3_1rqjs"]
+[ext_resource type="StyleBox" uid="uid://boeornar3lhy3" path="res://Theme/SpacePanelAlt.tres" id="3_3h2xe"]
 [ext_resource type="PackedScene" uid="uid://clijpqbs3x8t7" path="res://Scenes/UI/AttackInfoPanel.tscn" id="4_0hma5"]
 
 [node name="AttackUI" type="Control" node_paths=PackedStringArray("buttonsHolder", "attackInfoPanel")]
@@ -31,7 +31,7 @@ grow_vertical = 2
 custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_styles/panel = ExtResource("1_r5et7")
+theme_override_styles/panel = ExtResource("3_3h2xe")
 
 [node name="HBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
 layout_mode = 2
