@@ -19,8 +19,8 @@ public partial class ConversationPlayer : Control
     private float moveTime;
     [Export]
     private float showHideTime;
-    private Interpolator interpolator;
-    private Timer timer;
+    private Interpolator interpolator = new Interpolator();
+    private Timer timer = new Timer();
     private float shownHeight;
     private float hiddenHeight;
     private float leftX;
@@ -33,18 +33,19 @@ public partial class ConversationPlayer : Control
     public override void _Ready()
     {
         base._Ready();
-        timer = new Timer();
+        AddChild(interpolator);
         AddChild(timer);
         timer.WaitTime = 1 / textSpeed;
         timer.Timeout += NextLetter;
         leftX = container.Position.X;
-        rightX = container.Position.X + Size.X - 256;
+        rightX = container.Position.X - (Size.X - 256);
         shownHeight = Position.Y;
         hiddenHeight = Position.Y + Size.Y;
         Position = new Vector2(Position.X, hiddenHeight);
+        BeginConversation("1,MC,Normal: Yo this is an awesome text about me.\n2,MC,Angry: How dare you do that! awawwadafs");
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    public override void _Input(InputEvent @event)
     {
         if (@event is InputEventMouseButton eventMouse)
         {
@@ -79,15 +80,24 @@ public partial class ConversationPlayer : Control
 
     public void NextLine()
     {
+        void TrueBegin()
+        {
+            text.Text = "";
+            timer.Start();
+            state = State.Writing;
+            lines.RemoveAt(0);
+        }
+
         if (lines.Count <= 0)
         {
             HideUI();
             return;
         }
-        text.Text = "";
         string[] parts = lines[0].Split(":");
         string[] portraitParts = parts[0].Split(",");
         int id = int.Parse(portraitParts[0]) - 1;
+        portraits[id].Texture = PortraitController.Current.GetPortrait(portraitParts[1], portraitParts.Length > 2 ? portraitParts[2] : "Normal");
+        currentLine = parts[1].Trim();
         if (id != currentSpeaker)
         {
             interpolator.Interpolate(moveTime,
@@ -96,12 +106,12 @@ public partial class ConversationPlayer : Control
                     container.Position.X,
                     id == 0 ? leftX : rightX,
                     Easing.EaseOutQuad));
+            interpolator.OnFinish = TrueBegin;
         }
-        portraits[id].Texture = PortraitController.Current.GetPortrait(portraitParts[1], portraitParts.Length > 2 ? portraitParts[2] : "Normal");
-        currentLine = parts[1].Trim();
-        timer.Start();
-        state = State.Writing;
-        lines.RemoveAt(0);
+        else
+        {
+            TrueBegin();
+        }
     }
 
     private void NextLetter()
