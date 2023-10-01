@@ -30,8 +30,9 @@ public partial class Unit : Node2D
         get
         {
             Stats result = Form.StatsMod.Apply(Stats);
-            Modifiers.ForEach(a => result = a.Apply(result));
-            Statuses.ForEach(a => result = a.StatsMod?.Apply(result) ?? result);
+            Modifiers.ForEach(a => result = a.Apply(result, false));
+            Statuses.ForEach(a => result = a.StatsMod?.Apply(result, false) ?? result);
+            //result.ElementMultipliers = Form.StatsMod.ElementMultipliers;
             return result;
         }
     }
@@ -127,6 +128,7 @@ public partial class Unit : Node2D
     public void TakeDamage(Stats attackerStats, float amount, Element element, bool physical, string vfx, bool cannotKill = false)
     {
         int damageTaken = physical ? attackerStats.GetPhysDamage(finalStats, amount, element) : attackerStats.GetMagDamage(finalStats, amount, element);
+        //GD.Print(finalStats.ElementMultipliers[Element.Fire]);
         if (cannotKill) damageTaken = Mathf.Min(damageTaken, Health - 1);
         Health -= damageTaken;
         QueueAnimation(new AnimTakeDamage(), new AnimTakeDamage.AnimTakeDamageArgs(vfx, Forward));

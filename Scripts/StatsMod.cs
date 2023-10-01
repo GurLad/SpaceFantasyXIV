@@ -30,18 +30,21 @@ public class StatsMod
         }
     }
 
-    public Stats Apply(Stats target)
+    public Stats Apply(Stats target, bool includeMultipliers = true)
     {
         Stats stats = new Stats();
-        stats.Health = Mathf.RoundToInt(target.Health * Health);
-        stats.PhysAttack = Mathf.RoundToInt(target.PhysAttack * PhysAttack);
-        stats.PhysDefense = Mathf.RoundToInt(target.PhysDefense * PhysDefense);
-        stats.MagAttack = Mathf.RoundToInt(target.MagAttack * MagAttack);
-        stats.MagDefense = Mathf.RoundToInt(target.MagDefense * MagDefense);
-        stats.Speed = Mathf.RoundToInt(target.Speed * Speed);
-        for (int i = 0; i < (int)Element.EndMarker; i++)
+        stats.Health = Mathf.RoundToInt(Health * target.Health * Health);
+        stats.PhysAttack = Mathf.RoundToInt(PhysAttack * target.PhysAttack * PhysAttack);
+        stats.PhysDefense = Mathf.RoundToInt(PhysDefense * target.PhysDefense * PhysDefense);
+        stats.MagAttack = Mathf.RoundToInt(MagAttack * target.MagAttack * MagAttack);
+        stats.MagDefense = Mathf.RoundToInt(MagDefense * target.MagDefense * MagDefense);
+        stats.Speed = Mathf.RoundToInt(Speed * target.Speed * Speed);
+        if (includeMultipliers)
         {
-            stats.ElementMultipliers[(Element)i] *= ElementMultipliers[(Element)i];
+            for (int i = 0; i < (int)Element.EndMarker; i++)
+            {
+                stats.ElementMultipliers[(Element)i] = ElementMultipliers[(Element)i] * target.ElementMultipliers[(Element)i];
+            }
         }
         return stats;
     }
