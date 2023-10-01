@@ -29,7 +29,6 @@ public partial class ConversationPlayer : Control
     private List<string> lines = new List<string>();
     private string currentLine;
     private int currentSpeaker;
-    private bool firstLine = true;
 
     [Signal]
     public delegate void FinishedConversationEventHandler();
@@ -73,8 +72,9 @@ public partial class ConversationPlayer : Control
     public void BeginConversation(string content)
     {
         text.Text = "";
-        firstLine = true;
-        lines = content.Replace("\r", "").Split("\n").ToList();
+        lines = content.Trim().Replace("\r", "").Split("\n").ToList();
+        currentSpeaker = lines[0][0] == '1' ? 0 : 1;
+        container.Position = new Vector2(currentSpeaker == 0 ? leftX : rightX, container.Position.Y);
         interpolator.Interpolate(showHideTime,
             new Interpolator.InterpolateObject(
                 a => Position = new Vector2(Position.X, a),
@@ -104,14 +104,6 @@ public partial class ConversationPlayer : Control
         int id = int.Parse(portraitParts[0]) - 1;
         portraits[id].Texture = PortraitController.Current.GetPortrait(id == 0 ? "MC" : (FormController.BossPhase > 4 ? "EnemyNkd" : "Enemy"), portraitParts[1]);
         currentLine = parts[1].Trim();
-        if (firstLine)
-        {
-            firstLine = false;
-            container.Position = new Vector2(id == 0 ? leftX : rightX, container.Position.Y);
-            currentSpeaker = id;
-            TrueBegin();
-            return;
-        }
         if (id != currentSpeaker)
         {
             interpolator.Interpolate(moveTime,

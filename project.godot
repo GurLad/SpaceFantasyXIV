@@ -21,6 +21,7 @@ VfxController="*res://Scenes/VFXController.tscn"
 StatusIconController="*res://Scenes/StatusIconController.tscn"
 SoundController="*res://Scenes/SoundController.tscn"
 PortraitController="*res://Scenes/PortraitController.tscn"
+ConversationController="*res://Scenes/ConversationController.tscn"
 
 [display]
 

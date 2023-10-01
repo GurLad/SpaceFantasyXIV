@@ -1,48 +1,76 @@
-2,Normal: Ha ha ha! My plan is perfect! Nothing can stop me now!
+[gd_scene load_steps=2 format=3 uid="uid://c4ev73oe33ora"]
+
+[ext_resource type="Script" path="res://Scripts/ConversationController.cs" id="1_436gl"]
+
+[node name="ConversationController" type="Node"]
+script = ExtResource("1_436gl")
+
+[node name="Init" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+text = "2,Normal: Ha ha ha! My plan is perfect! Nothing can stop me now!
 2,Normal: Not even you, Ed, my nemesis!
 1,Angry: Phesithor! I will not let you destroy the galaxy! Your life ends here!
 2,Normal: Do you really think you can stop me on your own?
 1,Normal: No...
 1,Shouting: I will stop you with the power of friendship!
 1,Normal: My friends... The planets in the night's sky...
-1,Shouting: Grant me your power one final time!
-~ Mercury form
-1,Shouting:  Fire and metal, heed my call! Lend me the power of burning justice!
+1,Shouting: Grant me your power one final time!"
+
+[node name="Mercury" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+text = "1,Shouting:  Fire and metal, heed my call! Lend me the power of burning justice!
 2,Normal: Is this truly your justice, Ed? Burning all who stand in your path?
 1,Normal: Yes.
 2,Angry: And yet, I'm the villain in this story?
 1,Angry: Of course you are! The burning justice told me that!
-2,Normal: Right...
-~ Venus form
-1,Shouting: Ground and air, heed my call! Lend me the power of toxic relationships!
+2,Normal: Right..."
+
+[node name="Venus" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+text = "1,Shouting: Ground and air, heed my call! Lend me the power of toxic relationships!
 2,Normal: ...What?
 1,Surprised: Uh, I think I mixed something up. Let me try that again.
 1,Shouting: Earth and sky, heed my call! Lend me the power of poisonous friendships!
 2,Normal: You truly are one of a kind, Ed.
 1,Angry: S-shut up! Let me try again!
 1,Surprised: Uh... Rocks and... bad breath?
-1,Angry: Ugh, forget it!
-~ Earth form
-2,Normal: What happened, Ed? Did you run out of friends to sacrifice?
+1,Angry: Ugh, forget it!"
+
+[node name="Earth" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+text = "2,Normal: What happened, Ed? Did you run out of friends to sacrifice?
 1,Sad: Uh... Yes.
 2,Normal: Oh, how precious!
 2,Normal: I can feel my sweet victory approaching already!
 1,Shouting: No! I-I don't really need friendship to save you!
-1,Shouting: I'll just beat you myself!
-~ Mars form
-1,Shouting: Blood and darkness, heed my call! Lend me the power of felines!
+1,Shouting: I'll just beat you myself!"
+
+[node name="Mars" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+text = "1,Shouting: Blood and darkness, heed my call! Lend me the power of felines!
 2,Normal: Felines? Wait, do you have a cat now?
 1,Normal: Yes.
 2,Sad: Gasp! Not the cat!
 1,Shouting: Yes the cat!
-2,Sad: Whatever will I do?!
-~ Saturn
-1,Shouting: Speed and speed, heed my call! Lend me the power of speed!
+2,Sad: Whatever will I do?!"
+
+[node name="Saturn" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+text = "1,Shouting: Speed and speed, heed my call! Lend me the power of speed!
 2,Normal: That seems a bit redundant, don't you think?
 1,Normal: One can never have too much speed.
-2,Normal: Oh, of course. Silly me.
-~ Phase 2
-2,Normal: Oh ho, Ed! What a fiery fighting spirit you've got there!
+2,Normal: Oh, of course. Silly me."
+
+[node name="Phase2" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+text = "2,Normal: Oh ho, Ed! What a fiery fighting spirit you've got there!
 2,Normal: It would be a shame if something were to...
 2,Normal: Burn it.
 1,Shouting: I'm not afraid of your flaming tricks, villain!
@@ -50,25 +78,34 @@
 2,Normal: Which reduces your attack power and deals damage each turn?
 1,Surprised: What?
 2,Normal: Uh... I have no idea why I just said that.
-2,Angry: Anyway, burn to crisps or something!
-~ Phase 3
-2,Normal: Well, well, well! Congratulations!
+2,Angry: Anyway, burn to crisps or something!"
+
+[node name="Phase3" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+text = "2,Normal: Well, well, well! Congratulations!
 2,Normal: You managed to tear up my pants.
 1,Angry: Those pants are just the beginning!
 2,Angry: You fool! Those pants held my power back!
 2,Angry: With them ripped up, I'm stronger than ever!
 1,Surprised: Gasp!
-2,Angry: Prepare to feel my chilly fists!
-~ Phase 4
-2,Normal: Ha! Oh, how my blood is pumping! If this fight goes on any longer...
+2,Angry: Prepare to feel my chilly fists!"
+
+[node name="Phase4" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+text = "2,Normal: Ha! Oh, how my blood is pumping! If this fight goes on any longer...
 2,Angry: I might just have to use my final form!
 1,Angry: How many more of those do you have anyway?!
 2,Angry: A villain never reveals his secrets!
 2,Normal: Two.
 1,Normal: Oh, thanks.
-2,Normal: Anything for my favourite hero!
-~ Phase 5
-2,Normal: Oh, now you've done it, Ed! Prepare to feel the wrath...
+2,Normal: Anything for my favourite hero!"
+
+[node name="Phase5" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+text = "2,Normal: Oh, now you've done it, Ed! Prepare to feel the wrath...
 2,Normal: Of my one wing!
 1,Normal: What happened to the other one?
 2,Angry: I'd rather not talk about it.
@@ -83,9 +120,12 @@
 2,Sad: ...and this is how I lost my other wing.
 1,Sad: Oh, wow. That sounds truly awful.
 2,Sad: Indeed.
-2,Angry: Now then, let's get back to the fighting!
-~ Phase 6
-2,Sad: Ach! You've ruined my favourite shirt!
+2,Angry: Now then, let's get back to the fighting!"
+
+[node name="Phase6" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 13.0
+text = "2,Sad: Ach! You've ruined my favourite shirt!
 2,Normal: O-oh...
 2,Angry: This is it now, Ed! No more holding back! Witness my true final form!
 1,Angry: R-right! I must stop you! For the sake of the galaxy!
@@ -121,4 +161,4 @@
 2,Sad: Goodbye... Ed...
 1,Shouting: Wait, don't die on me, Phesithor!
 1,Shouting: Phesithor!!!
-1,Shouting: NOOO!!!!!
+1,Shouting: NOOO!!!!!"

@@ -49,7 +49,7 @@ public partial class TurnController : Node
         // Temp?
         player.ATB = enemy.ATB = 100;
         Paused = true;
-        conversationPlayer.BeginConversation("1,Sad: I am very sad.\n2,Sad: Me too.\n2,Normal: Ha ha! Just kidding!");
+        conversationPlayer.BeginConversation(ConversationController.Current.GetConversation("Init"));
     }
 
     public override void _Process(double delta)
@@ -110,7 +110,7 @@ public partial class TurnController : Node
             unit.QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(unit.Forward));
             unit.QueueImmediateAction(() =>
             {
-                conversationPlayer.BeginConversation("1,Sad: I am very sad.");
+                conversationPlayer.BeginConversation(unit.Form.Name);
             });
         }
     }
@@ -149,6 +149,7 @@ public partial class TurnController : Node
         {
             hardcodedPostFirst = false;
         }
-        player.QueueImmediateAction(() => Paused = false);
+        player.QueueImmediateAction(() =>
+            conversationPlayer.BeginConversation(ConversationController.Current.GetConversation(player.Form.Name)));
     }
 }
