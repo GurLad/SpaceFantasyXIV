@@ -31,7 +31,10 @@ public partial class PlanetSelect : Control
     private float hiddenHeight;
 
     [Signal]
-    public delegate void SelectedPlanetEventHandler(string name);
+    public delegate void MidSelectedPlanetEventHandler(string name);
+
+    [Signal]
+    public delegate void FinishedSelectionEventHandler();
 
     public override void _Ready()
     {
@@ -78,6 +81,7 @@ public partial class PlanetSelect : Control
 
     public void End()
     {
+        EmitSignal(SignalName.MidSelectedPlanet, selected.PlanetName);
         interpolator.Interpolate(showHideTime,
             new Interpolator.InterpolateObject(
                 a => holder.Position = new Vector2(holder.Position.X, a),
@@ -86,7 +90,7 @@ public partial class PlanetSelect : Control
                 Easing.EaseInQuad));
         interpolator.OnFinish = () =>
         {
-            EmitSignal(SignalName.SelectedPlanet, selected.PlanetName);
+            EmitSignal(SignalName.FinishedSelection);
         };
     }
 }

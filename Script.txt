@@ -16,12 +16,12 @@
 ~ Venus form
 1,Shouting: Ground and air, heed my call! Lend me the power of toxic relationships!
 2,Normal: …What?
-1,Sad: Uh, I think I mixed something up. Let me try that again.
+1,Surprised: Uh, I think I mixed something up. Let me try that again.
 1,Shouting: Earth and sky, heed my call! Lend me the power of poisonous friendships!
 2,Normal: You truly are one of a kind, Ed.
 1,Angry: S-shut up! Let me try again!
-1,Normal: Uh… Rocks and… bad breath?
-1, Angry: Ugh, forget it!
+1,Surprised: Uh… Rocks and… bad breath?
+1,Angry: Ugh, forget it!
 ~ Earth form
 2,Normal: What happened, Ed? Did you run out of friends to sacrifice?
 1,Sad: Uh… Yes.
@@ -34,7 +34,7 @@
 2,Normal: Felines? Wait, do you have a cat now?
 1,Normal: Yes.
 2,Sad: Gasp! Not the cat!
-1,Normal: Yes the cat!
+1,Shouting: Yes the cat!
 2,Sad: Whatever will I do?!
 ~ Saturn
 1,Shouting: Speed and speed, heed my call! Lend me the power of speed!
@@ -48,7 +48,7 @@
 1,Shouting: I’m not afraid of your flaming tricks, villain!
 2,Normal: Oh, really? Even though my attack now inflict 3 Burn?
 2,Normal: Which reduces your attack power and deals damage each turn?
-1,Sad: What?
+1,Surprised: What?
 2,Normal: Uh… I have no idea why I just said that.
 2,Angry: Anyway, burn to crisps or something!
 ~ Phase 3
@@ -57,7 +57,7 @@
 1,Angry: Those pants are just the beginning!
 2,Angry: You fool! Those pants held my power back!
 2,Angry: With them ripped up, I’m stronger than ever!
-1,Shouting: Gasp!
+1,Surprised: Gasp!
 2,Angry: Prepare to feel my chilly fists!
 ~ Phase 4
 2,Normal: Ha! Oh, how my blood is pumping! If this fight goes on any longer…
@@ -92,7 +92,7 @@
 2,Angry: And I shall stop you, for the sake of my nefarious plan!
 2,Angry: …
 2,Angry: And stop staring!
-1,Sad: Sorry!
+1,Surprised: Sorry!
 ~ Finale
 2,Angry: Rrgh…! No… I feel my power… Fading…
 1,Normal: It’s over, Phesithor. You will not harm another soul ever again!
@@ -102,7 +102,7 @@
 2,Sad: Ed… There is something I must tell you…
 2,Sad: I…
 2,Sad: I love you…!
-1,Sad: …!
+1,Surprised: …!
 1,Sad: I…
 1,Shouting: I love you too, Phesithor!
 2,Sad: And yet, it was never meant to be…
@@ -111,7 +111,7 @@
 2,Sad: I am doomed, Ed… Save yourself…
 2,Sad: And our son…
 1,Shouting: I…
-1,Normal: What?
+1,Surprised: What?
 1,Shouting: Our son?!
 2,Sad: I never got the chance to tell you…
 1,Shouting: I… Hold on!

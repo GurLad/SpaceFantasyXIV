@@ -29,6 +29,7 @@ public partial class ConversationPlayer : Control
     private List<string> lines = new List<string>();
     private string currentLine;
     private int currentSpeaker;
+    private bool firstLine = true;
 
     [Signal]
     public delegate void FinishedConversationEventHandler();
@@ -59,6 +60,7 @@ public partial class ConversationPlayer : Control
                     currentLine = "";
                     timer.Stop();
                     state = State.WaitForInput;
+                    return;
                 }
                 else if (state == State.WaitForInput)
                 {
@@ -71,6 +73,7 @@ public partial class ConversationPlayer : Control
     public void BeginConversation(string content)
     {
         text.Text = "";
+        firstLine = true;
         lines = content.Replace("\r", "").Split("\n").ToList();
         interpolator.Interpolate(showHideTime,
             new Interpolator.InterpolateObject(
@@ -99,8 +102,16 @@ public partial class ConversationPlayer : Control
         string[] parts = lines[0].Split(":");
         string[] portraitParts = parts[0].Split(",");
         int id = int.Parse(portraitParts[0]) - 1;
-        portraits[id].Texture = PortraitController.Current.GetPortrait(id == 1 ? "MC" : (FormController.BossPhase > 4 ? "EnemyNkd" : "Enemy"), portraitParts[1]);
+        portraits[id].Texture = PortraitController.Current.GetPortrait(id == 0 ? "MC" : (FormController.BossPhase > 4 ? "EnemyNkd" : "Enemy"), portraitParts[1]);
         currentLine = parts[1].Trim();
+        if (firstLine)
+        {
+            firstLine = false;
+            container.Position = new Vector2(id == 0 ? leftX : rightX, container.Position.Y);
+            currentSpeaker = id;
+            TrueBegin();
+            return;
+        }
         if (id != currentSpeaker)
         {
             interpolator.Interpolate(moveTime,
@@ -110,6 +121,7 @@ public partial class ConversationPlayer : Control
                     id == 0 ? leftX : rightX,
                     Easing.EaseOutQuad));
             interpolator.OnFinish = TrueBegin;
+            currentSpeaker = id;
         }
         else
         {

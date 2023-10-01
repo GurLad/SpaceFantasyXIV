@@ -9,7 +9,7 @@ public class UAMarsAttack2 : AUAAttack
 
     public override Element Element => Element.Dark;
 
-    public override string Name => "Shdw Claw";
+    public override string Name => "ShdwClaw";
 
     public override string Description => "Punch people in the face!";
 

@@ -14,7 +14,7 @@ public class FormEarth : AForm
 
     public override int SortOrder => 2;
 
-    public override List<AUnitAction> Actions => new List<AUnitAction> { new UAVenusAttack1(), new UAVenusAttack2() };
+    public override List<AUnitAction> Actions => new List<AUnitAction> { new UAEarthAttack1(), new UAEarthAttack2() };
 
     public override StatsMod StatsMod => new StatsMod(1, 1, 1, 1, 1, 1);
 }

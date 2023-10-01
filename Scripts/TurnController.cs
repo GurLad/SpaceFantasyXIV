@@ -16,9 +16,12 @@ public partial class TurnController : Node
     private PlanetSelect planetSelectUI;
     [Export]
     private PackedScene statsDisplayScene;
+    [Export]
+    private Control statsDisplayHolder;
     // Properties
     private bool Idling = true;
     private bool Paused = false;
+    private bool hardcodedPostFirst = true;
 
     public override void _Ready()
     {
@@ -31,6 +34,8 @@ public partial class TurnController : Node
         player.BeganTurn += BeginPlayerTurn;
         enemy.BeganTurn += BeginEnemyTurn;
         conversationPlayer.FinishedConversation += PostConversation;
+        planetSelectUI.MidSelectedPlanet += PostMidSelect;
+        planetSelectUI.FinishedSelection += PostSelect;
         for (int i = 0; i < 2; i++)
         {
             Unit unit = i == 0 ? player : enemy;
@@ -38,11 +43,13 @@ public partial class TurnController : Node
             unit.Died += () => UnitDeath(unit);
             StatsDisplay statsDisplay = statsDisplayScene.Instantiate<StatsDisplay>();
             statsDisplay.unit = unit;
-            AddChild(statsDisplay);
+            statsDisplayHolder.AddChild(statsDisplay);
             unit.StateChanged += () => statsDisplay.UpdateDisplay();
         }
         // Temp?
         player.ATB = enemy.ATB = 100;
+        Paused = true;
+        conversationPlayer.BeginConversation("1,Sad: I am very sad.\n2,Sad: Me too.\n2,Normal: Ha ha! Just kidding!");
     }
 
     public override void _Process(double delta)
@@ -111,21 +118,37 @@ public partial class TurnController : Node
     private void PostConversation()
     {
         Paused = false;
+        if (hardcodedPostFirst)
+        {
+            Paused = true;
+            planetSelectUI.Begin();
+        }
     }
 
-    private void PostSelect(string name)
+    private void PostMidSelect(string name)
     {
         int formID = FormController.PlayerForms.FindIndex(a => a.Name == name);
         FormController.LivingPlayerForms[formID] = false;
         player.SetForm(FormController.PlayerForms[formID]);
+    }
+
+    private void PostSelect()
+    {
         player.QueueImmediateAction(() =>
-            {
-                player.RemoveDissolveFromSpriteAnimation();
-                player.Health = 9999;
-                player.ATB = 100;
-                player.EmitSignal(Unit.SignalName.StateChanged);
-            });
-        player.QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(player.Forward));
+        {
+            player.RemoveDissolveFromSpriteAnimation();
+            player.Health = 9999;
+            player.ATB = 100;
+            player.EmitSignal(Unit.SignalName.StateChanged);
+        });
+        if (!hardcodedPostFirst)
+        {
+            player.QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(player.Forward));
+        }
+        else
+        {
+            hardcodedPostFirst = false;
+        }
         player.QueueImmediateAction(() => Paused = false);
     }
 }

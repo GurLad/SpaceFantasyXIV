@@ -10,13 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://mu32bvdlio4i" path="res://Scenes/UI/ConversationPlayer.tscn" id="8_mijxu"]
 [ext_resource type="PackedScene" uid="uid://b0fhmrhslupr4" path="res://Scenes/UI/PlanetSelect.tscn" id="9_fgoqq"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("player", "enemy", "attackUI", "conversationPlayer")]
+[node name="Game" type="Node" node_paths=PackedStringArray("player", "enemy", "attackUI", "conversationPlayer", "planetSelectUI", "statsDisplayHolder")]
 script = ExtResource("1_imvwt")
 player = NodePath("PlayerUnit")
 enemy = NodePath("EnemyUnit")
 attackUI = NodePath("Control/AttackUI")
 conversationPlayer = NodePath("Control/ConversationPlayer")
+planetSelectUI = NodePath("Control/PlanetSelect")
 statsDisplayScene = ExtResource("2_6kehy")
+statsDisplayHolder = NodePath("BattleUI")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -30,6 +32,14 @@ position = Vector2(70, 64)
 
 [node name="EnemyUnit" parent="." instance=ExtResource("2_r2eu6")]
 position = Vector2(186, 64)
+
+[node name="BattleUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Control" type="Control" parent="."]
 texture_filter = 1

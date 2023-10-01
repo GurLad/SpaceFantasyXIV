@@ -368,7 +368,7 @@ hurtSprite = NodePath("Hurt")
 [node name="Idle" type="AnimatedSprite2D" parent="Sprites/Venus"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0k26a")
-frame_progress = 0.942567
+frame_progress = 0.996962
 
 [node name="Attack" type="AnimatedSprite2D" parent="Sprites/Venus"]
 visible = false
@@ -383,14 +383,14 @@ sprite_frames = SubResource("SpriteFrames_brgc8")
 [node name="Mars" type="Node2D" parent="Sprites" node_paths=PackedStringArray("idleSprite", "attackSprite", "hurtSprite")]
 visible = false
 script = ExtResource("2_u56ey")
-idleSprite = NodePath("../Venus/Idle")
-attackSprite = NodePath("../Venus/Attack")
-hurtSprite = NodePath("../Venus/Hurt")
+idleSprite = NodePath("Idle")
+attackSprite = NodePath("Attack")
+hurtSprite = NodePath("Hurt")
 
 [node name="Idle" type="AnimatedSprite2D" parent="Sprites/Mars"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_t61dp")
-frame_progress = 0.358747
+frame_progress = 0.41314
 
 [node name="Attack" type="AnimatedSprite2D" parent="Sprites/Mars"]
 visible = false

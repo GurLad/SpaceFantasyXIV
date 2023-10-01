@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://uppd38aha7kf"]
+[gd_scene load_steps=13 format=3 uid="uid://uppd38aha7kf"]
 
 [ext_resource type="Script" path="res://Scripts/PortraitController.cs" id="1_sk5l7"]
 [ext_resource type="Texture2D" uid="uid://b74efbjpxv80c" path="res://Sprites/Portraits/MC/Normal.png" id="2_nyae6"]
@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://b5j8qk3qerlko" path="res://Sprites/Portraits/MC/Sad.png" id="4_l4ms5"]
 [ext_resource type="Texture2D" uid="uid://c2b4xedy13bil" path="res://Sprites/Portraits/MC/Shouting.png" id="5_2ao7b"]
 [ext_resource type="Texture2D" uid="uid://dlt06tu2thlb2" path="res://Sprites/Portraits/MC/Surprised.png" id="6_6yq5m"]
+[ext_resource type="Texture2D" uid="uid://b7a6y71ud7hqs" path="res://Sprites/Portraits/Enemy/Normal/Normal.png" id="7_aor7y"]
+[ext_resource type="Texture2D" uid="uid://cmf70w38gvwjh" path="res://Sprites/Portraits/Enemy/Normal/Angry.png" id="8_xloj7"]
+[ext_resource type="Texture2D" uid="uid://cjldbk7d7xxaf" path="res://Sprites/Portraits/Enemy/Normal/Sad.png" id="9_7u5cw"]
+[ext_resource type="Texture2D" uid="uid://cknhnyqlel04" path="res://Sprites/Portraits/Enemy/Naked/NormalNaked.png" id="10_1w6i5"]
+[ext_resource type="Texture2D" uid="uid://bj0vghsx3o33o" path="res://Sprites/Portraits/Enemy/Naked/AngryNaked.png" id="11_7g3ne"]
+[ext_resource type="Texture2D" uid="uid://cvw0rgk0l4p67" path="res://Sprites/Portraits/Enemy/Naked/SadNaked.png" id="12_jdt3q"]
 
 [node name="PortraitController" type="Node"]
 script = ExtResource("1_sk5l7")
@@ -26,3 +32,25 @@ texture = ExtResource("5_2ao7b")
 
 [node name="Surprised" type="Sprite2D" parent="MC"]
 texture = ExtResource("6_6yq5m")
+
+[node name="Enemy" type="Node" parent="."]
+
+[node name="Normal" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("7_aor7y")
+
+[node name="Angry" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("8_xloj7")
+
+[node name="Sad" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("9_7u5cw")
+
+[node name="EnemyNkd" type="Node" parent="."]
+
+[node name="Normal" type="Sprite2D" parent="EnemyNkd"]
+texture = ExtResource("10_1w6i5")
+
+[node name="Angry" type="Sprite2D" parent="EnemyNkd"]
+texture = ExtResource("11_7g3ne")
+
+[node name="Sad" type="Sprite2D" parent="EnemyNkd"]
+texture = ExtResource("12_jdt3q")
