@@ -11,6 +11,6 @@ public partial class BossPhaseIcon : TextureButton
     public void Init(int num)
     {
         number.Text = (num + 1).ToString();
-        x.Visible = FormController.BossPhase > num;
+        x.Visible = FormController.BossPhase > num + 1;
     }
 }

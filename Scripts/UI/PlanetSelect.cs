@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class PlanetSelect : Control
 {
@@ -29,6 +30,7 @@ public partial class PlanetSelect : Control
     private Interpolator interpolator = new Interpolator();
     private float shownHeight;
     private float hiddenHeight;
+    private List<Control> generated = new List<Control>();
 
     [Signal]
     public delegate void MidSelectedPlanetEventHandler(string name);
@@ -43,12 +45,21 @@ public partial class PlanetSelect : Control
         shownHeight = holder.Position.Y;
         hiddenHeight = holder.Position.Y + holder.Size.Y;
         Position = new Vector2(holder.Position.X, hiddenHeight);
+        goButton.Pressed += End;
+    }
+
+    private void Generate()
+    {
+        goButton.Disabled = true;
+        selected = null;
+        generated.Clear();
         foreach (var item in FormController.EnemyForms)
         {
             BossPhaseIcon newIcon = bossPhaseIcon.Instantiate<BossPhaseIcon>();
             BossIconHolder.AddChild(newIcon);
             newIcon.Init(item.SortOrder);
             newIcon.Pressed += () => bossDescLabel.Text = item.Description1;
+            generated.Add(newIcon);
         }
         foreach (var item in FormController.PlayerForms)
         {
@@ -69,12 +80,13 @@ public partial class PlanetSelect : Control
                 selected.Select();
                 goButton.Disabled = false;
             };
+            generated.Add(newIcon);
         }
-        goButton.Pressed += End;
     }
 
     public void Begin()
     {
+        Generate();
         interpolator.Interpolate(showHideTime,
             new Interpolator.InterpolateObject(
                 a => holder.Position = new Vector2(holder.Position.X, a),
@@ -94,6 +106,7 @@ public partial class PlanetSelect : Control
                 Easing.EaseInQuad));
         interpolator.OnFinish = () =>
         {
+            generated.ForEach(a => a?.QueueFree());
             EmitSignal(SignalName.FinishedSelection);
         };
     }
