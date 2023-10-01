@@ -21,11 +21,25 @@ public partial class PlanetSelect : Control
     private Node BossIconHolder;
     [Export]
     private Node PlanetHolder;
+    [Export]
+    private Control holder;
+    [Export]
+    private float showHideTime = 0.3f;
     private PlanetIcon selected;
+    private Interpolator interpolator = new Interpolator();
+    private float shownHeight;
+    private float hiddenHeight;
+
+    [Signal]
+    public delegate void SelectedPlanetEventHandler(string name);
 
     public override void _Ready()
     {
         base._Ready();
+        AddChild(interpolator);
+        shownHeight = holder.Position.Y;
+        hiddenHeight = holder.Position.Y + holder.Size.Y;
+        Position = new Vector2(holder.Position.X, hiddenHeight);
         foreach (var item in FormController.EnemyForms)
         {
             BossPhaseIcon newIcon = bossPhaseIcon.Instantiate<BossPhaseIcon>();
@@ -49,5 +63,30 @@ public partial class PlanetSelect : Control
                 goButton.Disabled = false;
             };
         }
+        goButton.Pressed += End;
+    }
+
+    public void Begin()
+    {
+        interpolator.Interpolate(showHideTime,
+            new Interpolator.InterpolateObject(
+                a => holder.Position = new Vector2(holder.Position.X, a),
+                hiddenHeight,
+                shownHeight,
+                Easing.EaseOutQuad));
+    }
+
+    public void End()
+    {
+        interpolator.Interpolate(showHideTime,
+            new Interpolator.InterpolateObject(
+                a => holder.Position = new Vector2(holder.Position.X, a),
+                shownHeight,
+                hiddenHeight,
+                Easing.EaseInQuad));
+        interpolator.OnFinish = () =>
+        {
+            EmitSignal(SignalName.SelectedPlanet, selected.PlanetName);
+        };
     }
 }

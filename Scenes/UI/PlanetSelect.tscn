@@ -29,7 +29,7 @@ axis_stretch_vertical = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l53vt"]
 
-[node name="PlanetSelect" type="Control" node_paths=PackedStringArray("bossDescLabel", "planetNameLabel", "planetDesc1Label", "planetDesc2Label", "goButton", "BossIconHolder", "PlanetHolder")]
+[node name="PlanetSelect" type="Control" node_paths=PackedStringArray("bossDescLabel", "planetNameLabel", "planetDesc1Label", "planetDesc2Label", "goButton", "BossIconHolder", "PlanetHolder", "holder")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -47,6 +47,7 @@ planetDesc2Label = NodePath("BossPanel/VBoxContainer/Desc2")
 goButton = NodePath("BossPanel/VBoxContainer/Go")
 BossIconHolder = NodePath("BossPanel/VBoxContainer/HBoxContainer")
 PlanetHolder = NodePath("BossPanel/VBoxContainer/HBoxContainer2")
+holder = NodePath(".")
 
 [node name="BossPanel" type="PanelContainer" parent="."]
 layout_mode = 1

@@ -99,7 +99,7 @@ public partial class ConversationPlayer : Control
         string[] parts = lines[0].Split(":");
         string[] portraitParts = parts[0].Split(",");
         int id = int.Parse(portraitParts[0]) - 1;
-        portraits[id].Texture = PortraitController.Current.GetPortrait(portraitParts[1], portraitParts.Length > 2 ? portraitParts[2] : "Normal");
+        portraits[id].Texture = PortraitController.Current.GetPortrait(id == 1 ? "MC" : (FormController.BossPhase > 4 ? "EnemyNkd" : "Enemy"), portraitParts[1]);
         currentLine = parts[1].Trim();
         if (id != currentSpeaker)
         {

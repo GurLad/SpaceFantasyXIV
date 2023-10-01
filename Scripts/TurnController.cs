@@ -13,6 +13,8 @@ public partial class TurnController : Node
     [Export]
     private ConversationPlayer conversationPlayer;
     [Export]
+    private PlanetSelect planetSelectUI;
+    [Export]
     private PackedScene statsDisplayScene;
     // Properties
     private bool Idling = true;
@@ -81,16 +83,49 @@ public partial class TurnController : Node
         Paused = true;
         unit.QueueAnimation(new AnimDie(), new AnimDie.AnimDieArgs());
         // TBA: change phase
-        unit.QueueImmediateAction(() => { unit.RemoveDissolveFromSpriteAnimation(); unit.Health = 9999; unit.ATB = 100; unit.EmitSignal(Unit.SignalName.StateChanged); });
-        unit.QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(unit.Forward));
-        unit.QueueImmediateAction(() =>
+        if (unit.Forward) // Player
         {
-            conversationPlayer.BeginConversation("1,MC,Sad: I am very sad.");
-        });
+            unit.QueueImmediateAction(() =>
+            {
+                planetSelectUI.Begin();
+            });
+        }
+        else
+        {
+            unit.QueueImmediateAction(() => unit.SetForm(FormController.GetNextBossForm()));
+            unit.QueueImmediateAction(() =>
+                {
+                    unit.RemoveDissolveFromSpriteAnimation();
+                    unit.Health = 9999;
+                    unit.ATB = 100;
+                    unit.EmitSignal(Unit.SignalName.StateChanged);
+                });
+            unit.QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(unit.Forward));
+            unit.QueueImmediateAction(() =>
+            {
+                conversationPlayer.BeginConversation("1,Sad: I am very sad.");
+            });
+        }
     }
 
     private void PostConversation()
     {
         Paused = false;
+    }
+
+    private void PostSelect(string name)
+    {
+        int formID = FormController.PlayerForms.FindIndex(a => a.Name == name);
+        FormController.LivingPlayerForms[formID] = false;
+        player.SetForm(FormController.PlayerForms[formID]);
+        player.QueueImmediateAction(() =>
+            {
+                player.RemoveDissolveFromSpriteAnimation();
+                player.Health = 9999;
+                player.ATB = 100;
+                player.EmitSignal(Unit.SignalName.StateChanged);
+            });
+        player.QueueAnimation(new AnimRecoverFromDamage(), new AnimRecoverFromDamage.AnimRecoverFromDamageArgs(player.Forward));
+        player.QueueImmediateAction(() => Paused = false);
     }
 }
