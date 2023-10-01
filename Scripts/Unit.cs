@@ -187,12 +187,13 @@ public partial class Unit : Node2D
 
     public ShaderMaterial AddDissolveToSpriteAnimation()
     {
+        GD.Print("Added to " + sprites[currentSprite].Name);
         return (ShaderMaterial)(sprites[currentSprite].SetMaterial(dissolveMaterial));
     }
 
     public void RemoveDissolveFromSpriteAnimation()
     {
-        sprites[currentSprite].Material = null;
+        sprites[currentSprite].RemoveMaterial();
     }
 
     // Actions

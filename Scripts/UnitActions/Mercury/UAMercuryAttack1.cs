@@ -3,7 +3,7 @@ using System;
 
 public partial class UAMercuryAttack1 : AUAAttack
 {
-    public override bool Physical => true;
+    public override bool Physical => false;
 
     public override float Power => 90;
 

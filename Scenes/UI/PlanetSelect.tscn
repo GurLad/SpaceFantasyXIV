@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0fhmrhslupr4"]
+
+[ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="2_1vgeb"]
+[ext_resource type="Texture2D" uid="uid://d4fh2mxmufu35" path="res://Sprites/UI/PlanetPanel.png" id="2_d8qvn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vffjt"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("2_d8qvn")
+texture_margin_left = 29.0
+texture_margin_top = 29.0
+texture_margin_right = 29.0
+texture_margin_bottom = 29.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_upjyd"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("2_d8qvn")
+texture_margin_left = 29.0
+texture_margin_top = 29.0
+texture_margin_right = 29.0
+texture_margin_bottom = 29.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="PlanetSelect" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BossPanel" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vffjt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BossPanel"]
+layout_mode = 2
+
+[node name="BossPhases" type="Label" parent="VBoxContainer/BossPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+text = "Remaining boss phases"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BossPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="BossPhases2" type="Label" parent="VBoxContainer/BossPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+text = "Type: Dark. Weakness: Poison, Lightning"
+
+[node name="DescriptionLabel" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_upjyd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DescriptionLabel"]
+layout_mode = 2
+
+[node name="PlanetLabel" type="Label" parent="VBoxContainer/DescriptionLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+text = "Select Planet"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DescriptionLabel/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlanetNameLabel" type="Label" parent="VBoxContainer/DescriptionLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_1vgeb")
+text = "The Saturn Hedgehog"
+horizontal_alignment = 1
+
+[node name="Desc1" type="Label" parent="VBoxContainer/DescriptionLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+text = "Gotta go fast! And hit like a wet noodle."
+autowrap_mode = 3
+
+[node name="Desc2" type="Label" parent="VBoxContainer/DescriptionLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+text = "Uses physical Fire attacks. Can buff defense. Hates Fire, resists Poison."
+autowrap_mode = 3

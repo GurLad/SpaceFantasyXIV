@@ -7,6 +7,7 @@ public partial class AnimDie : AAnimation<AnimDie.AnimDieArgs>
     {
         unit.SetSpriteAnimation(UnitSprite.Animation.Hurt);
         args.Dissolve = unit.AddDissolveToSpriteAnimation();
+        Vector2 positionBackup = unit.Position;
         interpolator.Interpolate(args.DissolveTime,
             new Interpolator.InterpolateObject(
                 a => args.Dissolve.SetShaderParameter("percent", a),
@@ -19,6 +20,7 @@ public partial class AnimDie : AAnimation<AnimDie.AnimDieArgs>
                 (a) => Mathf.Sin(a * Mathf.Pi * 16)));
         interpolator.OnFinish = () =>
         {
+            unit.Position = positionBackup;
             Done = true;
             //unit.EmitSignal(Unit.SignalName.Died);
         };

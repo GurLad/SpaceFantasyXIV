@@ -46,4 +46,9 @@ public partial class UnitSprite : Node2D
     {
         return (ShaderMaterial)(currentAnimation.Material = material);
     }
+
+    public void RemoveMaterial()
+    {
+        currentAnimation.Material = null;
+    }
 }
