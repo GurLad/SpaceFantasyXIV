@@ -52,6 +52,10 @@ public partial class PlanetSelect : Control
         }
         foreach (var item in FormController.PlayerForms)
         {
+            if (!FormController.LivingPlayerForms[item.SortOrder])
+            {
+                continue;
+            }
             PlanetIcon newIcon = planetIcon.Instantiate<PlanetIcon>();
             PlanetHolder.AddChild(newIcon);
             newIcon.SetPlanet(item.Name);

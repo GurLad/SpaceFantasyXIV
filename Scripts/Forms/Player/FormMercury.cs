@@ -12,7 +12,7 @@ public class FormMercury : AForm
 
     public override string Description2 => "Uses magical Fire attacks. Can buff defense. Hates Fire, resists Poison.";
 
-    public override int SortOrder => 1;
+    public override int SortOrder => 0;
 
     public override List<AUnitAction> Actions => new List<AUnitAction> { new UAMercuryLimit(), new UAMercuryAttack1(), new UAMercuryBuff1() };
 

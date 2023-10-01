@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwvgme8q7kh2d"]
+[gd_scene load_steps=7 format=3 uid="uid://bwvgme8q7kh2d"]
 
 [ext_resource type="Script" path="res://Scripts/LimitController.cs" id="1_734o7"]
 [ext_resource type="Texture2D" uid="uid://dpjsthv2wgusy" path="res://Sprites/PlanetsSmall/Mercury.png" id="2_8e7nn"]
 [ext_resource type="Script" path="res://Scripts/LimitSprite.cs" id="2_t70n6"]
+[ext_resource type="Texture2D" uid="uid://c4babm4ud6w60" path="res://Sprites/PlanetsSmall/Venus.png" id="4_jexqw"]
+[ext_resource type="Texture2D" uid="uid://cec38ohg0fleu" path="res://Sprites/PlanetsSmall/Mars.png" id="5_6esv2"]
+[ext_resource type="Texture2D" uid="uid://bl862hbf8qsd8" path="res://Sprites/PlanetsSmall/Saturn.png" id="6_m452o"]
 
 [node name="LimitController" type="Node"]
 script = ExtResource("1_734o7")
@@ -10,4 +13,19 @@ script = ExtResource("1_734o7")
 [node name="Mercury" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_8e7nn")
+script = ExtResource("2_t70n6")
+
+[node name="Venus" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("4_jexqw")
+script = ExtResource("2_t70n6")
+
+[node name="Mars" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("5_6esv2")
+script = ExtResource("2_t70n6")
+
+[node name="Saturn" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("6_m452o")
 script = ExtResource("2_t70n6")

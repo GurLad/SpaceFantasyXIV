@@ -12,9 +12,9 @@ public partial class FormSaturn : AForm
 
     public override string Description2 => "Uses physical Ice & Normal attacks. Applies Chill. Hates Poison, resists Ice.";
 
-    public override int SortOrder => 5;
+    public override int SortOrder => 4;
 
-    public override List<AUnitAction> Actions => new List<AUnitAction> { new UASaturnAttack1(), new UASaturnAttack2() };
+    public override List<AUnitAction> Actions => new List<AUnitAction> { new UASaturnLimit(), new UASaturnAttack1(), new UASaturnAttack2() };
 
     public override StatsMod StatsMod => new StatsMod(1, 0.7f, 0.8f, 0.7f, 0.8f, 1.8f,
         new KeyValuePair<Element, float>(Element.Ice, 0),

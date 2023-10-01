@@ -12,9 +12,9 @@ public class FormMars : AForm
 
     public override string Description2 => "Uses physical Dark & Normal attacks. Hates Fighting, resists Dark.";
 
-    public override int SortOrder => 4;
+    public override int SortOrder => 3;
 
-    public override List<AUnitAction> Actions => new List<AUnitAction> { new UAMarsAttack1(), new UAMarsAttack2() };
+    public override List<AUnitAction> Actions => new List<AUnitAction> { new UAMarsLimit(), new UAMarsAttack1(), new UAMarsAttack2() };
 
     public override StatsMod StatsMod => new StatsMod(1, 2.0f, 1.8f, 0.5f, 0.4f, 1.0f,
         new KeyValuePair<Element, float>(Element.Dark, 0),
