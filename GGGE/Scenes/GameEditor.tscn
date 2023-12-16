@@ -1,34 +1,68 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmntwlonxuvb5"]
+[gd_scene load_steps=7 format=3 uid="uid://dmntwlonxuvb5"]
 
+[ext_resource type="Script" path="res://Scripts/GameEditor.cs" id="1_3xbbq"]
+[ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_cnk10"]
 [ext_resource type="Script" path="res://GGGE/Scripts/UI/GameEditorButton.cs" id="1_jf8me"]
-[ext_resource type="PackedScene" uid="uid://de2by0q3qodmr" path="res://Sample/Scenes/SampleEditor.tscn" id="2_dxiby"]
+[ext_resource type="PackedScene" uid="uid://h6i37kho266w" path="res://Scenes/EnemyUnit.tscn" id="2_dxiby"]
+[ext_resource type="Texture2D" uid="uid://c3owyy3ros4e3" path="res://Sprites/Misc/BlackBG.png" id="3_dapch"]
 [ext_resource type="PackedScene" uid="uid://clp8spdsqe1pl" path="res://GGGE/Scenes/GameDataBrowser.tscn" id="3_ryvdl"]
 
-[node name="GameEditor" type="PanelContainer"]
+[node name="GameEditor" type="Control"]
+texture_filter = 1
+texture_repeat = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cnk10")
+script = ExtResource("1_3xbbq")
+editorScale = 2
+gameResolution = Vector2i(256, 224)
+gameScale = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dapch")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="PanelContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[center][b]The Kids who Ran Away[/b]
+text = "[center][b]Space Phantasy XIV[/b]
 Game Editor[/center]"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" node_paths=PackedStringArray("GameEditorPanel")]
+[node name="Button" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("GameEditorPanel")]
 layout_mode = 2
 text = "Sample Editor"
 script = ExtResource("1_jf8me")
 SceneDataEditor = ExtResource("2_dxiby")
 SceneGameDataBrowser = ExtResource("3_ryvdl")
 GameEditorPanel = NodePath("../../..")
+
+[node name="Exit" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/Exit" to="." method="Leave"]

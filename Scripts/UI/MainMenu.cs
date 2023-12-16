@@ -8,6 +8,11 @@ public partial class MainMenu : Control
         SceneController.Current.TransitionToScene("Game");
     }
 
+    public void LaunchEditor()
+    {
+        SceneController.Current.TransitionToScene("Editor");
+    }
+
     public void Quit()
     {
         GetTree().Quit();
