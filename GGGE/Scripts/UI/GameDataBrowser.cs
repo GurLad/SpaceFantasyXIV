@@ -76,6 +76,7 @@ public partial class GameDataBrowser : VBoxContainer
         loaderContainer.AddChild(dataEditor);
         dataLoader = dataEditor.DataLoader;
         dataLoader.OnDirty += () => dirty = true;
+        FileSystem.CreateDataFolder(dataLoader.DataFolder);
         // Invalidate previous data
         GameDataPreloader.Current?.InvalidateFolder(dataLoader.DataFolder);
         // Init data

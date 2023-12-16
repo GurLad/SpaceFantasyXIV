@@ -5,6 +5,7 @@ public partial class GameEditorButton : BaseButton
 {
     [Export]
     private PackedScene SceneDataEditor;
+    [ExportCategory("Shared")]
     [Export]
     private PackedScene SceneGameDataBrowser;
     [Export]

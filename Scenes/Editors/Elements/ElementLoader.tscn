@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsvcf6dsmuo4x"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/Elements/ElementLoader.cs" id="1_66w33"]
+
+[node name="ElementLoader" type="Node"]
+script = ExtResource("1_66w33")

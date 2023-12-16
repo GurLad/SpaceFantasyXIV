@@ -96,7 +96,7 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5b22l")
 item_count = 2
 fixed_column_width = 18
-fixed_icon_size = Vector2i(30, 30)
+fixed_icon_size = Vector2i(16, 16)
 item_0/text = "Banana"
 item_1/text = "Apple"
 

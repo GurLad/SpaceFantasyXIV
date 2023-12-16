@@ -149,4 +149,9 @@ public abstract partial class AGameDataLoader : Node
             throw new Exception("Type mismatch! " + key + " isn't " + typeof(T))) :
             throw new Exception("No key! " + key);
     }
+
+    public Sprite2D GetSprite(string key)
+    {
+        return sprites.ContainsKey(key) ? sprites[key] : throw new Exception("No key! " + key);
+    }
 }

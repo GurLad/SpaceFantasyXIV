@@ -23,6 +23,9 @@ SoundController="*res://Scenes/SoundController.tscn"
 PortraitController="*res://Scenes/PortraitController.tscn"
 ConversationController="*res://Scenes/ConversationController.tscn"
 LimitController="*res://Scenes/LimitController.tscn"
+InputBox="*res://GGGE/Scenes/InputBox.tscn"
+MessageBox="*res://GGGE/Scenes/MessageBox.tscn"
+GameDataPreloader="*res://GGGE/Scenes/GameDataPreloader.tscn"
 
 [display]
 
@@ -30,6 +33,7 @@ window/size/viewport_width=256
 window/size/viewport_height=224
 window/size/window_width_override=1024
 window/size/window_height_override=896
+window/subwindows/embed_subwindows=false
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 

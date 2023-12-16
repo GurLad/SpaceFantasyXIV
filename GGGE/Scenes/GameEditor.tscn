@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/GameEditor.cs" id="1_3xbbq"]
 [ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_cnk10"]
 [ext_resource type="Script" path="res://GGGE/Scripts/UI/GameEditorButton.cs" id="1_jf8me"]
-[ext_resource type="PackedScene" uid="uid://h6i37kho266w" path="res://Scenes/EnemyUnit.tscn" id="2_dxiby"]
 [ext_resource type="Texture2D" uid="uid://c3owyy3ros4e3" path="res://Sprites/Misc/BlackBG.png" id="3_dapch"]
 [ext_resource type="PackedScene" uid="uid://clp8spdsqe1pl" path="res://GGGE/Scenes/GameDataBrowser.tscn" id="3_ryvdl"]
+[ext_resource type="PackedScene" uid="uid://cpwchb0vsyak3" path="res://Scenes/Editors/Elements/ElementEditor.tscn" id="5_ykcfv"]
 
 [node name="GameEditor" type="Control"]
 texture_filter = 1
@@ -53,11 +53,11 @@ Game Editor[/center]"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Button" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("GameEditorPanel")]
+[node name="Element" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("GameEditorPanel")]
 layout_mode = 2
-text = "Sample Editor"
+text = "Element Editor"
 script = ExtResource("1_jf8me")
-SceneDataEditor = ExtResource("2_dxiby")
+SceneDataEditor = ExtResource("5_ykcfv")
 SceneGameDataBrowser = ExtResource("3_ryvdl")
 GameEditorPanel = NodePath("../../..")
 

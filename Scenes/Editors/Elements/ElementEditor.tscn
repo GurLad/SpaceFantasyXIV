@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpwchb0vsyak3"]
+
+[ext_resource type="PackedScene" uid="uid://bftsmkn70twy8" path="res://Scenes/Editors/Generic/SmallImageEditor.tscn" id="1_8gdep"]
+[ext_resource type="Script" path="res://GGGE/Scripts/GameDataEditor.cs" id="1_n6rpe"]
+[ext_resource type="PackedScene" uid="uid://bsvcf6dsmuo4x" path="res://Scenes/Editors/Elements/ElementLoader.tscn" id="2_i6ad2"]
+
+[node name="ElementEditor" type="CenterContainer" node_paths=PackedStringArray("DataLoader")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n6rpe")
+DataLoader = NodePath("ElementLoader")
+
+[node name="ElementLoader" parent="." instance=ExtResource("2_i6ad2")]
+
+[node name="SmallImageEditor" parent="." node_paths=PackedStringArray("loader") instance=ExtResource("1_8gdep")]
+layout_mode = 2
+dataKey = "Icon"
+loader = NodePath("../ElementLoader")
+targetResolution = Vector2i(16, 16)

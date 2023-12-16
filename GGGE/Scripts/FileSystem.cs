@@ -49,6 +49,11 @@ public static class FileSystem
         }
     }
 
+    public static void CreateDataFolder(string dataFolder)
+    {
+        DirAccess.MakeDirRecursiveAbsolute(GameDataDirectory + SEPERATOR + dataFolder);
+    }
+
     public static string GetFolderPath(this AGameDataLoader gameDataLoader, string name, string folder, bool save)
     {
         string folderPath = GameDataDirectory + SEPERATOR + gameDataLoader.DataFolder + SEPERATOR +
