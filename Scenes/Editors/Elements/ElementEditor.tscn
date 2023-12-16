@@ -15,8 +15,15 @@ DataLoader = NodePath("ElementLoader")
 
 [node name="ElementLoader" parent="." instance=ExtResource("2_i6ad2")]
 
-[node name="SmallImageEditor" parent="." node_paths=PackedStringArray("loader") instance=ExtResource("1_8gdep")]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Icon:"
+
+[node name="SmallImageEditor" parent="HBoxContainer" node_paths=PackedStringArray("loader") instance=ExtResource("1_8gdep")]
 layout_mode = 2
 dataKey = "Icon"
-loader = NodePath("../ElementLoader")
+loader = NodePath("../../ElementLoader")
 targetResolution = Vector2i(16, 16)
