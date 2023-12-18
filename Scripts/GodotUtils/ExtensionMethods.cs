@@ -1,8 +1,10 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 
 public enum Element { None, Wind, Earth, Fire, Water, Poison, Ice, Lightning, Light, Dark, Fighting, EndMarker }
+public enum Stat { Health, PhysAttack, PhysDefense, MagAttack, MagDefense, Speed, EndMarker }
 
 public static class ExtensionMethods
 {
@@ -26,5 +28,17 @@ public static class ExtensionMethods
     public static float Percent(this Timer timer)
     {
         return (float)(1 - timer.TimeLeft / timer.WaitTime);
+    }
+    
+    // Json
+
+    public static string ToJson<T>(this T obj, bool prettyPrint = true)
+    {
+        return JsonSerializer.Serialize(obj, typeof(T), new JsonSerializerOptions { WriteIndented = prettyPrint });
+    }
+
+    public static T JsonToObject<T>(this string jsonContent)
+    {
+        return (T)JsonSerializer.Deserialize(jsonContent, typeof(T));
     }
 }

@@ -55,6 +55,11 @@ public partial class GameDataPreloader : Node
         LoadAll(dataLoaders.Find(a => a.DataFolder == dataFolder));
     }
 
+    public List<string> GetAllNames(string dataFolder)
+    {
+        return preloadedData[dataFolder].ConvertAll(a => a.Item1);
+    }
+
     private void LoadAll(AGameDataLoader template)
     {
         string folderPath = FileSystem.GameDataDirectory + FileSystem.SEPERATOR + template.DataFolder;
