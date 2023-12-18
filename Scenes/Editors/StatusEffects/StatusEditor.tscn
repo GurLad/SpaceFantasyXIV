@@ -1,40 +1,134 @@
-[gd_scene load_steps=5 format=3 uid="uid://ysgf1nrse804"]
+[gd_scene load_steps=8 format=3 uid="uid://ysgf1nrse804"]
 
+[ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_8mqt1"]
 [ext_resource type="Script" path="res://GGGE/Scripts/GameDataEditor.cs" id="1_rbw1i"]
 [ext_resource type="PackedScene" uid="uid://bexv4mjg75bdo" path="res://Scenes/Editors/StatusEffects/StatusLoader.tscn" id="1_twehh"]
 [ext_resource type="PackedScene" uid="uid://bftsmkn70twy8" path="res://Scenes/Editors/Generic/SmallImageEditor.tscn" id="1_y025u"]
 [ext_resource type="PackedScene" uid="uid://dbu668ekihfba" path="res://Scenes/Editors/Generic/StatsModifierEditor.tscn" id="2_vwq3c"]
+[ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="3_alvgb"]
+[ext_resource type="Script" path="res://Scripts/GameData/StatusEffects/StatusDataEditor.cs" id="5_kxich"]
 
-[node name="StatusEditor" type="VBoxContainer" node_paths=PackedStringArray("DataLoader")]
+[node name="StatusEditor" type="ScrollContainer" node_paths=PackedStringArray("DataLoader")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_8mqt1")
 script = ExtResource("1_rbw1i")
 DataLoader = NodePath("StatusLoader")
 
 [node name="StatusLoader" parent="." instance=ExtResource("1_twehh")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_alvgb")
+text = "Basic data"
+horizontal_alignment = 1
+
+[node name="BasicDataEditor" type="PanelContainer" parent="VBoxContainer" node_paths=PackedStringArray("nameEdit", "shortNameEdit", "descriptionEdit", "sortOrderEdit", "stacksEdit", "fadesEdit", "loader")]
+layout_mode = 2
+script = ExtResource("5_kxich")
+nameEdit = NodePath("VBoxContainer/GridContainer/Name/NameEdit")
+shortNameEdit = NodePath("VBoxContainer/GridContainer/ShortName/ShortNameEdit")
+descriptionEdit = NodePath("VBoxContainer/TextEdit")
+sortOrderEdit = NodePath("VBoxContainer/GridContainer/SortOrder/SortOrderEdit")
+stacksEdit = NodePath("VBoxContainer/HBoxContainer/Stacks")
+fadesEdit = NodePath("VBoxContainer/HBoxContainer/Fades")
+dataKey = "Data"
+loader = NodePath("../../StatusLoader")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BasicDataEditor"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Name" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/Name"]
+layout_mode = 2
+text = "Name:"
+
+[node name="NameEdit" type="LineEdit" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShortName" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/ShortName"]
+layout_mode = 2
+text = "Short name:"
+
+[node name="ShortNameEdit" type="LineEdit" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/ShortName"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Icon" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/Icon"]
 layout_mode = 2
 text = "Icon:"
 
-[node name="SmallImageEditor" parent="HBoxContainer" node_paths=PackedStringArray("loader") instance=ExtResource("1_y025u")]
+[node name="SmallImageEditor" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/Icon" node_paths=PackedStringArray("loader") instance=ExtResource("1_y025u")]
 layout_mode = 2
 dataKey = "Icon"
-loader = NodePath("../../StatusLoader")
+loader = NodePath("../../../../../../StatusLoader")
 targetResolution = Vector2i(16, 16)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="SortOrder" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 
-[node name="StatsModifierEditor" parent="ScrollContainer" node_paths=PackedStringArray("loader") instance=ExtResource("2_vwq3c")]
+[node name="Label" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/SortOrder"]
+layout_mode = 2
+text = "Sort order:"
+
+[node name="SortOrderEdit" type="SpinBox" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/SortOrder"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer"]
+layout_mode = 2
+text = "Description:"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/BasicDataEditor/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 4
+wrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer"]
+layout_mode = 2
+
+[node name="Stacks" type="CheckBox" parent="VBoxContainer/BasicDataEditor/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stacks"
+
+[node name="Fades" type="CheckBox" parent="VBoxContainer/BasicDataEditor/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fades"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_alvgb")
+text = "Stat modifiers"
+horizontal_alignment = 1
+
+[node name="StatModifiersEditor" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="StatsModifierEditor" parent="VBoxContainer/StatModifiersEditor" node_paths=PackedStringArray("loader") instance=ExtResource("2_vwq3c")]
+layout_mode = 2
 dataKey = "StatsModifier"
-loader = NodePath("../../StatusLoader")
+loader = NodePath("../../../StatusLoader")

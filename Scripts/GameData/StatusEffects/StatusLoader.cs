@@ -9,11 +9,12 @@ public partial class StatusLoader : AGameDataLoader
     private Sprite2D icon;
     // Properties
     private StatsModifier statsModifier = new StatsModifier();
+    private StatusData data = new StatusData();
 
     public override string DataFolder => "StatusEffects";
 
     protected override Dictionary<string, ISerializableData> gameDatas => new Dictionary<string, ISerializableData>()
-        { { "StatsModifier", statsModifier } };
+        { { "StatsModifier", statsModifier }, { "Data", data } };
 
     protected override Dictionary<string, Sprite2D> sprites => new Dictionary<string, Sprite2D>() { { "Icon", icon } };
 

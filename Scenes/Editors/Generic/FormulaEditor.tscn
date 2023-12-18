@@ -25,3 +25,4 @@ size_flags_horizontal = 3
 [node name="FormulaEdit" type="LineEdit" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+placeholder_text = "1"
