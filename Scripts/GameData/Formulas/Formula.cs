@@ -4,10 +4,14 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using System.Collections.Generic;
 
-public record struct Formula(string Source)
+public class Formula
 {
     private static readonly Regex PROPERTY_REGEX =
         new Regex("([a-zA-Z][a-zA-Z0-9]*)\\.([a-zA-Z][a-zA-Z0-9]*)+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+    public string Source { get; set; }
+
+    public Formula(string source) => Source = source;
 
     public int ParseInt(params (string, IInterpretableObject)[] args)
     {

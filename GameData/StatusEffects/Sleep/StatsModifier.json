@@ -1,0 +1,54 @@
+{
+  "StatMultiplierMods": {
+    "Health": {
+      "Source": "1"
+    },
+    "PhysAttack": {
+      "Source": "1"
+    },
+    "PhysDefense": {
+      "Source": "1"
+    },
+    "MagAttack": {
+      "Source": "1"
+    },
+    "MagDefense": {
+      "Source": "1"
+    },
+    "Speed": {
+      "Source": "0.2"
+    }
+  },
+  "ElementMultiplierMods": {
+    "Dark": {
+      "Source": "1"
+    },
+    "Earth": {
+      "Source": "1"
+    },
+    "Fighting": {
+      "Source": "1"
+    },
+    "Fire": {
+      "Source": "1"
+    },
+    "Ice": {
+      "Source": "1"
+    },
+    "Light": {
+      "Source": "1"
+    },
+    "Lightning": {
+      "Source": "1"
+    },
+    "Poison": {
+      "Source": "1"
+    },
+    "Water": {
+      "Source": "1"
+    },
+    "Wind": {
+      "Source": "1"
+    }
+  }
+}
