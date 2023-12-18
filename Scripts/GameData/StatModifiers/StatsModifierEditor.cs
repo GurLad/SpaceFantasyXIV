@@ -7,6 +7,8 @@ public partial class StatsModifierEditor : ASerializableDataEditor<StatsModifier
     // Exports
     [ExportCategory("Internal")]
     [Export]
+    private PackedScene sceneElementLoader;
+    [Export]
     private PackedScene sceneFormulaEditor;
     [Export]
     private Container statsContainer;
@@ -27,8 +29,9 @@ public partial class StatsModifierEditor : ASerializableDataEditor<StatsModifier
         }
         foreach (string element in GameDataPreloader.Current.GetAllNames("Elements"))
         {
-            editors.Add(CreateEditor(elementsContainer, null, element, data.GetElementFormula(element)));
+            editors.Add(CreateEditor(elementsContainer, ElementLoader.GetElementIcon(element), element, data.GetElementFormula(element)));
         }
+
     }
 
     protected override void Refresh()

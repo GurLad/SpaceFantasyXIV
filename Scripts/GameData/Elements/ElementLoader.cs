@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public partial class ElementLoader : AGameDataLoader
 {
+    private static ElementLoader ICON_LOADER { get; } = new ElementLoader();
+
     [Export]
     private Sprite2D icon;
 
@@ -24,5 +26,10 @@ public partial class ElementLoader : AGameDataLoader
             AddChild(icon);
             icon.Visible = false;
         }
+    }
+
+    public static Texture2D GetElementIcon(string elementName)
+    {
+        return ICON_LOADER.GetIcon(elementName);
     }
 }
