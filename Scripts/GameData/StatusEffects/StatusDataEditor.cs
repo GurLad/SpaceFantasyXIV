@@ -34,7 +34,7 @@ public partial class StatusDataEditor : ASerializableDataEditor<StatusData>
         shortNameEdit.Text = data.ShortName;
         descriptionEdit.Text = data.Description;
         sortOrderEdit.Value = data.SortOrder;
-        stacksEdit.ToggleMode = data.Stacks;
-        fadesEdit.ToggleMode = data.Fades;
+        stacksEdit.ButtonPressed = data.Stacks;
+        fadesEdit.ButtonPressed = data.Fades;
     }
 }

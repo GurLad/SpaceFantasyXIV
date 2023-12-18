@@ -1,0 +1,8 @@
+{
+  "Name": "Sleep",
+  "ShortName": "Sleep",
+  "Description": "Zzzzz... Fast asleep...",
+  "SortOrder": 3,
+  "Stacks": true,
+  "Fades": true
+}

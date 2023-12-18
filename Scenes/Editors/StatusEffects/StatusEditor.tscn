@@ -23,6 +23,10 @@ DataLoader = NodePath("StatusLoader")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -33,12 +37,12 @@ horizontal_alignment = 1
 [node name="BasicDataEditor" type="PanelContainer" parent="VBoxContainer" node_paths=PackedStringArray("nameEdit", "shortNameEdit", "descriptionEdit", "sortOrderEdit", "stacksEdit", "fadesEdit", "loader")]
 layout_mode = 2
 script = ExtResource("5_kxich")
-nameEdit = NodePath("VBoxContainer/GridContainer/Name/NameEdit")
-shortNameEdit = NodePath("VBoxContainer/GridContainer/ShortName/ShortNameEdit")
+nameEdit = NodePath("VBoxContainer/GridContainer/NameEdit")
+shortNameEdit = NodePath("VBoxContainer/GridContainer/ShortNameEdit")
 descriptionEdit = NodePath("VBoxContainer/TextEdit")
-sortOrderEdit = NodePath("VBoxContainer/GridContainer/SortOrder/SortOrderEdit")
-stacksEdit = NodePath("VBoxContainer/HBoxContainer/Stacks")
-fadesEdit = NodePath("VBoxContainer/HBoxContainer/Fades")
+sortOrderEdit = NodePath("VBoxContainer/GridContainer/SortOrderEdit")
+stacksEdit = NodePath("VBoxContainer/GridContainer/IconAndBools/HBoxContainer/Stacks")
+fadesEdit = NodePath("VBoxContainer/GridContainer/IconAndBools/HBoxContainer/Fades")
 dataKey = "Data"
 loader = NodePath("../../StatusLoader")
 
@@ -47,54 +51,58 @@ layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer"]
 layout_mode = 2
-columns = 2
+columns = 4
 
-[node name="Name" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/Name"]
+[node name="NameLabel" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Name:"
 
-[node name="NameEdit" type="LineEdit" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/Name"]
+[node name="NameEdit" type="LineEdit" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ShortName" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/ShortName"]
+[node name="ShortNameLabel" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Short name:"
 
-[node name="ShortNameEdit" type="LineEdit" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/ShortName"]
-custom_minimum_size = Vector2(60, 0)
+[node name="ShortNameEdit" type="LineEdit" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 
-[node name="Icon" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/Icon"]
+[node name="IconLabel" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Icon:"
 
-[node name="SmallImageEditor" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/Icon" node_paths=PackedStringArray("loader") instance=ExtResource("1_y025u")]
+[node name="IconAndBools" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SmallImageEditor" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/IconAndBools" node_paths=PackedStringArray("loader") instance=ExtResource("1_y025u")]
 layout_mode = 2
 dataKey = "Icon"
 loader = NodePath("../../../../../../StatusLoader")
 targetResolution = Vector2i(16, 16)
 
-[node name="SortOrder" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/IconAndBools"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/SortOrder"]
+[node name="Stacks" type="CheckBox" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/IconAndBools/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stacks"
+
+[node name="Fades" type="CheckBox" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/IconAndBools/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fades"
+
+[node name="SortOrderLabel" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Sort order:"
 
-[node name="SortOrderEdit" type="SpinBox" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer/SortOrder"]
+[node name="SortOrderEdit" type="SpinBox" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer"]
 layout_mode = 2
@@ -105,19 +113,6 @@ custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 4
 wrap_mode = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer"]
-layout_mode = 2
-
-[node name="Stacks" type="CheckBox" parent="VBoxContainer/BasicDataEditor/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Stacks"
-
-[node name="Fades" type="CheckBox" parent="VBoxContainer/BasicDataEditor/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Fades"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2

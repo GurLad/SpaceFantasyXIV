@@ -1,0 +1,8 @@
+{
+  "Name": "Poison",
+  "ShortName": "Poison",
+  "Description": "Cough cough! I keep taking damage...",
+  "SortOrder": 1,
+  "Stacks": true,
+  "Fades": true
+}

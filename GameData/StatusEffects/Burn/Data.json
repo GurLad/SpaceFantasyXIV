@@ -1,0 +1,8 @@
+{
+  "Name": "Burn",
+  "ShortName": "Burn",
+  "Description": "Ahhh! I\u0027m on fire and it hurts!!! This makes me weak for some reason...",
+  "SortOrder": 3,
+  "Stacks": true,
+  "Fades": true
+}
