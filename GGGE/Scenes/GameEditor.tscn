@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmntwlonxuvb5"]
+[gd_scene load_steps=8 format=3 uid="uid://dmntwlonxuvb5"]
 
 [ext_resource type="Script" path="res://Scripts/GameEditor.cs" id="1_3xbbq"]
 [ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_cnk10"]
 [ext_resource type="Script" path="res://GGGE/Scripts/UI/GameEditorButton.cs" id="1_jf8me"]
 [ext_resource type="Texture2D" uid="uid://c3owyy3ros4e3" path="res://Sprites/Misc/BlackBG.png" id="3_dapch"]
 [ext_resource type="PackedScene" uid="uid://clp8spdsqe1pl" path="res://GGGE/Scenes/GameDataBrowser.tscn" id="3_ryvdl"]
+[ext_resource type="PackedScene" uid="uid://ysgf1nrse804" path="res://Scenes/Editors/StatusEffects/StatusEditor.tscn" id="5_7fc4l"]
 [ext_resource type="PackedScene" uid="uid://cpwchb0vsyak3" path="res://Scenes/Editors/Elements/ElementEditor.tscn" id="5_ykcfv"]
 
 [node name="GameEditor" type="Control"]
@@ -52,6 +53,14 @@ text = "[center][b]Space Phantasy XIV[/b]
 Game Editor[/center]"
 fit_content = true
 autowrap_mode = 0
+
+[node name="Status" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("GameEditorPanel")]
+layout_mode = 2
+text = "Status Editor"
+script = ExtResource("1_jf8me")
+SceneDataEditor = ExtResource("5_7fc4l")
+SceneGameDataBrowser = ExtResource("3_ryvdl")
+GameEditorPanel = NodePath("../../..")
 
 [node name="Element" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("GameEditorPanel")]
 layout_mode = 2

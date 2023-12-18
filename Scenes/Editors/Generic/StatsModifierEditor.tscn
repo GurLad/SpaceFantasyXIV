@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbu668ekihfba"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/StatModifiers/StatsModifierEditor.cs" id="1_k4iy3"]
+[ext_resource type="PackedScene" uid="uid://7qtu5nk5atfs" path="res://Scenes/Editors/Generic/FormulaEditor.tscn" id="2_npsva"]
+
+[node name="StatsModifierEditor" type="PanelContainer" node_paths=PackedStringArray("statsContainer", "elementsContainer")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k4iy3")
+sceneFormulaEditor = ExtResource("2_npsva")
+statsContainer = NodePath("VBoxContainer/Stats")
+elementsContainer = NodePath("VBoxContainer/Elements")
+statNames = PackedStringArray("Health", "Phys. Attack", "Phys. Defense", "Mag. Attack", "Mag. Defense", "Speed")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Stats" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Elements" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2

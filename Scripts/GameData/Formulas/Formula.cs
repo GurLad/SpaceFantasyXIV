@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using System.Collections.Generic;
 
-public record Formula(string Source)
+public record struct Formula(string Source)
 {
     private static readonly Regex PROPERTY_REGEX =
         new Regex("([a-zA-Z][a-zA-Z0-9]*)\\.([a-zA-Z][a-zA-Z0-9]*)+", RegexOptions.Compiled | RegexOptions.IgnoreCase);

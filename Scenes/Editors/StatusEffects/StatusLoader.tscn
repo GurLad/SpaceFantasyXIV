@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bexv4mjg75bdo"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/StatusEffects/StatusLoader.cs" id="1_j2r0v"]
+
+[node name="StatusLoader" type="Node"]
+script = ExtResource("1_j2r0v")

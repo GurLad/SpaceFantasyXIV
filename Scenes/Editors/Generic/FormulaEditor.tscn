@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://7qtu5nk5atfs"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/Formulas/FormulaEditor.cs" id="1_rb42e"]
+
+[node name="FormulaEditor" type="HBoxContainer" node_paths=PackedStringArray("iconHolder", "nameLabel", "formulaEditor")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rb42e")
+iconHolder = NodePath("Icon")
+nameLabel = NodePath("NameLabel")
+formulaEditor = NodePath("FormulaEdit")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FormulaEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2

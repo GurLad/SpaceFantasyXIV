@@ -7,11 +7,6 @@ public partial class StatsModifier : ISerializableData
     private Dictionary<string, Formula> statMultiplierMods = new Dictionary<string, Formula>();
     private Dictionary<string, Formula> elementMultiplierMods = new Dictionary<string, Formula>();
 
-    public StatsModifier()
-    {
-        Clear();
-    }
-
     public string Save()
     {
         return this.ToJson();
@@ -37,4 +32,8 @@ public partial class StatsModifier : ISerializableData
             elementMultiplierMods.Add(element, new Formula("1"));
         }
     }
+
+    public Formula GetStatFormula(string key) => statMultiplierMods[key];
+
+    public Formula GetElementFormula(string key) => elementMultiplierMods[key];
 }

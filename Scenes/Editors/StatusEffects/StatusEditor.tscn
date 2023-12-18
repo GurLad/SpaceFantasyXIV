@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://ysgf1nrse804"]
+
+[ext_resource type="Script" path="res://GGGE/Scripts/GameDataEditor.cs" id="1_rbw1i"]
+[ext_resource type="PackedScene" uid="uid://bexv4mjg75bdo" path="res://Scenes/Editors/StatusEffects/StatusLoader.tscn" id="1_twehh"]
+[ext_resource type="PackedScene" uid="uid://bftsmkn70twy8" path="res://Scenes/Editors/Generic/SmallImageEditor.tscn" id="1_y025u"]
+[ext_resource type="PackedScene" uid="uid://dbu668ekihfba" path="res://Scenes/Editors/Generic/StatsModifierEditor.tscn" id="2_vwq3c"]
+
+[node name="StatusEditor" type="VBoxContainer" node_paths=PackedStringArray("DataLoader")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rbw1i")
+DataLoader = NodePath("StatusLoader")
+
+[node name="StatusLoader" parent="." instance=ExtResource("1_twehh")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Icon:"
+
+[node name="SmallImageEditor" parent="HBoxContainer" node_paths=PackedStringArray("loader") instance=ExtResource("1_y025u")]
+layout_mode = 2
+dataKey = "Icon"
+loader = NodePath("../../StatusLoader")
+targetResolution = Vector2i(16, 16)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatsModifierEditor" parent="ScrollContainer" node_paths=PackedStringArray("loader") instance=ExtResource("2_vwq3c")]
+layout_mode = 2
+size_flags_horizontal = 3
+dataKey = "StatsModifier"
+loader = NodePath("../../StatusLoader")
