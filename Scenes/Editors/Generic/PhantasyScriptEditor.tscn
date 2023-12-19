@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cluitb55rrco4"]
+
+[node name="PhantasyScriptEditor" type="CodeEdit"]
+custom_minimum_size = Vector2(0, 75)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+wrap_mode = 1

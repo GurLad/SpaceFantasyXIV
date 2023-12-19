@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ysgf1nrse804"]
+[gd_scene load_steps=9 format=3 uid="uid://ysgf1nrse804"]
 
 [ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_8mqt1"]
 [ext_resource type="Script" path="res://GGGE/Scripts/GameDataEditor.cs" id="1_rbw1i"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dbu668ekihfba" path="res://Scenes/Editors/Generic/StatsModifierEditor.tscn" id="2_vwq3c"]
 [ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="3_alvgb"]
 [ext_resource type="Script" path="res://Scripts/GameData/StatusEffects/StatusDataEditor.cs" id="5_kxich"]
+[ext_resource type="PackedScene" uid="uid://cluitb55rrco4" path="res://Scenes/Editors/Generic/PhantasyScriptEditor.tscn" id="8_x18m7"]
 
 [node name="StatusEditor" type="ScrollContainer" node_paths=PackedStringArray("DataLoader")]
 anchors_preset = 15
@@ -34,7 +35,7 @@ theme_override_fonts/font = ExtResource("3_alvgb")
 text = "Basic data"
 horizontal_alignment = 1
 
-[node name="BasicDataEditor" type="PanelContainer" parent="VBoxContainer" node_paths=PackedStringArray("nameEdit", "shortNameEdit", "descriptionEdit", "sortOrderEdit", "stacksEdit", "fadesEdit", "loader")]
+[node name="BasicDataEditor" type="PanelContainer" parent="VBoxContainer" node_paths=PackedStringArray("nameEdit", "shortNameEdit", "descriptionEdit", "sortOrderEdit", "stacksEdit", "fadesEdit", "beginTurnEdit", "endTurnEdit", "loader")]
 layout_mode = 2
 script = ExtResource("5_kxich")
 nameEdit = NodePath("VBoxContainer/GridContainer/NameEdit")
@@ -43,6 +44,8 @@ descriptionEdit = NodePath("VBoxContainer/TextEdit")
 sortOrderEdit = NodePath("VBoxContainer/GridContainer/SortOrderEdit")
 stacksEdit = NodePath("VBoxContainer/GridContainer/IconAndBools/HBoxContainer/Stacks")
 fadesEdit = NodePath("VBoxContainer/GridContainer/IconAndBools/HBoxContainer/Fades")
+beginTurnEdit = NodePath("../EventsEditor/VBoxContainer/BeginTurn")
+endTurnEdit = NodePath("../EventsEditor/VBoxContainer/EndTurn")
 dataKey = "Data"
 loader = NodePath("../../StatusLoader")
 
@@ -127,3 +130,29 @@ layout_mode = 2
 layout_mode = 2
 dataKey = "StatsModifier"
 loader = NodePath("../../../StatusLoader")
+
+[node name="Events" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_alvgb")
+text = "Events"
+horizontal_alignment = 1
+
+[node name="EventsEditor" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/EventsEditor"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/EventsEditor/VBoxContainer"]
+layout_mode = 2
+text = "Begin turn event:"
+
+[node name="BeginTurn" parent="VBoxContainer/EventsEditor/VBoxContainer" instance=ExtResource("8_x18m7")]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/EventsEditor/VBoxContainer"]
+layout_mode = 2
+text = "End turn event:"
+
+[node name="EndTurn" parent="VBoxContainer/EventsEditor/VBoxContainer" instance=ExtResource("8_x18m7")]
+layout_mode = 2

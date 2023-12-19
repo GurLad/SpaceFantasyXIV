@@ -16,6 +16,10 @@ public partial class StatusDataEditor : ASerializableDataEditor<StatusData>
     private CheckBox stacksEdit;
     [Export]
     private CheckBox fadesEdit;
+    [Export]
+    private CodeEdit beginTurnEdit;
+    [Export]
+    private CodeEdit endTurnEdit;
 
     public override void _Ready()
     {
@@ -26,6 +30,8 @@ public partial class StatusDataEditor : ASerializableDataEditor<StatusData>
         sortOrderEdit.ValueChanged += (i) => { data.SortOrder = (int)i; SetDirty(); };
         stacksEdit.Toggled += (b) => { data.Stacks = b; SetDirty(); };
         fadesEdit.Toggled += (b) => { data.Fades = b; SetDirty(); };
+        beginTurnEdit.TextChanged += () => { data.BeginTurn.Source = beginTurnEdit.Text; SetDirty(); };
+        endTurnEdit.TextChanged += () => { data.EndTurn.Source = endTurnEdit.Text; SetDirty(); };
     }
 
     protected override void Refresh()
@@ -36,5 +42,7 @@ public partial class StatusDataEditor : ASerializableDataEditor<StatusData>
         sortOrderEdit.Value = data.SortOrder;
         stacksEdit.ButtonPressed = data.Stacks;
         fadesEdit.ButtonPressed = data.Fades;
+        beginTurnEdit.Text = data.BeginTurn.Source;
+        endTurnEdit.Text = data.EndTurn.Source;
     }
 }
