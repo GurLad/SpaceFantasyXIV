@@ -4,5 +4,11 @@
   "Description": "Zzzzz... Fast asleep...",
   "SortOrder": 3,
   "Stacks": true,
-  "Fades": true
+  "Fades": true,
+  "BeginTurn": {
+    "Source": ""
+  },
+  "EndTurn": {
+    "Source": ""
+  }
 }

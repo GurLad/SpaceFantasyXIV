@@ -6,5 +6,5 @@ public interface IPhantasyObject
 {
     public string GetProperty(string name);
 
-    public void RunFunction(List<string> args);
+    public void RunFunction(List<object> args);
 }

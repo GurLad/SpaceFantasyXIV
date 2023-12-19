@@ -4,5 +4,11 @@
   "Description": "Power! Unlimited Power!",
   "SortOrder": 0,
   "Stacks": false,
-  "Fades": true
+  "Fades": true,
+  "BeginTurn": {
+    "Source": ""
+  },
+  "EndTurn": {
+    "Source": ""
+  }
 }

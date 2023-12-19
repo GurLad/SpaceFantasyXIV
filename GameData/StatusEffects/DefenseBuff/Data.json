@@ -4,5 +4,11 @@
   "Description": "Will definitly live forever.",
   "SortOrder": 0,
   "Stacks": false,
-  "Fades": true
+  "Fades": true,
+  "BeginTurn": {
+    "Source": ""
+  },
+  "EndTurn": {
+    "Source": ""
+  }
 }

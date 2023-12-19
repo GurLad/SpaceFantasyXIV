@@ -30,10 +30,18 @@ public class PhantasyScript
             List<string> values = matches[i].Groups.Values.ToList().ConvertAll(a => a.Value);
             GD.Print(string.Join(", ", values));
             IPhantasyObject obj = args.Find(a => a.Item1 == values[1]).Item2;
-            List<string> funcArgs = new List<string>();
+            List<object> funcArgs = new List<object>();
             for (int j = 2; j < values.Count; j++)
             {
-                funcArgs.Add(new Formula(values[i]).ParseString(args.ToArray()));
+                IPhantasyObject arg = args.Find(a => a.Item1 == values[i]).Item2;
+                if (arg != null)
+                {
+                    funcArgs.Add(arg);
+                }
+                else
+                {
+                    funcArgs.Add(new Formula(values[i]).ParseString(args.ToArray()));
+                }
             }
             obj.RunFunction(funcArgs);
         }

@@ -4,5 +4,11 @@
   "Description": "Cough cough! I keep taking damage...",
   "SortOrder": 1,
   "Stacks": true,
-  "Fades": true
+  "Fades": true,
+  "BeginTurn": {
+    "Source": "owner.TakeDamage(null, 40 * this.Lifespan, Poison, true, Poison, true)"
+  },
+  "EndTurn": {
+    "Source": ""
+  }
 }
