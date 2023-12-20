@@ -11,9 +11,10 @@ public partial class ElementLoader : AGameDataLoader
 
     public override string DataFolder => "Elements";
 
-    protected override Dictionary<string, ISerializableData> gameDatas => new Dictionary<string, ISerializableData>(); // No data
-
-    protected override Dictionary<string, Sprite2D> sprites => new Dictionary<string, Sprite2D>() { { "Icon", icon } };
+    protected override List<GGE.Internal.AGameDataPart> gameDatas => new List<GGE.Internal.AGameDataPart>()
+    {
+        new GameDataSpritePart("Icon", icon),
+    };
 
     protected override string iconKey => "Icon";
 

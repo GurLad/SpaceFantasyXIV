@@ -93,7 +93,6 @@ public partial class GameDataPreloader : Node
 
     public record GameDataRecord
     (
-        Dictionary<string, string> GameDatas,
-        Dictionary<string, Image> Sprites
+        List<(string, object)> Records
     ) { }
 }

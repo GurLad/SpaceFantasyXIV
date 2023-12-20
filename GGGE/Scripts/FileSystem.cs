@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using GGE.Internal;
 
 public static class FileSystem
 {
@@ -52,6 +53,46 @@ public static class FileSystem
     public static void CreateDataFolder(string dataFolder)
     {
         DirAccess.MakeDirRecursiveAbsolute(GameDataDirectory + SEPERATOR + dataFolder);
+    }
+
+    public static string LoadTextFile(string path, string extension = ".json")
+    {
+        using var file = FileAccess.Open(path + extension, FileAccess.ModeFlags.Read);
+        return file?.GetAsText();
+    }
+
+    private static Image LoadImageFile(string path, string extension = ".png")
+    {
+        if (FileAccess.FileExists(path + extension))
+        {
+            return Image.LoadFromFile(path + extension);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public static Texture2D LoadTextureFile(string path, string extension = ".png")
+    {
+        Image img = LoadImageFile(path, extension);
+        return img != null ? ImageTexture.CreateFromImage(img) : null;
+    }
+
+    public static List<Texture2D> LoadAnimatedTextureFile(string path, int numFrames, string extension = ".png")
+    {
+        Image source = LoadImageFile(path, extension);
+        if (source == null)
+        {
+            return new List<Texture2D>();
+        }
+        List<Texture2D> result = new List<Texture2D>();
+        int frameWidth = source.GetWidth() / numFrames;
+        for (int i = 0; i < numFrames; i++)
+        {
+            result.Add(ImageTexture.CreateFromImage(source.GetRegion(new Rect2I(i * frameWidth, 0, frameWidth, source.GetHeight()))));
+        }
+        return result;
     }
 
     public static string GetFolderPath(this AGameDataLoader gameDataLoader, string name, string folder, bool save)

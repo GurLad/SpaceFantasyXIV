@@ -13,10 +13,12 @@ public partial class StatusLoader : AGameDataLoader
 
     public override string DataFolder => "StatusEffects";
 
-    protected override Dictionary<string, ISerializableData> gameDatas => new Dictionary<string, ISerializableData>()
-        { { "StatsModifier", statsModifier }, { "Data", data } };
-
-    protected override Dictionary<string, Sprite2D> sprites => new Dictionary<string, Sprite2D>() { { "Icon", icon } };
+    protected override List<GGE.Internal.AGameDataPart> gameDatas => new List<GGE.Internal.AGameDataPart>()
+    {
+        new GameDataSerializablePart("StatsModifier", statsModifier),
+        new GameDataSerializablePart("Data", data),
+        new GameDataSpritePart("Icon", icon),
+    };
 
     protected override string iconKey => "Icon";
 
