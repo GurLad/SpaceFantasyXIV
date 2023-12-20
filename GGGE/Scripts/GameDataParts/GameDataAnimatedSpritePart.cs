@@ -31,7 +31,7 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
     public override void Load(string folderPath)
     {
         spriteFrames.ClearAll();
-        string basePath = folderPath + FileSystem.SEPERATOR + Name;
+        string basePath = GetFullPath(folderPath, false);
         string data = FileSystem.LoadTextFile(basePath + SEPERATOR + DATA_FILE, "");
         List<AnimationData> animationData = data.JsonToObject<List<AnimationData>>();
         List<string> animations = lockAnimations ? baseAnimations : animationData.ConvertAll(a => a.Name);
@@ -44,7 +44,7 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
         }
     }
 
-    protected override void LoadFromRecord(SpriteFrames record)
+    protected override void LoadFromRecordInternal(SpriteFrames record)
     {
         if (lockAnimations)
         {
@@ -62,7 +62,7 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
 
     public override void Save(string folderPath)
     {
-        string basePath = folderPath + FileSystem.SEPERATOR + Name;
+        string basePath = GetFullPath(folderPath, false);
         List<AnimationData> animationData = new List<AnimationData>();
         List<string> animations = lockAnimations ? baseAnimations : spriteFrames.GetAnimationNames().ToList();
         for (int i = 0; i < animations.Count; i++)
@@ -90,7 +90,7 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
         dataFile.StoreString(animationData.ToJson());
     }
 
-    public override SpriteFrames SaveToRecord()
+    protected override SpriteFrames SaveToRecordInternal()
     {
         return spriteFrames;
     }

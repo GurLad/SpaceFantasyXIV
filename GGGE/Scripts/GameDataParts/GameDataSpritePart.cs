@@ -12,20 +12,20 @@ public class GameDataSpritePart : GGE.Internal.AGameDataPart<Sprite2D, Image>
 
     public override void Load(string folderPath)
     {
-        SourceNode.Texture = FileSystem.LoadTextureFile(folderPath + FileSystem.SEPERATOR + Name, fileExtension);
+        SourceNode.Texture = FileSystem.LoadTextureFile(GetFullPath(folderPath, false), fileExtension);
     }
 
-    protected override void LoadFromRecord(Image record)
+    protected override void LoadFromRecordInternal(Image record)
     {
         SourceNode.Texture = ImageTexture.CreateFromImage(record);
     }
 
     public override void Save(string folderPath)
     {
-        SourceNode.Texture?.GetImage()?.SavePng(folderPath + FileSystem.SEPERATOR + Name + fileExtension);
+        SourceNode.Texture?.GetImage()?.SavePng(GetFullPath(folderPath));
     }
 
-    public override Image SaveToRecord()
+    protected override Image SaveToRecordInternal()
     {
         return SourceNode.Texture?.GetImage();
     }

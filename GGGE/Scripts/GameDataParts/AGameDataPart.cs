@@ -15,13 +15,20 @@ namespace GGE.Internal
             this.fileExtension = fileExtension;
         }
 
-        protected abstract void LoadFromRecord(RecordType record);
+        protected string GetFullPath(string folderPath, bool includeExtension = true) =>
+            folderPath + FileSystem.SEPERATOR + Name + (includeExtension ? fileExtension : "");
+
+        protected abstract RecordType SaveToRecordInternal();
+
+        public override object SaveToRecord() => SaveToRecordInternal();
+
+        protected abstract void LoadFromRecordInternal(RecordType record);
 
         public override void LoadFromRecord(object record)
         {
             if (record != null && record is RecordType recordType)
             {
-                LoadFromRecord(recordType);
+                LoadFromRecordInternal(recordType);
             }
             else
             {

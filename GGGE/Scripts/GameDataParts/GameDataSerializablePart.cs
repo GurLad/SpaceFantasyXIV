@@ -13,7 +13,7 @@ public class GameDataSerializablePart : GGE.Internal.AGameDataPart<ISerializable
 
     public override void Load(string folderPath)
     {
-        string file = FileSystem.LoadTextFile(folderPath + FileSystem.SEPERATOR + Name, fileExtension);
+        string file = FileSystem.LoadTextFile(GetFullPath(folderPath, false), fileExtension);
         if (file != null)
         {
             SourceNode.Load(file);
@@ -24,22 +24,22 @@ public class GameDataSerializablePart : GGE.Internal.AGameDataPart<ISerializable
         }
     }
 
-    protected override void LoadFromRecord(string record)
+    protected override void LoadFromRecordInternal(string record)
     {
         SourceNode.Load(record);
     }
 
     public override void Save(string folderPath)
     {
-        using var file = FileAccess.Open(folderPath + FileSystem.SEPERATOR + Name + fileExtension, FileAccess.ModeFlags.Write);
+        using var file = FileAccess.Open(GetFullPath(folderPath), FileAccess.ModeFlags.Write);
         if (file == null)
         {
-            throw new Exception("Error creating file " + (folderPath + FileSystem.SEPERATOR + Name + fileExtension) + "!");
+            throw new Exception("Error creating file " + GetFullPath(folderPath) + "!");
         }
         file.StoreString(SourceNode.Save());
     }
 
-    public override string SaveToRecord()
+    protected override string SaveToRecordInternal()
     {
         return SourceNode.Save();
     }
