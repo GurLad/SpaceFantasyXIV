@@ -30,7 +30,7 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
         spriteFrames.ClearAll();
         if (lockAnimations)
         {
-            baseAnimations.ForEach(a => spriteFrames.AddAnimation(a));
+            baseAnimations.FindAll(a => a != "default").ForEach(a => spriteFrames.AddAnimation(a));
         }
     }
 
