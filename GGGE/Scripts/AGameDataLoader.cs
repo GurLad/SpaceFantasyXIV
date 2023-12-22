@@ -6,11 +6,11 @@ using System.Linq;
 public abstract partial class AGameDataLoader : Node
 {
     public abstract string DataFolder { get; }
-    protected abstract List<GGE.Internal.AGameDataPart> gameDatas { get; }
+    protected abstract List<AGameDataPart> gameDatas { get; }
     protected virtual string iconKey => "";
 
-    private List<GGE.Internal.AGameDataPart> _gameDatas = null;
-    private List<GGE.Internal.AGameDataPart> loadedGameDatas => _gameDatas ??= gameDatas;
+    private List<AGameDataPart> _gameDatas = null;
+    private List<AGameDataPart> loadedGameDatas => _gameDatas ??= gameDatas;
     public bool Visible
     {
         set
@@ -107,6 +107,12 @@ public abstract partial class AGameDataLoader : Node
     public Sprite2D GetSprite(string key)
     {
         GameDataSpritePart part = (GameDataSpritePart)gameDatas.Find(a => a is GameDataSpritePart spritePart && a.Name == key);
+        return part?.SourceNode ?? throw new Exception("No key! " + key);
+    }
+
+    public AnimatedSprite2D GetAnimatedSprite(string key)
+    {
+        GameDataAnimatedSpritePart part = (GameDataAnimatedSpritePart)gameDatas.Find(a => a is GameDataAnimatedSpritePart spritePart && a.Name == key);
         return part?.SourceNode ?? throw new Exception("No key! " + key);
     }
 }

@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_8mqt1"]
 [ext_resource type="Script" path="res://GGGE/Scripts/GameDataEditor.cs" id="1_rbw1i"]
-[ext_resource type="PackedScene" uid="uid://bexv4mjg75bdo" path="res://Scenes/Editors/StatusEffects/StatusLoader.tscn" id="1_twehh"]
+[ext_resource type="PackedScene" uid="uid://bexv4mjg75bdo" path="res://Scenes/Loaders/StatusLoader.tscn" id="1_twehh"]
 [ext_resource type="PackedScene" uid="uid://bftsmkn70twy8" path="res://Scenes/Editors/Generic/SmallImageEditor.tscn" id="1_y025u"]
 [ext_resource type="PackedScene" uid="uid://dbu668ekihfba" path="res://Scenes/Editors/Generic/StatsModifierEditor.tscn" id="2_vwq3c"]
 [ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="3_alvgb"]

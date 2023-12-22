@@ -81,18 +81,7 @@ public static class FileSystem
 
     public static List<Texture2D> LoadAnimatedTextureFile(string path, int numFrames, string extension = ".png")
     {
-        Image source = LoadImageFile(path, extension);
-        if (source == null)
-        {
-            return new List<Texture2D>();
-        }
-        List<Texture2D> result = new List<Texture2D>();
-        int frameWidth = source.GetWidth() / numFrames;
-        for (int i = 0; i < numFrames; i++)
-        {
-            result.Add(ImageTexture.CreateFromImage(source.GetRegion(new Rect2I(i * frameWidth, 0, frameWidth, source.GetHeight()))));
-        }
-        return result;
+        return LoadImageFile(path, extension)?.SplitImage(numFrames) ?? new List<Texture2D>();
     }
 
     public static string GetFolderPath(this AGameDataLoader gameDataLoader, string name, string folder, bool save)

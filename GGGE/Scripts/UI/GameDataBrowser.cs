@@ -250,24 +250,4 @@ namespace GGE.Internal
             });
         }
     }
-
-    public static class GameDataBrowserExtensions
-    {
-        public static int FindIndex(this ItemList itemList, string query)
-        {
-            for (int i = 0; i < itemList.ItemCount; i++)
-            {
-                if (itemList.GetItemText(i) == query)
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
-        public static string FixFileName(this string str)
-        {
-            return str.Replace("\"", "").Replace("\\", "").Replace("/", "").Replace(":", "").Replace("?", "").Replace("|", "").Replace("*", "").Replace("<", "").Replace(">", "");
-        }
-    }
 }

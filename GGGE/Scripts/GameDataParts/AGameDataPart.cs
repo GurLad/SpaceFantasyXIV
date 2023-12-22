@@ -36,19 +36,19 @@ namespace GGE.Internal
             }
         }
     }
+}
 
-    public abstract class AGameDataPart
-    {
-        public string Name { get; init; }
+public abstract class AGameDataPart
+{
+    public string Name { get; init; }
 
-        public abstract void Save(string folderPath);
+    public abstract void Save(string folderPath);
 
-        public abstract object SaveToRecord();
+    public abstract object SaveToRecord();
 
-        public abstract void Load(string folderPath);
+    public abstract void Load(string folderPath);
 
-        public abstract void LoadFromRecord(object record);
+    public abstract void LoadFromRecord(object record);
 
-        public abstract void Clear();
-    }
+    public abstract void Clear();
 }

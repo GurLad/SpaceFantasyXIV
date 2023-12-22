@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bftsmkn70twy8"]
 
-[ext_resource type="Script" path="res://GGGE/Scripts/ImageEditor.cs" id="1_ftp5k"]
+[ext_resource type="Script" path="res://GGGE/Scripts/DataPartEditors/ImageEditor.cs" id="1_ftp5k"]
 
 [node name="SmallImageEditor" type="HBoxContainer" node_paths=PackedStringArray("previewRect", "browseButton")]
 anchors_preset = 15

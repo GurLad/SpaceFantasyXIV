@@ -1,7 +1,8 @@
 using Godot;
 using System;
+using GGE.Internal;
 
-public partial class ImageEditor : HBoxContainer
+public partial class ImageEditor : Control
 {
     // Exports
     [Export]
@@ -18,8 +19,7 @@ public partial class ImageEditor : HBoxContainer
     [Export]
     private FileDialog fileDialog;
     // Properties
-    private Sprite2D _data;
-    protected Sprite2D data => _data;
+    private Sprite2D data;
 
     [Signal]
     public delegate void OnDirtyEventHandler();
@@ -28,14 +28,14 @@ public partial class ImageEditor : HBoxContainer
     {
         base._Ready();
         previewRect.CustomMinimumSize = targetResolution;
-        _data = loader.GetSprite(dataKey);
+        data = loader.GetSprite(dataKey);
         OnDirty += () => loader.EmitSignal(AGameDataLoader.SignalName.OnDirty);
         loader.OnExternalChange += () => previewRect.Texture = data.Texture;
         // Init file dialog
         if (fileDialog == null)
         {
             fileDialog = new FileDialog();
-            InitFileDialog(fileDialog);
+            fileDialog.Init();
         }
         fileDialog.FileSelected += (path) =>
         {
@@ -46,22 +46,5 @@ public partial class ImageEditor : HBoxContainer
         AddChild(fileDialog);
     }
 
-    protected void SetDirty() => EmitSignal(SignalName.OnDirty);
-
-    private void InitFileDialog(FileDialog dialog)
-    {
-        fileDialog.Filters = new string[] { "*.png, *.gif, *.jpg ; Image files" };
-        fileDialog.FileMode = FileDialog.FileModeEnum.OpenFile;
-        fileDialog.Access = FileDialog.AccessEnum.Filesystem;
-        //Window root = GetTree().Root;
-        //fileDialog.ContentScaleAspect = root.ContentScaleAspect;
-        //fileDialog.ContentScaleFactor = root.ContentScaleFactor;
-        //fileDialog.ContentScaleMode = root.ContentScaleMode;
-        //fileDialog.ContentScaleSize = root.ContentScaleSize;
-        //fileDialog.ContentScaleStretch = root.ContentScaleStretch;
-        fileDialog.InitialPosition = Window.WindowInitialPosition.CenterPrimaryScreen;
-        //fileDialog.Mode = Window.ModeEnum.Maximized;
-        fileDialog.Theme = previewRect.Theme;
-        fileDialog.UseNativeDialog = true;
-    }
+    private void SetDirty() => EmitSignal(SignalName.OnDirty);
 }

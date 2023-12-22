@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmntwlonxuvb5"]
+[gd_scene load_steps=10 format=3 uid="uid://dmntwlonxuvb5"]
 
 [ext_resource type="Script" path="res://Scripts/GameEditor.cs" id="1_3xbbq"]
 [ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_cnk10"]
@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://c3owyy3ros4e3" path="res://Sprites/Misc/BlackBG.png" id="3_dapch"]
 [ext_resource type="PackedScene" uid="uid://clp8spdsqe1pl" path="res://GGGE/Scenes/GameDataBrowser.tscn" id="3_ryvdl"]
 [ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="4_6455y"]
-[ext_resource type="PackedScene" uid="uid://ysgf1nrse804" path="res://Scenes/Editors/StatusEffects/StatusEditor.tscn" id="5_7fc4l"]
-[ext_resource type="PackedScene" uid="uid://cpwchb0vsyak3" path="res://Scenes/Editors/Elements/ElementEditor.tscn" id="5_ykcfv"]
+[ext_resource type="PackedScene" uid="uid://ysgf1nrse804" path="res://Scenes/Editors/StatusEditor.tscn" id="5_7fc4l"]
+[ext_resource type="PackedScene" uid="uid://cpwchb0vsyak3" path="res://Scenes/Editors/ElementEditor.tscn" id="5_ykcfv"]
+[ext_resource type="PackedScene" uid="uid://cb3mso12afsoa" path="res://Scenes/Editors/VFXEditor.tscn" id="8_omuf2"]
 
 [node name="GameEditor" type="Control"]
 texture_filter = 1
@@ -63,6 +64,14 @@ layout_mode = 2
 text = "Status Editor"
 script = ExtResource("1_jf8me")
 SceneDataEditor = ExtResource("5_7fc4l")
+SceneGameDataBrowser = ExtResource("3_ryvdl")
+GameEditorPanel = NodePath("../../..")
+
+[node name="VFX" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("GameEditorPanel")]
+layout_mode = 2
+text = "VFX Editor"
+script = ExtResource("1_jf8me")
+SceneDataEditor = ExtResource("8_omuf2")
 SceneGameDataBrowser = ExtResource("3_ryvdl")
 GameEditorPanel = NodePath("../../..")
 

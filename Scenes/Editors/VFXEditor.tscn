@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb3mso12afsoa"]
+
+[ext_resource type="Script" path="res://GGGE/Scripts/GameDataEditor.cs" id="1_dkbhm"]
+[ext_resource type="PackedScene" uid="uid://c7pkkudfby4wo" path="res://Scenes/Loaders/VFXLoader.tscn" id="1_jeyj6"]
+[ext_resource type="PackedScene" uid="uid://c0m7sh1811jfc" path="res://Scenes/Editors/Generic/SmallAnimationEditor.tscn" id="3_yq3hj"]
+
+[node name="VFXEditor" type="CenterContainer" node_paths=PackedStringArray("DataLoader")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dkbhm")
+DataLoader = NodePath("VFXLoader")
+
+[node name="VFXLoader" parent="." instance=ExtResource("1_jeyj6")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Animation:"
+
+[node name="SmallAnimationEditor" parent="VBoxContainer/HBoxContainer" node_paths=PackedStringArray("loader") instance=ExtResource("3_yq3hj")]
+layout_mode = 2
+animationName = "Base"
+dataKey = "Animation"
+loader = NodePath("../../../VFXLoader")
+targetResolution = Vector2i(66, 64)

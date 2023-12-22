@@ -13,7 +13,7 @@ public partial class StatusLoader : AGameDataLoader
 
     public override string DataFolder => "StatusEffects";
 
-    protected override List<GGE.Internal.AGameDataPart> gameDatas => new List<GGE.Internal.AGameDataPart>()
+    protected override List<AGameDataPart> gameDatas => new List<AGameDataPart>()
     {
         new GameDataSerializablePart("StatsModifier", statsModifier),
         new GameDataSerializablePart("Data", data),
@@ -27,8 +27,7 @@ public partial class StatusLoader : AGameDataLoader
         base._Ready();
         if (icon == null)
         {
-            icon = new Sprite2D();
-            AddChild(icon);
+            AddChild(icon = new Sprite2D());
             icon.Visible = false;
         }
     }

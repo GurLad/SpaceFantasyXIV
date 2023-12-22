@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0m7sh1811jfc"]
+
+[ext_resource type="Script" path="res://GGGE/Scripts/DataPartEditors/AnimationEditor.cs" id="1_1dsnk"]
+
+[node name="SmallAnimationEditor" type="HBoxContainer" node_paths=PackedStringArray("previewRect", "browseButton", "togglePreview")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1dsnk")
+previewRect = NodePath("TextureRect")
+browseButton = NodePath("BrowseButton")
+togglePreview = NodePath("PlayStopButton")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="BrowseButton" type="Button" parent="."]
+layout_mode = 2
+text = "Browse..."
+
+[node name="PlayStopButton" type="Button" parent="."]
+custom_minimum_size = Vector2(34, 0)
+layout_mode = 2
+text = "Play"

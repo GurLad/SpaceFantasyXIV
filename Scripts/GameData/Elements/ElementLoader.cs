@@ -11,7 +11,7 @@ public partial class ElementLoader : AGameDataLoader
 
     public override string DataFolder => "Elements";
 
-    protected override List<GGE.Internal.AGameDataPart> gameDatas => new List<GGE.Internal.AGameDataPart>()
+    protected override List<AGameDataPart> gameDatas => new List<AGameDataPart>()
     {
         new GameDataSpritePart("Icon", icon),
     };
@@ -23,8 +23,7 @@ public partial class ElementLoader : AGameDataLoader
         base._Ready();
         if (icon == null)
         {
-            icon = new Sprite2D();
-            AddChild(icon);
+            AddChild(icon = new Sprite2D());
             icon.Visible = false;
         }
     }
