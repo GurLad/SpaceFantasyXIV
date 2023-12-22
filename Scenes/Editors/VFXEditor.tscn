@@ -27,7 +27,7 @@ text = "Animation:"
 
 [node name="SmallAnimationEditor" parent="VBoxContainer/HBoxContainer" node_paths=PackedStringArray("loader") instance=ExtResource("3_yq3hj")]
 layout_mode = 2
-animationName = "Base"
+animationName = "default"
 dataKey = "Animation"
 loader = NodePath("../../../VFXLoader")
 targetResolution = Vector2i(66, 64)

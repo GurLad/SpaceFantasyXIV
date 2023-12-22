@@ -7,7 +7,7 @@ public partial class AnimationEditor : Control
 {
     // Exports
     [Export]
-    private string animationName;
+    private string animationName = "default";
     [Export]
     private string dataKey;
     [Export]
@@ -25,7 +25,7 @@ public partial class AnimationEditor : Control
     private Button togglePreview;
     // Properties
     private AnimatedSprite2D data;
-    private List<Texture2D> frames;
+    private List<Texture2D> frames = new List<Texture2D>();
     private int currentFrame;
     private Timer previewTimer;
 
@@ -48,8 +48,9 @@ public partial class AnimationEditor : Control
             UpdatePreview();
         };
         // Init preview timer
-        previewTimer = new Timer();
+        AddChild(previewTimer = new Timer());
         previewTimer.OneShot = false;
+        previewTimer.WaitTime = 0.1f; // TEMP - need to add a way to add custom animation speeds in the future
         previewTimer.Timeout += () => { currentFrame = (currentFrame + 1) % frames.Count; UpdatePreview(); };
         togglePreview.Pressed += () =>
         {
@@ -76,6 +77,7 @@ public partial class AnimationEditor : Control
             if (targetResolution.X > 0)
             {
                 frames = source.SplitImage(source.GetWidth() / targetResolution.X);
+                UpdatePreview();
                 SetDirty();
             }
             else
@@ -87,6 +89,7 @@ public partial class AnimationEditor : Control
                     if (int.TryParse(s, out frameCount) && frameCount > 0)
                     {
                         frames = source.SplitImage(frameCount);
+                        UpdatePreview();
                         SetDirty();
                     }
                     else
@@ -102,7 +105,14 @@ public partial class AnimationEditor : Control
 
     private void UpdatePreview()
     {
-        previewRect.Texture = frames[currentFrame % frames.Count];
+        if (frames.Count > 0)
+        {
+            previewRect.Texture = frames[currentFrame % frames.Count];
+        }
+        else
+        {
+            previewRect.Texture = null;
+        }
     }
 
     private void SetDirty() => EmitSignal(SignalName.OnDirty);

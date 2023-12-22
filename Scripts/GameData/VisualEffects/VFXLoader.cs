@@ -24,7 +24,7 @@ public partial class VFXLoader : AGameDataLoader
         if (renderer == null)
         {
             AddChild(renderer = new AnimatedSprite2D());
-            renderer.SpriteFrames.AddAnimation("Base");
+            renderer.SpriteFrames = new SpriteFrames();
             renderer.Visible = false;
         }
         if (player == null)

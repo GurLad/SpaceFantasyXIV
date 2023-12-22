@@ -32,9 +32,16 @@ public partial class GameDataAudioStreamPart : GGE.Internal.AGameDataPart<GameDa
 
     public override void Save(string folderPath)
     {
-        if (string.IsNullOrEmpty(SourceNode.Path) && SourceNode.Player.Stream != null)
+        if (string.IsNullOrEmpty(SourceNode.Path))
         {
-            throw new Exception("Trying to save a stream without a defined path!");
+            if (SourceNode.Player.Stream != null)
+            {
+                throw new Exception("Trying to save a stream without a defined path!");
+            }
+            else
+            {
+                return; // There's nothing to save
+            }
         }
         if (SourceNode.Path != GetFullPath(folderPath))
         {

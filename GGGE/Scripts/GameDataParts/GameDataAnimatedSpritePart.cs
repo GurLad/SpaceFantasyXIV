@@ -38,9 +38,15 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
         for (int i = 0; i < animations.Count; i++)
         {
             string animation = animations[i];
-            spriteFrames.AddAnimation(animation);
-            List<Texture2D> frames = FileSystem.LoadAnimatedTextureFile(basePath + SEPERATOR + animation, animationData[i].NumFrames);
-            frames.ForEach(a => spriteFrames.AddFrame(animation, a));
+            if (animation != "default")
+            {
+                spriteFrames.AddAnimation(animation);
+            }
+            if (i < animationData.Count)
+            {
+                List<Texture2D> frames = FileSystem.LoadAnimatedTextureFile(basePath + SEPERATOR + animation, animationData[i].NumFrames);
+                frames.ForEach(a => spriteFrames.AddFrame(animation, a));
+            }
         }
     }
 
