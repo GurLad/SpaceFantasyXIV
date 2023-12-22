@@ -14,7 +14,7 @@ public partial class VFXLoader : AGameDataLoader
 
 	protected override List<AGameDataPart> gameDatas => new List<AGameDataPart>()
 	{
-		new GameDataAnimatedSpritePart("Animation", renderer),
+		new GameDataAnimatedSpritePart("Animation", renderer, ".png", "default"),
 		new GameDataAudioStreamPart("SFX", player)
 	};
 

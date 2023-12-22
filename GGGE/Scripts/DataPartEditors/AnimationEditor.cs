@@ -25,9 +25,20 @@ public partial class AnimationEditor : Control
     private Button togglePreview;
     // Properties
     private AnimatedSprite2D data;
-    private List<Texture2D> frames = new List<Texture2D>();
     private int currentFrame;
     private Timer previewTimer;
+    private List<Texture2D> _frames = new List<Texture2D>();
+    private List<Texture2D> frames
+    {
+        get => _frames;
+        set
+        {
+            _frames = value;
+            data.SpriteFrames.RemoveAnimation(animationName);
+            data.SpriteFrames.AddAnimation(animationName);
+            frames.ForEach(a => data.SpriteFrames.AddFrame(animationName, a));
+        }
+    }
 
     [Signal]
     public delegate void OnDirtyEventHandler();
@@ -51,7 +62,14 @@ public partial class AnimationEditor : Control
         AddChild(previewTimer = new Timer());
         previewTimer.OneShot = false;
         previewTimer.WaitTime = 0.1f; // TEMP - need to add a way to add custom animation speeds in the future
-        previewTimer.Timeout += () => { currentFrame = (currentFrame + 1) % frames.Count; UpdatePreview(); };
+        previewTimer.Timeout += () =>
+        {
+            if (frames.Count > 0)
+            {
+                currentFrame = (currentFrame + 1) % frames.Count;
+                UpdatePreview();
+            }
+        };
         togglePreview.Pressed += () =>
         {
             if (previewTimer.IsStopped())

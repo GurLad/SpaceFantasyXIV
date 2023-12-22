@@ -12,11 +12,17 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
     private List<string> baseAnimations = new List<string>();
     private SpriteFrames spriteFrames => SourceNode.SpriteFrames;
 
-    public GameDataAnimatedSpritePart(string name, AnimatedSprite2D sourceNode, bool lockAnimations = true, string fileExtension = ".png") :
+    public GameDataAnimatedSpritePart(string name, AnimatedSprite2D sourceNode, string fileExtension = ".png") :
         base(name, sourceNode, fileExtension)
     {
-        this.lockAnimations = lockAnimations;
-        baseAnimations = spriteFrames.GetAnimationNames().ToList();
+        lockAnimations = false;
+    }
+
+    public GameDataAnimatedSpritePart(string name, AnimatedSprite2D sourceNode, string fileExtension, params string[] baseAnimations) :
+        base(name, sourceNode, fileExtension)
+    {
+        lockAnimations = true;
+        this.baseAnimations = baseAnimations.ToList();
     }
 
     public override void Clear()
