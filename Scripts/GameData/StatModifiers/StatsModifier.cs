@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class StatsModifier : ISerializableData
+public class StatsModifier : ISerializableData
 {
     private Dictionary<string, Formula> statMultiplierMods { get; init; } = new Dictionary<string, Formula>();
     private Dictionary<string, Formula> elementMultiplierMods { get; init; } = new Dictionary<string, Formula>();
