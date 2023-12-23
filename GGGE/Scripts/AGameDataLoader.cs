@@ -98,7 +98,7 @@ public abstract partial class AGameDataLoader : Node
 
     public T GetData<T>(string key) where T : ISerializableData
     {
-        GameDataSerializablePart part = (GameDataSerializablePart)gameDatas.Find(a => a is GameDataSerializablePart serializablePart && a.Name == key);
+        GameDataSerializablePart part = GetPart<GameDataSerializablePart>(key);
         return part != null ? (part.SourceNode is T result ? result :
             throw new Exception("Type mismatch! " + key + " isn't " + typeof(T))) :
             throw new Exception("No key! " + key);
@@ -106,13 +106,24 @@ public abstract partial class AGameDataLoader : Node
 
     public Sprite2D GetSprite(string key)
     {
-        GameDataSpritePart part = (GameDataSpritePart)gameDatas.Find(a => a is GameDataSpritePart spritePart && a.Name == key);
+        GameDataSpritePart part = GetPart<GameDataSpritePart>(key);
         return part?.SourceNode ?? throw new Exception("No key! " + key);
     }
 
     public AnimatedSprite2D GetAnimatedSprite(string key)
     {
-        GameDataAnimatedSpritePart part = (GameDataAnimatedSpritePart)gameDatas.Find(a => a is GameDataAnimatedSpritePart spritePart && a.Name == key);
+        GameDataAnimatedSpritePart part = GetPart<GameDataAnimatedSpritePart>(key);
         return part?.SourceNode ?? throw new Exception("No key! " + key);
+    }
+
+    public GameDataAudioStreamPart.StreamWithPath GetAudioStream(string key)
+    {
+        GameDataAudioStreamPart part = GetPart<GameDataAudioStreamPart>(key);
+        return part?.SourceNode ?? throw new Exception("No key! " + key);
+    }
+
+    private T GetPart<T>(string key) where T : AGameDataPart
+    {
+        return (T)loadedGameDatas.Find(a => a is T part && a.Name == key);
     }
 }

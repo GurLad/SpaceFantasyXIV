@@ -20,9 +20,9 @@ public partial class AnimationEditor : Control
     [Export]
     private Button browseButton;
     [Export]
-    private FileDialog fileDialog;
-    [Export]
     private Button togglePreview;
+    [Export]
+    private FileDialog fileDialog;
     // Properties
     private AnimatedSprite2D data;
     private int currentFrame;

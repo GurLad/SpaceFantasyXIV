@@ -9,20 +9,11 @@ public partial class GameDataAudioStreamPart : GGE.Internal.AGameDataPart<GameDa
     public override void Clear()
     {
         SourceNode.Path = "";
-        SourceNode.Player.Stream = null;
     }
 
     public override void Load(string folderPath)
     {
         SourceNode.Path = GetFullPath(folderPath);
-        if (FileAccess.FileExists(SourceNode.Path))
-        {
-            SourceNode.Player.Stream = AudioStreamOggVorbis.LoadFromFile(SourceNode.Path);
-        }
-        else
-        {
-            SourceNode.Path = "";
-        }
     }
 
     protected override void LoadFromRecordInternal(AudioStream record)
@@ -54,8 +45,28 @@ public partial class GameDataAudioStreamPart : GGE.Internal.AGameDataPart<GameDa
         return SourceNode.Player.Stream;
     }
 
-    public record StreamWithPath(AudioStreamPlayer Player)
+    public class StreamWithPath
     {
-        public string Path { get; set; } = "";
+        public AudioStreamPlayer Player { get; init; }
+        private string _path = "";
+        public string Path
+        {
+            get => _path;
+            set
+            {
+                _path = value;
+                if (!string.IsNullOrEmpty(Path) && FileAccess.FileExists(Path))
+                {
+                    Player.Stream = AudioStreamOggVorbis.LoadFromFile(Path);
+                }
+                else
+                {
+                    _path = "";
+                    Player.Stream = null;
+                }
+            }
+        }
+
+        public StreamWithPath(AudioStreamPlayer player) => Player = player;
     }
 }

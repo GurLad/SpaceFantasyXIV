@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh48an4n65pqn"]
+
+[ext_resource type="Script" path="res://GGGE/Scripts/DataPartEditors/AudioEditor.cs" id="1_rcp7f"]
+
+[node name="AudioEditor" type="HBoxContainer" node_paths=PackedStringArray("browseButton", "playButton", "pathLabel")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rcp7f")
+browseButton = NodePath("BrowseButton")
+playButton = NodePath("PlayButton")
+pathLabel = NodePath("PathLabel")
+
+[node name="PathLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="BrowseButton" type="Button" parent="."]
+layout_mode = 2
+text = "Browse..."
+
+[node name="PlayButton" type="Button" parent="."]
+custom_minimum_size = Vector2(34, 0)
+layout_mode = 2
+text = "Play"

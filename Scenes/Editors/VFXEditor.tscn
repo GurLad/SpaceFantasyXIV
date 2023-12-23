@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb3mso12afsoa"]
+[gd_scene load_steps=5 format=3 uid="uid://cb3mso12afsoa"]
 
 [ext_resource type="Script" path="res://GGGE/Scripts/GameDataEditor.cs" id="1_dkbhm"]
 [ext_resource type="PackedScene" uid="uid://c7pkkudfby4wo" path="res://Scenes/Loaders/VFXLoader.tscn" id="1_jeyj6"]
 [ext_resource type="PackedScene" uid="uid://c0m7sh1811jfc" path="res://Scenes/Editors/Generic/SmallAnimationEditor.tscn" id="3_yq3hj"]
+[ext_resource type="PackedScene" uid="uid://dh48an4n65pqn" path="res://Scenes/Editors/Generic/AudioEditor.tscn" id="4_0l31h"]
 
 [node name="VFXEditor" type="CenterContainer" node_paths=PackedStringArray("DataLoader")]
 anchors_preset = 15
@@ -18,8 +19,9 @@ DataLoader = NodePath("VFXLoader")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
+columns = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -27,7 +29,15 @@ text = "Animation:"
 
 [node name="SmallAnimationEditor" parent="VBoxContainer/HBoxContainer" node_paths=PackedStringArray("loader") instance=ExtResource("3_yq3hj")]
 layout_mode = 2
-animationName = "default"
 dataKey = "Animation"
 loader = NodePath("../../../VFXLoader")
 targetResolution = Vector2i(66, 64)
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "SFX:"
+
+[node name="AudioEditor" parent="VBoxContainer/HBoxContainer" node_paths=PackedStringArray("loader") instance=ExtResource("4_0l31h")]
+layout_mode = 2
+dataKey = "SFX"
+loader = NodePath("../../../VFXLoader")
