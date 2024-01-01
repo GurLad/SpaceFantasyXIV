@@ -3,9 +3,10 @@ using System;
 
 public abstract class AActionInnerData
 {
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public int SortOrder { get; set; }
+    protected AActionInnerData() { }
 }
 
-public record StatusWithLifespan(string Name, int Lifespan) { }
+public abstract class AActionInnerDataEditor<T> where T : AActionInnerData
+{
+    public abstract T Data { get; set; }
+}
