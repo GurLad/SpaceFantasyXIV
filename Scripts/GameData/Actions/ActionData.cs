@@ -3,7 +3,7 @@ using System;
 
 public class ActionData : ISerializableData
 {
-    public enum Type { Attack, Buff, Limit }
+    public enum Type { Attack, Buff, Limit, EndMarker }
 
     public string Name { get; set; }
     public string Description { get; set; }
@@ -42,5 +42,20 @@ public class ActionData : ISerializableData
         SortOrder = 0;
         ActionType = Type.Attack;
         InnerData = new AttackActionData();
+    }
+
+    public void UpdateType(Type newType)
+    {
+        if (ActionType != newType)
+        {
+            ActionType = newType;
+            InnerData = ActionType switch
+            {
+                Type.Attack => new AttackActionData(),
+                Type.Buff => new BuffActionData(),
+                Type.Limit => new LimitActionData(),
+                _ => throw new Exception("Invalid action type! " + ActionType)
+            };
+        }
     }
 }

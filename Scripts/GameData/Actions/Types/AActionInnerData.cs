@@ -6,7 +6,36 @@ public abstract class AActionInnerData
     protected AActionInnerData() { }
 }
 
-public abstract class AActionInnerDataEditor<T> where T : AActionInnerData
+public abstract partial class AActionInnerDataEditor : Control
 {
-    public abstract T Data { get; set; }
+    public abstract AActionInnerData Data { get; set; }
+
+    [Signal]
+    public delegate void OnDirtyEventHandler();
+
+    protected void SetDirty() => EmitSignal(SignalName.OnDirty);
+}
+
+public abstract partial class AActionInnerDataEditor<T> : AActionInnerDataEditor where T : AActionInnerData
+{
+    protected T data;
+
+    public override AActionInnerData Data
+    {
+        get => data;
+        set
+        {
+            if (value is T typedData)
+            {
+                data = typedData;
+                Refresh();
+            }
+            else
+            {
+                throw new Exception("Inner data type mismatch!");
+            }
+        }
+    }
+
+    protected abstract void Refresh();
 }
