@@ -9,7 +9,7 @@ public partial class AttackActionDataEditor : AActionInnerDataEditor<AttackActio
     [Export]
     private Godot.Range powerEdit;
     [Export]
-    private LineEdit elementEdit;
+    private ElementSelector elementEdit;
     [Export]
     private LineEdit vfxNameEdit;
     [Export]
@@ -20,7 +20,7 @@ public partial class AttackActionDataEditor : AActionInnerDataEditor<AttackActio
         base._Ready();
         physicalEdit.Toggled += (b) => { data.Physical = b; SetDirty(); };
         powerEdit.ValueChanged += (i) => { data.Power = (float)i; SetDirty(); };
-        elementEdit.TextChanged += (s) => { data.Element = s; SetDirty(); };
+        elementEdit.ItemSelected += (i) => { data.Element = elementEdit.GetItemText((int)i); SetDirty(); };
         vfxNameEdit.TextChanged += (s) => { data.VFXName = s; SetDirty(); };
         inflictEdit.ValueChanged += () => { data.Inflict = inflictEdit.Data; SetDirty(); };
 

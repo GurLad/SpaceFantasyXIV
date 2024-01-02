@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddexk30hyjdhm"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/StatusWithLifespan/StatusWithLifespanEditor.cs" id="1_bayhn"]
+
+[node name="StatusWithLifespanEditor" type="HBoxContainer" node_paths=PackedStringArray("statusSelect", "lifespanEdit")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bayhn")
+statusSelect = NodePath("Status")
+lifespanEdit = NodePath("Lifespan")
+
+[node name="Status" type="OptionButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Lifespan" type="SpinBox" parent="."]
+layout_mode = 2
+max_value = 10.0

@@ -41,6 +41,16 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="SpaceFantasyXIV"
 
+[file_customization]
+
+folder_colors={
+"res://GGGE/": "purple",
+"res://Scenes/Editors/": "pink",
+"res://Scenes/Editors/Generic/": "orange",
+"res://Scenes/Loaders/": "blue",
+"res://Scripts/GameData/": "teal"
+}
+
 [gui]
 
 theme/custom="res://DefaultTheme.tres"

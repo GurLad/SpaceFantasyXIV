@@ -1,0 +1,154 @@
+[gd_scene load_steps=10 format=3 uid="uid://ck1n5lnta84a2"]
+
+[ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_31tnk"]
+[ext_resource type="Script" path="res://Scripts/GameData/Actions/ActionDataEditor.cs" id="1_gcq0s"]
+[ext_resource type="PackedScene" uid="uid://cxmc7l3rhgs1u" path="res://Scenes/Loaders/ActionLoader.tscn" id="2_2382p"]
+[ext_resource type="Script" path="res://GGGE/Scripts/GameDataEditor.cs" id="2_jepiu"]
+[ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="3_ypq6y"]
+[ext_resource type="Script" path="res://Scripts/GameData/Actions/Types/AttackActionDataEditor.cs" id="6_by2rn"]
+[ext_resource type="PackedScene" uid="uid://b1wjn03tlxfwl" path="res://Scenes/Editors/Generic/ElementSelector.tscn" id="7_wp80a"]
+[ext_resource type="PackedScene" uid="uid://j2i51fa47axd" path="res://Scenes/Editors/Generic/VFXSelector.tscn" id="8_tisdo"]
+[ext_resource type="PackedScene" uid="uid://ddexk30hyjdhm" path="res://Scenes/Editors/Generic/StatusWithLifespanEditor.tscn" id="8_y1l4f"]
+
+[node name="ActionEditor" type="ScrollContainer" node_paths=PackedStringArray("DataLoader")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_31tnk")
+script = ExtResource("2_jepiu")
+DataLoader = NodePath("ActionLoader")
+
+[node name="ActionLoader" parent="." instance=ExtResource("2_2382p")]
+
+[node name="InnerEditor" type="VBoxContainer" parent="." node_paths=PackedStringArray("nameEdit", "sortOrderEdit", "actionTypeEdit", "innerDataEditors")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+script = ExtResource("1_gcq0s")
+nameEdit = NodePath("BasicDataEditor/VBoxContainer/GridContainer/NameEdit")
+sortOrderEdit = NodePath("BasicDataEditor/VBoxContainer/GridContainer/SortOrderEdit")
+actionTypeEdit = NodePath("InnerDataOuterEditor/VBoxContainer/HBoxContainer/TypeButton")
+innerDataEditors = []
+
+[node name="Control" type="Control" parent="InnerEditor"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InnerEditor"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ypq6y")
+text = "Basic data"
+horizontal_alignment = 1
+
+[node name="BasicDataEditor" type="PanelContainer" parent="InnerEditor"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InnerEditor/BasicDataEditor"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="InnerEditor/BasicDataEditor/VBoxContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="NameLabel" type="Label" parent="InnerEditor/BasicDataEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Name:"
+
+[node name="NameEdit" type="LineEdit" parent="InnerEditor/BasicDataEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SortOrderLabel" type="Label" parent="InnerEditor/BasicDataEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Sort order:"
+
+[node name="SortOrderEdit" type="SpinBox" parent="InnerEditor/BasicDataEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InnerEditor/BasicDataEditor/VBoxContainer"]
+layout_mode = 2
+text = "Description:"
+
+[node name="TextEdit" type="TextEdit" parent="InnerEditor/BasicDataEditor/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 4
+wrap_mode = 1
+
+[node name="Label2" type="Label" parent="InnerEditor"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ypq6y")
+text = "Inner data"
+horizontal_alignment = 1
+
+[node name="InnerDataOuterEditor" type="PanelContainer" parent="InnerEditor"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InnerEditor/InnerDataOuterEditor"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer"]
+layout_mode = 2
+
+[node name="TypeLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Type:"
+
+[node name="TypeButton" type="OptionButton" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AttackEditor" type="PanelContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer" node_paths=PackedStringArray("physicalEdit", "powerEdit", "inflictEdit")]
+layout_mode = 2
+script = ExtResource("6_by2rn")
+physicalEdit = NodePath("VBoxContainer/GridContainer/HBoxContainer/Physical")
+powerEdit = NodePath("VBoxContainer/GridContainer/HBoxContainer/PowerEdit")
+inflictEdit = NodePath("VBoxContainer/GridContainer/StatusWithLifespanEditor")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="PowerLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Power:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PowerEdit" type="SpinBox" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Physical" type="CheckBox" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Physical"
+
+[node name="ElementLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Element:"
+
+[node name="ElementSelector" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer" instance=ExtResource("7_wp80a")]
+layout_mode = 2
+
+[node name="InflictLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Inflict:"
+
+[node name="StatusWithLifespanEditor" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer" instance=ExtResource("8_y1l4f")]
+layout_mode = 2
+
+[node name="VFXLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "VFX:"
+
+[node name="VFXSelector" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer" instance=ExtResource("8_tisdo")]
+layout_mode = 2

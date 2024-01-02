@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dweyph1t32etn"]
+[gd_scene load_steps=6 format=3 uid="uid://dweyph1t32etn"]
 
 [ext_resource type="Script" path="res://GGGE/Scripts/GameDataPreloader.cs" id="1_cbn4d"]
 [ext_resource type="PackedScene" uid="uid://bsvcf6dsmuo4x" path="res://Scenes/Loaders/ElementLoader.tscn" id="2_g3t3k"]
 [ext_resource type="PackedScene" uid="uid://bexv4mjg75bdo" path="res://Scenes/Loaders/StatusLoader.tscn" id="3_5nq2j"]
 [ext_resource type="PackedScene" uid="uid://c7pkkudfby4wo" path="res://Scenes/Loaders/VFXLoader.tscn" id="4_exnxq"]
+[ext_resource type="PackedScene" uid="uid://cxmc7l3rhgs1u" path="res://Scenes/Loaders/ActionLoader.tscn" id="5_ik3n6"]
 
 [node name="GameDataPreloader" type="Node"]
 script = ExtResource("1_cbn4d")
-sceneDataLoaders = Array[PackedScene]([ExtResource("2_g3t3k"), ExtResource("3_5nq2j"), ExtResource("4_exnxq")])
+sceneDataLoaders = Array[PackedScene]([ExtResource("2_g3t3k"), ExtResource("3_5nq2j"), ExtResource("4_exnxq"), ExtResource("5_ik3n6")])

@@ -10,7 +10,7 @@ public partial class LimitActionDataEditor : AActionInnerDataEditor<LimitActionD
     [Export]
     private Godot.Range powerEdit;
     [Export]
-    private LineEdit elementEdit;
+    private ElementSelector elementEdit;
     [Export]
     private StatusWithLifespanEditor inflictEdit;
     [Export]
@@ -20,7 +20,7 @@ public partial class LimitActionDataEditor : AActionInnerDataEditor<LimitActionD
     {
         physicalEdit.Toggled += (b) => { data.Physical = b; SetDirty(); };
         powerEdit.ValueChanged += (i) => { data.Power = (float)i; SetDirty(); };
-        elementEdit.TextChanged += (s) => { data.Element = s; SetDirty(); };
+        elementEdit.ItemSelected += (i) => { data.Element = elementEdit.GetItemText((int)i); SetDirty(); };
         inflictEdit.ValueChanged += () => { data.Inflict = inflictEdit.Data; SetDirty(); };
         gainEdit.ValueChanged += () => { data.Gain = gainEdit.Data; SetDirty(); };
     }

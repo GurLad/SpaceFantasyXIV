@@ -1,8 +1,6 @@
 using Godot;
 using System;
 
-public record StatusWithLifespan(string Name, int Lifespan) { }
-
 public partial class StatusWithLifespanEditor : Node
 {
     [Export]
@@ -19,12 +17,13 @@ public partial class StatusWithLifespanEditor : Node
     {
         get
         {
-            return new StatusWithLifespan(DataName, Lifespan);
+            return Lifespan > 0 ? new StatusWithLifespan(DataName, Lifespan) : null;
         }
         set
         {
-            DataName = value.Name;
-            Lifespan = value.Lifespan;
+            DataName = value?.Name ?? statusSelect.GetItemText(0);
+            Lifespan = value?.Lifespan ?? 0;
+            statusSelect.Disabled = Lifespan <= 0;
         }
     }
 
@@ -33,6 +32,7 @@ public partial class StatusWithLifespanEditor : Node
         base._Ready();
         GameDataPreloader.Current.GetAllNames("StatusEffects").ForEach(a => statusSelect.AddIconItem(StatusLoader.GetStatusIcon(a), a));
         statusSelect.ItemSelected += (i) => EmitSignal(SignalName.ValueChanged);
-        lifespanEdit.ValueChanged += (i) => EmitSignal(SignalName.ValueChanged);
+        lifespanEdit.ValueChanged += (i) => { EmitSignal(SignalName.ValueChanged); statusSelect.Disabled = i <= 0; };
+        statusSelect.Disabled = true;
     }
 }

@@ -9,7 +9,7 @@ public partial class ActionDataEditor : ASerializableDataEditor<ActionData>
     [Export]
     private LineEdit nameEdit;
     [Export]
-    private LineEdit descriptionEdit;
+    private TextEdit descriptionEdit;
     [Export]
     private Godot.Range sortOrderEdit;
     [Export]
@@ -26,7 +26,7 @@ public partial class ActionDataEditor : ASerializableDataEditor<ActionData>
         }
         actionTypeEdit.ItemSelected += (i) => data.UpdateType((ActionData.Type)i);
         nameEdit.TextChanged += (s) => { data.Name = s; SetDirty(); };
-        descriptionEdit.TextChanged += (s) => { data.Description = s; SetDirty(); };
+        descriptionEdit.TextChanged += () => { data.Description = descriptionEdit.Text; SetDirty(); };
         sortOrderEdit.ValueChanged += (i) => { data.SortOrder = (int)i; SetDirty(); };
         innerDataEditors.ToList().ForEach(a => a.OnDirty += SetDirty);
     }
