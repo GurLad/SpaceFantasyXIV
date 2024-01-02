@@ -14,7 +14,14 @@ public class ActionData : ISerializableData
 
     public string Save()
     {
-        return this.ToJson(false) + "\n" + InnerData.ToJson();
+        return this.ToJson(false) + "\n" +
+            ActionType switch
+            {
+                Type.Attack => ((AttackActionData)InnerData).ToJson(),
+                Type.Buff => ((BuffActionData)InnerData).ToJson(),
+                Type.Limit => ((LimitActionData)InnerData).ToJson(),
+                _ => throw new Exception("Invalid action type! " + ActionType)
+            };
     }
 
     public void Load(string data)

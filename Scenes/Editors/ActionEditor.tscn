@@ -180,11 +180,9 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "Gain:"
 
-[node name="StatusWithLifespanEditor" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/BuffEditor/VBoxContainer/GridContainer" node_paths=PackedStringArray("statusSelect", "lifespanEdit") instance=ExtResource("8_y1l4f")]
+[node name="StatusWithLifespanEditor" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/BuffEditor/VBoxContainer/GridContainer" instance=ExtResource("8_y1l4f")]
 layout_mode = 2
 size_flags_horizontal = 3
-statusSelect = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Status")
-lifespanEdit = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Lifespan")
 
 [node name="VFXLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/BuffEditor/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -239,16 +237,12 @@ layout_mode = 2
 layout_mode = 2
 text = "Inflict:"
 
-[node name="InflictEdit" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer" node_paths=PackedStringArray("statusSelect", "lifespanEdit") instance=ExtResource("8_y1l4f")]
+[node name="InflictEdit" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer" instance=ExtResource("8_y1l4f")]
 layout_mode = 2
-statusSelect = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Status")
-lifespanEdit = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Lifespan")
 
 [node name="GainLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Gain:"
 
-[node name="GainEdit" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer" node_paths=PackedStringArray("statusSelect", "lifespanEdit") instance=ExtResource("8_y1l4f")]
+[node name="GainEdit" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer" instance=ExtResource("8_y1l4f")]
 layout_mode = 2
-statusSelect = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Status")
-lifespanEdit = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Lifespan")

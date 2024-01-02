@@ -1,0 +1,8 @@
+{"Name":"Stab","Description":"","SortOrder":2,"ActionType":0}
+{
+  "Physical": false,
+  "Power": 0,
+  "Element": null,
+  "VFXName": null,
+  "Inflict": null
+}

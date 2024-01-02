@@ -7,6 +7,6 @@ public partial class VFXSelector : OptionButton
     {
         base._Ready();
         GameDataPreloader.Current.GetAllNames("VFX").ForEach(a => AddItem(a));
-        Select(0);
+        Text = GetItemText(0);
     }
 }
