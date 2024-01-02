@@ -11,7 +11,7 @@ public partial class AttackActionDataEditor : AActionInnerDataEditor<AttackActio
     [Export]
     private ElementSelector elementEdit;
     [Export]
-    private LineEdit vfxNameEdit;
+    private VFXSelector vfxNameEdit;
     [Export]
     private StatusWithLifespanEditor inflictEdit;
 
@@ -21,7 +21,7 @@ public partial class AttackActionDataEditor : AActionInnerDataEditor<AttackActio
         physicalEdit.Toggled += (b) => { data.Physical = b; SetDirty(); };
         powerEdit.ValueChanged += (i) => { data.Power = (float)i; SetDirty(); };
         elementEdit.ItemSelected += (i) => { data.Element = elementEdit.GetItemText((int)i); SetDirty(); };
-        vfxNameEdit.TextChanged += (s) => { data.VFXName = s; SetDirty(); };
+        vfxNameEdit.ItemSelected += (i) => { data.VFXName = vfxNameEdit.GetItemText((int)i); SetDirty(); };
         inflictEdit.ValueChanged += () => { data.Inflict = inflictEdit.Data; SetDirty(); };
 
     }

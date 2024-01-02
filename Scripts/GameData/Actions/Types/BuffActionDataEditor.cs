@@ -5,13 +5,13 @@ public partial class BuffActionDataEditor : AActionInnerDataEditor<BuffActionDat
 {
     [ExportCategory("Internal")]
     [Export]
-    private LineEdit vfxNameEdit;
+    private VFXSelector vfxNameEdit;
     [Export]
     private StatusWithLifespanEditor gainEdit;
 
     public override void _Ready()
     {
-        vfxNameEdit.TextChanged += (s) => { data.VFXName = s; SetDirty(); };
+        vfxNameEdit.ItemSelected += (i) => { data.VFXName = vfxNameEdit.GetItemText((int)i); SetDirty(); };
         gainEdit.ValueChanged += () => { data.Gain = gainEdit.Data; SetDirty(); };
     }
 

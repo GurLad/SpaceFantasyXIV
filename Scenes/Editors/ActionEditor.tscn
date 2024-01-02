@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ck1n5lnta84a2"]
+[gd_scene load_steps=12 format=3 uid="uid://ck1n5lnta84a2"]
 
 [ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_31tnk"]
 [ext_resource type="Script" path="res://Scripts/GameData/Actions/ActionDataEditor.cs" id="1_gcq0s"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b1wjn03tlxfwl" path="res://Scenes/Editors/Generic/ElementSelector.tscn" id="7_wp80a"]
 [ext_resource type="PackedScene" uid="uid://j2i51fa47axd" path="res://Scenes/Editors/Generic/VFXSelector.tscn" id="8_tisdo"]
 [ext_resource type="PackedScene" uid="uid://ddexk30hyjdhm" path="res://Scenes/Editors/Generic/StatusWithLifespanEditor.tscn" id="8_y1l4f"]
+[ext_resource type="Script" path="res://Scripts/GameData/Actions/Types/BuffActionDataEditor.cs" id="10_vpq80"]
+[ext_resource type="Script" path="res://Scripts/GameData/Actions/Types/LimitActionDataEditor.cs" id="11_3dw2d"]
 
 [node name="ActionEditor" type="ScrollContainer" node_paths=PackedStringArray("DataLoader")]
 anchors_preset = 15
@@ -22,16 +24,17 @@ DataLoader = NodePath("ActionLoader")
 
 [node name="ActionLoader" parent="." instance=ExtResource("2_2382p")]
 
-[node name="InnerEditor" type="VBoxContainer" parent="." node_paths=PackedStringArray("nameEdit", "sortOrderEdit", "actionTypeEdit", "innerDataEditors")]
+[node name="InnerEditor" type="VBoxContainer" parent="." node_paths=PackedStringArray("nameEdit", "descriptionEdit", "sortOrderEdit", "actionTypeEdit", "innerDataEditors")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 script = ExtResource("1_gcq0s")
 nameEdit = NodePath("BasicDataEditor/VBoxContainer/GridContainer/NameEdit")
+descriptionEdit = NodePath("BasicDataEditor/VBoxContainer/TextEdit")
 sortOrderEdit = NodePath("BasicDataEditor/VBoxContainer/GridContainer/SortOrderEdit")
 actionTypeEdit = NodePath("InnerDataOuterEditor/VBoxContainer/HBoxContainer/TypeButton")
-innerDataEditors = []
+innerDataEditors = [NodePath("InnerDataOuterEditor/VBoxContainer/AttackEditor"), NodePath("InnerDataOuterEditor/VBoxContainer/BuffEditor"), NodePath("InnerDataOuterEditor/VBoxContainer/LimitEditor")]
 
 [node name="Control" type="Control" parent="InnerEditor"]
 layout_mode = 2
@@ -43,7 +46,6 @@ text = "Basic data"
 horizontal_alignment = 1
 
 [node name="BasicDataEditor" type="PanelContainer" parent="InnerEditor"]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InnerEditor/BasicDataEditor"]
@@ -101,11 +103,14 @@ text = "Type:"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="AttackEditor" type="PanelContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer" node_paths=PackedStringArray("physicalEdit", "powerEdit", "inflictEdit")]
+[node name="AttackEditor" type="PanelContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer" node_paths=PackedStringArray("physicalEdit", "powerEdit", "elementEdit", "vfxNameEdit", "inflictEdit")]
+visible = false
 layout_mode = 2
 script = ExtResource("6_by2rn")
 physicalEdit = NodePath("VBoxContainer/GridContainer/HBoxContainer/Physical")
 powerEdit = NodePath("VBoxContainer/GridContainer/HBoxContainer/PowerEdit")
+elementEdit = NodePath("VBoxContainer/GridContainer/ElementSelector")
+vfxNameEdit = NodePath("VBoxContainer/GridContainer/VFXSelector")
 inflictEdit = NodePath("VBoxContainer/GridContainer/StatusWithLifespanEditor")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor"]
@@ -133,6 +138,7 @@ size_flags_horizontal = 4
 text = "Physical"
 
 [node name="ElementLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "Element:"
 
@@ -152,3 +158,95 @@ text = "VFX:"
 
 [node name="VFXSelector" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/AttackEditor/VBoxContainer/GridContainer" instance=ExtResource("8_tisdo")]
 layout_mode = 2
+
+[node name="BuffEditor" type="PanelContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer" node_paths=PackedStringArray("vfxNameEdit", "gainEdit")]
+visible = false
+layout_mode = 2
+script = ExtResource("10_vpq80")
+vfxNameEdit = NodePath("VBoxContainer/GridContainer/VFXSelector")
+gainEdit = NodePath("VBoxContainer/GridContainer/StatusWithLifespanEditor")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/BuffEditor"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/BuffEditor/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="GainLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/BuffEditor/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Gain:"
+
+[node name="StatusWithLifespanEditor" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/BuffEditor/VBoxContainer/GridContainer" node_paths=PackedStringArray("statusSelect", "lifespanEdit") instance=ExtResource("8_y1l4f")]
+layout_mode = 2
+size_flags_horizontal = 3
+statusSelect = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Status")
+lifespanEdit = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Lifespan")
+
+[node name="VFXLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/BuffEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "VFX:"
+
+[node name="VFXSelector" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/BuffEditor/VBoxContainer/GridContainer" instance=ExtResource("8_tisdo")]
+layout_mode = 2
+
+[node name="LimitEditor" type="PanelContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer" node_paths=PackedStringArray("physicalEdit", "powerEdit", "elementEdit", "inflictEdit", "gainEdit")]
+visible = false
+layout_mode = 2
+script = ExtResource("11_3dw2d")
+physicalEdit = NodePath("VBoxContainer/GridContainer/HBoxContainer/Physical")
+powerEdit = NodePath("VBoxContainer/GridContainer/HBoxContainer/PowerEdit")
+elementEdit = NodePath("VBoxContainer/GridContainer/ElementSelector")
+inflictEdit = NodePath("VBoxContainer/GridContainer/InflictEdit")
+gainEdit = NodePath("VBoxContainer/GridContainer/GainEdit")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="PowerLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Power:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PowerEdit" type="SpinBox" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Physical" type="CheckBox" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Physical"
+
+[node name="ElementLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Element:"
+
+[node name="ElementSelector" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer" instance=ExtResource("7_wp80a")]
+layout_mode = 2
+
+[node name="InflictLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Inflict:"
+
+[node name="InflictEdit" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer" node_paths=PackedStringArray("statusSelect", "lifespanEdit") instance=ExtResource("8_y1l4f")]
+layout_mode = 2
+statusSelect = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Status")
+lifespanEdit = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Lifespan")
+
+[node name="GainLabel" type="Label" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Gain:"
+
+[node name="GainEdit" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer/LimitEditor/VBoxContainer/GridContainer" node_paths=PackedStringArray("statusSelect", "lifespanEdit") instance=ExtResource("8_y1l4f")]
+layout_mode = 2
+statusSelect = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Status")
+lifespanEdit = NodePath("../../../../AttackEditor/VBoxContainer/GridContainer/StatusWithLifespanEditor/Lifespan")
