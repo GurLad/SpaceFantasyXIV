@@ -24,7 +24,7 @@ DataLoader = NodePath("ActionLoader")
 
 [node name="ActionLoader" parent="." instance=ExtResource("2_2382p")]
 
-[node name="InnerEditor" type="VBoxContainer" parent="." node_paths=PackedStringArray("nameEdit", "descriptionEdit", "sortOrderEdit", "actionTypeEdit", "innerDataEditors")]
+[node name="InnerEditor" type="VBoxContainer" parent="." node_paths=PackedStringArray("nameEdit", "descriptionEdit", "sortOrderEdit", "actionTypeEdit", "innerDataEditors", "loader")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -35,6 +35,8 @@ descriptionEdit = NodePath("BasicDataEditor/VBoxContainer/TextEdit")
 sortOrderEdit = NodePath("BasicDataEditor/VBoxContainer/GridContainer/SortOrderEdit")
 actionTypeEdit = NodePath("InnerDataOuterEditor/VBoxContainer/HBoxContainer/TypeButton")
 innerDataEditors = [NodePath("InnerDataOuterEditor/VBoxContainer/AttackEditor"), NodePath("InnerDataOuterEditor/VBoxContainer/BuffEditor"), NodePath("InnerDataOuterEditor/VBoxContainer/LimitEditor")]
+dataKey = "Data"
+loader = NodePath("../ActionLoader")
 
 [node name="Control" type="Control" parent="InnerEditor"]
 layout_mode = 2

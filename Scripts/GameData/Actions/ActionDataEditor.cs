@@ -24,7 +24,7 @@ public partial class ActionDataEditor : ASerializableDataEditor<ActionData>
         {
             actionTypeEdit.AddItem(((ActionData.Type)i).ToString());
         }
-        actionTypeEdit.ItemSelected += (i) => data.UpdateType((ActionData.Type)i);
+        actionTypeEdit.ItemSelected += (i) => { int prev = (int)data.ActionType; data.UpdateType((ActionData.Type)i); UpdateActionType(prev, (int)i); };
         nameEdit.TextChanged += (s) => { data.Name = s; SetDirty(); };
         descriptionEdit.TextChanged += () => { data.Description = descriptionEdit.Text; SetDirty(); };
         sortOrderEdit.ValueChanged += (i) => { data.SortOrder = (int)i; SetDirty(); };
@@ -36,15 +36,26 @@ public partial class ActionDataEditor : ASerializableDataEditor<ActionData>
         nameEdit.Text = data.Name;
         descriptionEdit.Text = data.Description;
         sortOrderEdit.Value = data.SortOrder;
-        if (actionTypeEdit.Selected != (int)data.ActionType)
+        UpdateActionType(actionTypeEdit.Selected, (int)data.ActionType);
+    }
+
+    private void UpdateActionType(int prev, int next, bool updateEdit = true)
+    {
+        if (prev != next)
         {
-            if (actionTypeEdit.Selected >= 0)
+            if (prev >= 0)
             {
-                innerDataEditors[actionTypeEdit.Selected].Visible = false;
+                innerDataEditors[prev].Visible = false;
             }
-            actionTypeEdit.Selected = (int)data.ActionType;
-            innerDataEditors[actionTypeEdit.Selected].Data = data.InnerData;
-            innerDataEditors[actionTypeEdit.Selected].Visible = true;
+            if (updateEdit)
+            {
+                actionTypeEdit.Selected = next;
+            }
+            if (next >= 0)
+            {
+                innerDataEditors[next].Data = data.InnerData;
+                innerDataEditors[next].Visible = true;
+            }
         }
     }
 }

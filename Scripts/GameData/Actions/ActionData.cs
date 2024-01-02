@@ -5,12 +5,12 @@ public class ActionData : ISerializableData
 {
     public enum Type { Attack, Buff, Limit, EndMarker }
 
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public int SortOrder { get; set; }
-    public Type ActionType { get; set; }
+    public string Name { get; set; } = "";
+    public string Description { get; set; } = "";
+    public int SortOrder { get; set; } = 0;
+    public Type ActionType { get; set; } = Type.Attack;
     [System.Text.Json.Serialization.JsonIgnore]
-    public AActionInnerData InnerData { get; set; }
+    public AActionInnerData InnerData { get; set; } = new AttackActionData();
 
     public string Save()
     {
