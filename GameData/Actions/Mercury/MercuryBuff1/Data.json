@@ -1,0 +1,8 @@
+{"Name":"Shield","Description":"Massively buff defense for 5 turns.","SortOrder":3,"ActionType":1}
+{
+  "VFXName": "BlueBuff",
+  "Gain": {
+    "Name": "DefenseBuff",
+    "Lifespan": 5
+  }
+}

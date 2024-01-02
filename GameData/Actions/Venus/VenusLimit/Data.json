@@ -1,0 +1,11 @@
+{"Name":"LIMIT!","Description":"KILLS SELF! 150 Earth pow. Apply 5 Poison","SortOrder":1,"ActionType":2}
+{
+  "Physical": false,
+  "Power": 150,
+  "Element": "Earth",
+  "Inflict": {
+    "Name": "Poison",
+    "Lifespan": 5
+  },
+  "Gain": null
+}

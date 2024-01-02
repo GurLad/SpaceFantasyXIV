@@ -1,0 +1,8 @@
+{"Name":"Pound","Description":"Punch people in the face!","SortOrder":2,"ActionType":0}
+{
+  "Physical": true,
+  "Power": 55,
+  "Element": "None",
+  "VFXName": "Pound",
+  "Inflict": null
+}

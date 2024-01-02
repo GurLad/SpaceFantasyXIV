@@ -1,0 +1,8 @@
+{"Name":"Rifle","Description":"Shoot people in the face!","SortOrder":2,"ActionType":0}
+{
+  "Physical": false,
+  "Power": 90,
+  "Element": "Fire",
+  "VFXName": "Boom",
+  "Inflict": null
+}

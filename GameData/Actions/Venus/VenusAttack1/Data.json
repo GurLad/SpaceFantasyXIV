@@ -1,0 +1,8 @@
+{"Name":"Quake","Description":"","SortOrder":2,"ActionType":0}
+{
+  "Physical": false,
+  "Power": 75,
+  "Element": "Earth",
+  "VFXName": "Quake",
+  "Inflict": null
+}

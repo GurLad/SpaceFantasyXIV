@@ -1,7 +1,7 @@
-{"Name":"LIMIT!","Description":"","SortOrder":1,"ActionType":2}
+{"Name":"LIMIT!","Description":"KILLS SELF! 150 Normal pow. Apply 2 Sleep","SortOrder":1,"ActionType":2}
 {
   "Physical": true,
-  "Power": 100,
+  "Power": 150,
   "Element": "None",
   "Inflict": {
     "Name": "Sleep",

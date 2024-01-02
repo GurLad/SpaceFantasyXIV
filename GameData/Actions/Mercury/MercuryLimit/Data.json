@@ -1,0 +1,11 @@
+{"Name":"LIMIT!","Description":"KILLS SELF! 150 Fire pow. Gain 5 Attack Buff.","SortOrder":1,"ActionType":2}
+{
+  "Physical": true,
+  "Power": 150,
+  "Element": "Fire",
+  "Inflict": null,
+  "Gain": {
+    "Name": "AttackBuff",
+    "Lifespan": 5
+  }
+}

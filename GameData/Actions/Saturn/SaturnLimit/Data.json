@@ -1,0 +1,11 @@
+{"Name":"LIMIT!","Description":"KILLS SELF! 150 Ice pow. Apply 5 Chill","SortOrder":1,"ActionType":2}
+{
+  "Physical": true,
+  "Power": 150,
+  "Element": "Ice",
+  "Inflict": {
+    "Name": "Chill",
+    "Lifespan": 5
+  },
+  "Gain": null
+}

@@ -1,0 +1,11 @@
+{"Name":"Thorn","Description":"","SortOrder":3,"ActionType":0}
+{
+  "Physical": false,
+  "Power": 35,
+  "Element": "Poison",
+  "VFXName": "Needles",
+  "Inflict": {
+    "Name": "Poison",
+    "Lifespan": 3
+  }
+}

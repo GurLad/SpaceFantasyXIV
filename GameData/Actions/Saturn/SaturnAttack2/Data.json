@@ -1,0 +1,11 @@
+{"Name":"Cool","Description":"Punch people in the face!","SortOrder":3,"ActionType":0}
+{
+  "Physical": true,
+  "Power": 30,
+  "Element": "Ice",
+  "VFXName": "IcePound",
+  "Inflict": {
+    "Name": "Chill",
+    "Lifespan": 5
+  }
+}
