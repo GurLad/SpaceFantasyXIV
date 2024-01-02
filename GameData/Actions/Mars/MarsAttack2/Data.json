@@ -1,0 +1,8 @@
+{"Name":"ShdwClaw","Description":"","SortOrder":3,"ActionType":0}
+{
+  "Physical": true,
+  "Power": 70,
+  "Element": "Dark",
+  "VFXName": "DarkSlash",
+  "Inflict": null
+}

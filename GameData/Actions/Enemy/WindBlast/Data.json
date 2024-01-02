@@ -1,0 +1,8 @@
+{"Name":"Wind Blast","Description":"","SortOrder":2,"ActionType":0}
+{
+  "Physical": false,
+  "Power": 60,
+  "Element": "Wind",
+  "VFXName": "Pound",
+  "Inflict": null
+}

@@ -1,0 +1,8 @@
+{"Name":"Fight Blast","Description":"","SortOrder":2,"ActionType":0}
+{
+  "Physical": false,
+  "Power": 90,
+  "Element": "Fighting",
+  "VFXName": "Boom",
+  "Inflict": null
+}

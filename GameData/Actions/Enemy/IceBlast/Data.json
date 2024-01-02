@@ -1,0 +1,11 @@
+{"Name":"Ice Blast","Description":"","SortOrder":2,"ActionType":0}
+{
+  "Physical": false,
+  "Power": 60,
+  "Element": "Ice",
+  "VFXName": "IcePound",
+  "Inflict": {
+    "Name": "Chill",
+    "Lifespan": 3
+  }
+}

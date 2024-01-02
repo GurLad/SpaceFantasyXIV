@@ -1,0 +1,8 @@
+{"Name":"Splash","Description":"","SortOrder":3,"ActionType":0}
+{
+  "Physical": false,
+  "Power": 5,
+  "Element": "Water",
+  "VFXName": "IcePound",
+  "Inflict": null
+}

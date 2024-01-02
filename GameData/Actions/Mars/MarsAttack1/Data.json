@@ -1,7 +1,7 @@
-{"Name":"Stab","Description":"","SortOrder":2,"ActionType":0}
+{"Name":"Slash","Description":"","SortOrder":2,"ActionType":0}
 {
   "Physical": true,
-  "Power": 80,
+  "Power": 90,
   "Element": "None",
   "VFXName": "Slash",
   "Inflict": null

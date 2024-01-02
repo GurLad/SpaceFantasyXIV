@@ -1,0 +1,11 @@
+{"Name":"Poison Blast","Description":"","SortOrder":2,"ActionType":0}
+{
+  "Physical": true,
+  "Power": 60,
+  "Element": "Poison",
+  "VFXName": "Needles",
+  "Inflict": {
+    "Name": "Poison",
+    "Lifespan": 3
+  }
+}

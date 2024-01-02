@@ -1,0 +1,11 @@
+{"Name":"Fire Blast","Description":"","SortOrder":2,"ActionType":0}
+{
+  "Physical": true,
+  "Power": 60,
+  "Element": "Fighting",
+  "VFXName": "Boom",
+  "Inflict": {
+    "Name": "Burn",
+    "Lifespan": 3
+  }
+}

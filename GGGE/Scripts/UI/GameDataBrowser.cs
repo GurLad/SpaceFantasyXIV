@@ -121,6 +121,9 @@ namespace GGE.Internal
                     case Key.N:
                         New();
                         break;
+                    case Key.D:
+                        SaveAs();
+                        break;
                     default:
                         break;
                 }
@@ -154,11 +157,6 @@ namespace GGE.Internal
 
         private void Navigate(int index)
         {
-            if (dirty)
-            {
-                AskDiscardChanges(() => Navigate(index));
-                return;
-            }
             string name = dataList.GetItemText(index);
             if (index < folderCount) // Folder
             {
@@ -167,6 +165,11 @@ namespace GGE.Internal
             }
             else // File
             {
+                if (dirty)
+                {
+                    AskDiscardChanges(() => Navigate(index));
+                    return;
+                }
                 selected = name.Trim();
                 dataLoader.Load(name, folderAddition);
                 dirty = false;

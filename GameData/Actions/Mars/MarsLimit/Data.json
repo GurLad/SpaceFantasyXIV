@@ -1,0 +1,11 @@
+{"Name":"LIMIT!","Description":"","SortOrder":1,"ActionType":2}
+{
+  "Physical": true,
+  "Power": 100,
+  "Element": "None",
+  "Inflict": {
+    "Name": "Sleep",
+    "Lifespan": 2
+  },
+  "Gain": null
+}

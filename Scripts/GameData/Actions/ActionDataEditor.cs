@@ -41,21 +41,18 @@ public partial class ActionDataEditor : ASerializableDataEditor<ActionData>
 
     private void UpdateActionType(int prev, int next, bool updateEdit = true)
     {
-        if (prev != next)
+        if (prev >= 0)
         {
-            if (prev >= 0)
-            {
-                innerDataEditors[prev].Visible = false;
-            }
-            if (updateEdit)
-            {
-                actionTypeEdit.Selected = next;
-            }
-            if (next >= 0)
-            {
-                innerDataEditors[next].Data = data.InnerData;
-                innerDataEditors[next].Visible = true;
-            }
+            innerDataEditors[prev].Visible = false;
+        }
+        if (updateEdit)
+        {
+            actionTypeEdit.Selected = next;
+        }
+        if (next >= 0)
+        {
+            innerDataEditors[next].Data = data.InnerData;
+            innerDataEditors[next].Visible = true;
         }
     }
 }
