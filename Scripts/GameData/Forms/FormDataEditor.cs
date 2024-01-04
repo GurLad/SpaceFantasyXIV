@@ -15,8 +15,8 @@ public partial class FormDataEditor : ASerializableDataEditor<FormData>
     private LineEdit description2Edit;
     [Export]
     private Godot.Range sortOrderEdit;
-    //[Export]
-    //private TYPE actionsEdit;
+    [Export]
+    private ListEditor actionsEdit;
 
     public override void _Ready()
     {
@@ -25,7 +25,11 @@ public partial class FormDataEditor : ASerializableDataEditor<FormData>
         description1Edit.TextChanged += (s) => { data.Description1 = s; SetDirty(); };
         description2Edit.TextChanged += (s) => { data.Description2 = s; SetDirty(); };
         sortOrderEdit.ValueChanged += (i) => { data.SortOrder = (int)i; SetDirty(); };
-        //actionsEdit.EVENT += () => { data.Actions = ; SetDirty(); };
+        actionsEdit.Init<ActionSelector, string>(
+            (selector) => selector.Text,
+            (selector, s) => selector.Text = s,
+            (selector) => selector.ItemSelected += (i) => { data.Actions = actionsEdit.GetDatas<string>(); SetDirty(); },
+            () => { data.Actions = actionsEdit.GetDatas<string>(); SetDirty(); });
     }
 
     protected override void Refresh()
@@ -35,6 +39,6 @@ public partial class FormDataEditor : ASerializableDataEditor<FormData>
         description1Edit.Text = data.Description1;
         description2Edit.Text = data.Description2;
         sortOrderEdit.Value = data.SortOrder;
-        //actionsEdit.VAR = data.Actions;
+        actionsEdit.SetDatas(data.Actions);
     }
 }
