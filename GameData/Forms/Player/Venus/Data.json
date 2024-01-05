@@ -1,0 +1,12 @@
+{
+  "Name": "Venus",
+  "FullName": "The Venus Warrior",
+  "Description1": "Magic is everything! Can\u0027t take a punch.",
+  "Description2": "Uses magical Earth \u0026 Poison attacks. Applies Poison. Hates Ice, resists Wind.",
+  "SortOrder": 1,
+  "Actions": [
+    "VenusLimit",
+    "VenusAttack1",
+    "VenusAttack2"
+  ]
+}

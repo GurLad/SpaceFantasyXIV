@@ -1,0 +1,12 @@
+{
+  "Name": "Saturn",
+  "FullName": "The Saturn Hedgehog",
+  "Description1": "Gotta go fast! And hit like a wet noodle.",
+  "Description2": "Uses physical Ice \u0026 Normal attacks. Applies Chill. Hates Poison, resists Ice.",
+  "SortOrder": 4,
+  "Actions": [
+    "SaturnLimit",
+    "SaturnAttack1",
+    "SaturnAttack2"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "Name": "Mars",
+  "FullName": "The Mars Commander",
+  "Description1": "Has a cat. Doesn\u0027t believe in magic.",
+  "Description2": "Uses physical Dark \u0026 Normal attacks. Hates Fighting, resists Dark.",
+  "SortOrder": 3,
+  "Actions": [
+    "MarsLimit",
+    "MarsAttack1",
+    "MarsAttack2"
+  ]
+}

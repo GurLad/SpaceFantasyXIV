@@ -1,0 +1,11 @@
+{
+  "Name": "Earth",
+  "FullName": "The Earth Human",
+  "Description1": "YOU WILL LOSE IF IT DIES!!!",
+  "Description2": "Uses physical normal attacks. Very average.",
+  "SortOrder": 2,
+  "Actions": [
+    "EarthAttack1",
+    "EarthAttack2"
+  ]
+}
