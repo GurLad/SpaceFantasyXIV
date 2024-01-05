@@ -63,7 +63,7 @@ horizontal_alignment = 1
 
 [node name="Form" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("GameEditorPanel")]
 layout_mode = 2
-text = "Action Editor"
+text = "Form Editor"
 script = ExtResource("1_jf8me")
 SceneDataEditor = ExtResource("6_ttgtr")
 SceneGameDataBrowser = ExtResource("3_ryvdl")

@@ -20,6 +20,7 @@ public partial class FormDataEditor : ASerializableDataEditor<FormData>
 
     public override void _Ready()
     {
+        base._Ready();
         nameEdit.TextChanged += (s) => { data.Name = s; SetDirty(); };
         fullNameEdit.TextChanged += (s) => { data.FullName = s; SetDirty(); };
         description1Edit.TextChanged += (s) => { data.Description1 = s; SetDirty(); };

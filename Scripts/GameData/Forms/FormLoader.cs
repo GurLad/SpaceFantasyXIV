@@ -13,7 +13,7 @@ public partial class FormLoader : AGameDataLoader
     private StatsModifier statsModifier = new StatsModifier();
     private FormData data = new FormData();
 
-    public override string DataFolder => "StatusEffects";
+    public override string DataFolder => "Forms";
 
     protected override List<AGameDataPart> gameDatas => new List<AGameDataPart>()
     {

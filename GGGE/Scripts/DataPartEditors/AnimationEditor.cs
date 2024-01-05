@@ -101,7 +101,9 @@ public partial class AnimationEditor : Control
             else
             {
                 // Not ideal, but it works
-                InputBox.Show(this, "Enter frame count:", (s) =>
+                Control parent = this;
+                while (parent.GetParent() is Control control && control.Visible) { GD.Print(control.Name); parent = control; };
+                InputBox.Show(parent, "Enter frame count:", (s) =>
                 {
                     int frameCount;
                     if (int.TryParse(s, out frameCount) && frameCount > 0)
@@ -112,7 +114,7 @@ public partial class AnimationEditor : Control
                     }
                     else
                     {
-                        MessageBox.ShowError(this, "Invalid frame count!");
+                        MessageBox.ShowError(parent, "Invalid frame count!");
                     }
                 });
             }
