@@ -1,0 +1,10 @@
+{
+  "Name": "Phase2",
+  "FullName": "",
+  "Description1": "Uses physical Fire. Weak to Earth.",
+  "Description2": "",
+  "SortOrder": 1,
+  "Actions": [
+    "FireBlast"
+  ]
+}

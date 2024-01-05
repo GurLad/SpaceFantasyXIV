@@ -1,0 +1,10 @@
+{
+  "Name": "Phase3",
+  "FullName": "",
+  "Description1": "Uses magical Ice. Weak to Fire.",
+  "Description2": "",
+  "SortOrder": 2,
+  "Actions": [
+    "IceBlast"
+  ]
+}

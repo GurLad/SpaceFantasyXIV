@@ -1,0 +1,10 @@
+{
+  "Name": "Phase5",
+  "FullName": "",
+  "Description1": "Uses magical Wind. Weak to Dark \u0026 Ice.",
+  "Description2": "",
+  "SortOrder": 4,
+  "Actions": [
+    "WindBlast"
+  ]
+}

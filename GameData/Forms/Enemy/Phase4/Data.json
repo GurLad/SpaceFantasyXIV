@@ -1,0 +1,10 @@
+{
+  "Name": "Phase4",
+  "FullName": "",
+  "Description1": "Uses physical Poison. Weak to Ice.",
+  "Description2": "",
+  "SortOrder": 3,
+  "Actions": [
+    "PoisonBlast"
+  ]
+}

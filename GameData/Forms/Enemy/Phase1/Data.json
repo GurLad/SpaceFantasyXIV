@@ -1,0 +1,10 @@
+{
+  "Name": "Phase1",
+  "FullName": "",
+  "Description1": "Uses Dark. Pretty weak.",
+  "Description2": "",
+  "SortOrder": 0,
+  "Actions": [
+    "DarkBlast"
+  ]
+}

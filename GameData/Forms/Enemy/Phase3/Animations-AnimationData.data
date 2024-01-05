@@ -1,0 +1,14 @@
+[
+  {
+    "Name": "Idle",
+    "NumFrames": 4
+  },
+  {
+    "Name": "Attack",
+    "NumFrames": 1
+  },
+  {
+    "Name": "Hurt",
+    "NumFrames": 1
+  }
+]
