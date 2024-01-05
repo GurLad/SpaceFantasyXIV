@@ -4,19 +4,19 @@
       "Source": "1"
     },
     "PhysAttack": {
-      "Source": "1"
+      "Source": "1.2"
     },
     "PhysDefense": {
-      "Source": "1"
+      "Source": "1.5"
     },
     "MagAttack": {
-      "Source": "1"
+      "Source": "1.2"
     },
     "MagDefense": {
-      "Source": "1"
+      "Source": "1.5"
     },
     "Speed": {
-      "Source": "1"
+      "Source": "0.6"
     }
   },
   "ElementMultiplierMods": {
@@ -30,7 +30,7 @@
       "Source": "1"
     },
     "Fire": {
-      "Source": "1"
+      "Source": "5"
     },
     "Ice": {
       "Source": "1"
@@ -45,7 +45,7 @@
       "Source": "1"
     },
     "Poison": {
-      "Source": "1"
+      "Source": "0"
     },
     "Water": {
       "Source": "1"

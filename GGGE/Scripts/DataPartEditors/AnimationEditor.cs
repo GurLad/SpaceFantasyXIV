@@ -101,8 +101,17 @@ public partial class AnimationEditor : Control
             else
             {
                 // Not ideal, but it works
+                Node parentTemp = this;
                 Control parent = this;
-                while (parent.GetParent() is Control control && control.Visible) { GD.Print(control.Name); parent = control; };
+                while (parentTemp != null)
+                {
+                    //GD.Print(parentTemp.Name);
+                    if (parentTemp is Control control)
+                    {
+                        parent = control;
+                    }
+                    parentTemp = parentTemp.GetParent();
+                };
                 InputBox.Show(parent, "Enter frame count:", (s) =>
                 {
                     int frameCount;

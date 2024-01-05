@@ -54,7 +54,7 @@ public partial class ListEditor : Control
 
     public void SetDatas<DataType>(List<DataType> datas)
     {
-        items.ForEach(a => DeleteEditor(a));
+        items.ForEach(a => a.GetParent().QueueFree());
         items.Clear();
         datas.ForEach(a => setDataFunc(NewEditor(), a));
     }
@@ -65,6 +65,7 @@ public partial class ListEditor : Control
         Control newEditor = sceneInnerEditor.Instantiate<Control>();
         initEditor(newEditor);
         items.Add(newEditor);
+        newEditor.SizeFlagsHorizontal |= SizeFlags.ExpandFill;
         EmitSignal(SignalName.OnItemAdded);
         // Create editor container
         Container container = (Container)itemContainerTemplate.Duplicate();
