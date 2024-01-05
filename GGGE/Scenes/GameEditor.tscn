@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmntwlonxuvb5"]
+[gd_scene load_steps=12 format=3 uid="uid://dmntwlonxuvb5"]
 
 [ext_resource type="Script" path="res://Scripts/GameEditor.cs" id="1_3xbbq"]
 [ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_cnk10"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ysgf1nrse804" path="res://Scenes/Editors/StatusEditor.tscn" id="5_7fc4l"]
 [ext_resource type="PackedScene" uid="uid://cpwchb0vsyak3" path="res://Scenes/Editors/ElementEditor.tscn" id="5_ykcfv"]
 [ext_resource type="PackedScene" uid="uid://ck1n5lnta84a2" path="res://Scenes/Editors/ActionEditor.tscn" id="6_gdg1h"]
+[ext_resource type="PackedScene" uid="uid://bo0owsm0fbpk1" path="res://Scenes/Editors/FormEditor.tscn" id="6_ttgtr"]
 [ext_resource type="PackedScene" uid="uid://cb3mso12afsoa" path="res://Scenes/Editors/VFXEditor.tscn" id="8_omuf2"]
 
 [node name="GameEditor" type="Control"]
@@ -59,6 +60,14 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Game Editor"
 horizontal_alignment = 1
+
+[node name="Form" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("GameEditorPanel")]
+layout_mode = 2
+text = "Action Editor"
+script = ExtResource("1_jf8me")
+SceneDataEditor = ExtResource("6_ttgtr")
+SceneGameDataBrowser = ExtResource("3_ryvdl")
+GameEditorPanel = NodePath("../../..")
 
 [node name="Action" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("GameEditorPanel")]
 layout_mode = 2

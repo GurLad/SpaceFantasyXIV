@@ -1,9 +1,187 @@
-[gd_scene format=3 uid="uid://bo0owsm0fbpk1"]
+[gd_scene load_steps=11 format=3 uid="uid://bo0owsm0fbpk1"]
 
-[node name="FormEditor" type="Control"]
-layout_mode = 3
+[ext_resource type="PackedScene" uid="uid://b8kd1emb4x43x" path="res://Scenes/Loaders/FormLoader.tscn" id="1_l8w65"]
+[ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_uhhjh"]
+[ext_resource type="Script" path="res://GGGE/Scripts/GameDataEditor.cs" id="2_7nu37"]
+[ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="4_jmqp5"]
+[ext_resource type="Script" path="res://Scripts/GameData/Forms/FormDataEditor.cs" id="5_qermv"]
+[ext_resource type="PackedScene" uid="uid://bftsmkn70twy8" path="res://Scenes/Editors/Generic/SmallImageEditor.tscn" id="6_n76d0"]
+[ext_resource type="PackedScene" uid="uid://dbu668ekihfba" path="res://Scenes/Editors/Generic/StatsModifierEditor.tscn" id="7_m1ute"]
+[ext_resource type="PackedScene" uid="uid://cq2phwr7tqe3v" path="res://Scenes/Editors/Generic/ListEditor.tscn" id="7_ol0ru"]
+[ext_resource type="PackedScene" uid="uid://c0m7sh1811jfc" path="res://Scenes/Editors/Generic/SmallAnimationEditor.tscn" id="7_uxm1u"]
+[ext_resource type="PackedScene" uid="uid://bx3yq34isfm11" path="res://Scenes/Editors/Generic/ActionSelector.tscn" id="9_ksd0a"]
+
+[node name="FormEditor" type="ScrollContainer" node_paths=PackedStringArray("DataLoader")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_uhhjh")
+script = ExtResource("2_7nu37")
+DataLoader = NodePath("FormLoader")
+
+[node name="FormLoader" parent="." instance=ExtResource("1_l8w65")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_jmqp5")
+text = "Basic data"
+horizontal_alignment = 1
+
+[node name="BasicDataEditor" type="PanelContainer" parent="VBoxContainer" node_paths=PackedStringArray("nameEdit", "fullNameEdit", "description1Edit", "description2Edit", "sortOrderEdit", "actionsEdit", "loader")]
+layout_mode = 2
+script = ExtResource("5_qermv")
+nameEdit = NodePath("VBoxContainer/GridContainer2/GridContainer/ShortNameEdit")
+fullNameEdit = NodePath("VBoxContainer/GridContainer2/FullNameEdit")
+description1Edit = NodePath("VBoxContainer/GridContainer2/Desc1Edit")
+description2Edit = NodePath("VBoxContainer/GridContainer2/Desc2Edit")
+sortOrderEdit = NodePath("VBoxContainer/GridContainer2/GridContainer/SortOrderEdit")
+actionsEdit = NodePath("../ActionsEditor/ListEditor")
+dataKey = "Data"
+loader = NodePath("../../FormLoader")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BasicDataEditor"]
+layout_mode = 2
+
+[node name="GridContainer2" type="GridContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="ShortNameLabel" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "Name:"
+
+[node name="GridContainer" type="HBoxContainer" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2"]
+layout_mode = 2
+
+[node name="ShortNameEdit" type="LineEdit" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="SortOrderLabel" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2/GridContainer"]
+layout_mode = 2
+text = "Sort order:"
+
+[node name="SortOrderEdit" type="SpinBox" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="IconLabel" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2/GridContainer"]
+layout_mode = 2
+text = "Icon:"
+
+[node name="SmallImageEditor" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2/GridContainer" node_paths=PackedStringArray("loader") instance=ExtResource("6_n76d0")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+dataKey = "Icon"
+loader = NodePath("../../../../../../FormLoader")
+targetResolution = Vector2i(24, 24)
+
+[node name="FullNameLabel" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "Full name:"
+
+[node name="FullNameEdit" type="LineEdit" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Desc1Label" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "Description 1:"
+
+[node name="Desc1Edit" type="LineEdit" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Desc2Label" type="Label" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "Description 2:"
+
+[node name="Desc2Edit" type="LineEdit" parent="VBoxContainer/BasicDataEditor/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_jmqp5")
+text = "Animations"
+horizontal_alignment = 1
+
+[node name="AnimationsEditor" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/AnimationsEditor"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/AnimationsEditor/GridContainer"]
+custom_minimum_size = Vector2(79, 0)
+layout_mode = 2
+text = "Idle:"
+
+[node name="SmallAnimationEditor" parent="VBoxContainer/AnimationsEditor/GridContainer" node_paths=PackedStringArray("loader") instance=ExtResource("7_uxm1u")]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+animationName = "Idle"
+dataKey = "Animations"
+loader = NodePath("../../../../FormLoader")
+
+[node name="Label2" type="Label" parent="VBoxContainer/AnimationsEditor/GridContainer"]
+layout_mode = 2
+text = "Attack:"
+
+[node name="SmallAnimationEditor2" parent="VBoxContainer/AnimationsEditor/GridContainer" node_paths=PackedStringArray("loader") instance=ExtResource("7_uxm1u")]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+animationName = "Attack"
+dataKey = "Animations"
+loader = NodePath("../../../../FormLoader")
+
+[node name="Label3" type="Label" parent="VBoxContainer/AnimationsEditor/GridContainer"]
+layout_mode = 2
+text = "Hurt:"
+
+[node name="SmallAnimationEditor3" parent="VBoxContainer/AnimationsEditor/GridContainer" node_paths=PackedStringArray("loader") instance=ExtResource("7_uxm1u")]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+animationName = "Hurt"
+dataKey = "Animations"
+loader = NodePath("../../../../FormLoader")
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_jmqp5")
+text = "Actions"
+horizontal_alignment = 1
+
+[node name="ActionsEditor" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ListEditor" parent="VBoxContainer/ActionsEditor" instance=ExtResource("7_ol0ru")]
+layout_mode = 2
+sceneInnerEditor = ExtResource("9_ksd0a")
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_jmqp5")
+text = "Stat modifiers"
+horizontal_alignment = 1
+
+[node name="StatModifiersEditor" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="StatsModifierEditor" parent="VBoxContainer/StatModifiersEditor" node_paths=PackedStringArray("loader") instance=ExtResource("7_m1ute")]
+layout_mode = 2
+dataKey = "StatsModifier"
+loader = NodePath("../../../FormLoader")

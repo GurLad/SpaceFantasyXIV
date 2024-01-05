@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8kd1emb4x43x"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/Forms/FormLoader.cs" id="1_3as1i"]
+
+[node name="FormLoader" type="Node"]
+script = ExtResource("1_3as1i")

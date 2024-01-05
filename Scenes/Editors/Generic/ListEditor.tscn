@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq2phwr7tqe3v"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/ListEditor.cs" id="1_pgy2q"]
+
+[node name="ListEditor" type="VBoxContainer" node_paths=PackedStringArray("listContainer", "itemContainerTemplate", "newButton", "deleteButtonTemplate")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pgy2q")
+listContainer = NodePath("ScrollContainer/VBoxContainer")
+itemContainerTemplate = NodePath("ScrollContainer/VBoxContainer/ItemHolderTemplate")
+newButton = NodePath("New")
+deleteButtonTemplate = NodePath("ScrollContainer/VBoxContainer/ItemHolderTemplate/Delete")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ItemHolderTemplate" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Delete" type="Button" parent="ScrollContainer/VBoxContainer/ItemHolderTemplate"]
+visible = false
+custom_minimum_size = Vector2(21, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "X"
+
+[node name="New" type="Button" parent="."]
+layout_mode = 2
+text = "Add"

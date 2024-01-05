@@ -10,13 +10,13 @@ public partial class ListEditor : Control
     [Export]
     private Container listContainer;
     [Export]
-    private Container innerEditorContainerTemplate;
+    private Container itemContainerTemplate;
     [Export]
     private BaseButton newButton;
     [Export]
     private BaseButton deleteButtonTemplate;
     // Properties
-    private List<Control> innerEditors { get; } = new List<Control>();
+    private List<Control> items { get; } = new List<Control>();
     // Functions
     private Func<Control, object> getDataFunc;
     private Action<Control, object> setDataFunc;
@@ -49,13 +49,13 @@ public partial class ListEditor : Control
 
     public List<DataType> GetDatas<DataType>()
     {
-        return innerEditors.ConvertAll(a => (DataType)getDataFunc(a));
+        return items.ConvertAll(a => (DataType)getDataFunc(a));
     }
 
     public void SetDatas<DataType>(List<DataType> datas)
     {
-        innerEditors.ForEach(a => DeleteEditor(a));
-        innerEditors.Clear();
+        items.ForEach(a => DeleteEditor(a));
+        items.Clear();
         datas.ForEach(a => setDataFunc(NewEditor(), a));
     }
 
@@ -64,21 +64,22 @@ public partial class ListEditor : Control
         // Create editor
         Control newEditor = sceneInnerEditor.Instantiate<Control>();
         initEditor(newEditor);
-        innerEditors.Add(newEditor);
+        items.Add(newEditor);
         EmitSignal(SignalName.OnItemAdded);
         // Create editor container
-        Container container = (Container)innerEditorContainerTemplate.Duplicate();
+        Container container = (Container)itemContainerTemplate.Duplicate();
         BaseButton newDeleteButton = (BaseButton)deleteButtonTemplate.Duplicate();
         container.AddChild(newDeleteButton);
         container.AddChild(newEditor);
         listContainer.AddChild(container);
+        container.Visible = newDeleteButton.Visible = newEditor.Visible = true;
         newDeleteButton.Pressed += () => DeleteEditor(newEditor);
         return newEditor;
     }
 
     private void DeleteEditor(Control editor)
     {
-        innerEditors.Remove(editor);
+        items.Remove(editor);
         editor.GetParent().QueueFree();
     }
 
