@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ddexk30hyjdhm"]
 
-[ext_resource type="Script" path="res://Scripts/GameData/StatusWithLifespan/StatusWithLifespanEditor.cs" id="1_bayhn"]
+[ext_resource type="Script" path="res://Scripts/GameEditors/StatusWithLifespan/StatusWithLifespanEditor.cs" id="1_bayhn"]
 
 [node name="StatusWithLifespanEditor" type="HBoxContainer" node_paths=PackedStringArray("statusSelect", "lifespanEdit")]
 anchors_preset = 15

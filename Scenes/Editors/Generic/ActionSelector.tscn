@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bx3yq34isfm11"]
 
-[ext_resource type="Script" path="res://Scripts/GameData/DataSelector.cs" id="1_7gmpu"]
+[ext_resource type="Script" path="res://Scripts/GameEditors/DataSelector.cs" id="1_7gmpu"]
 
 [node name="ActionSelector" type="OptionButton"]
 anchors_preset = 15

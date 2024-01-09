@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bftsmkn70twy8" path="res://Scenes/Editors/Generic/SmallImageEditor.tscn" id="1_y025u"]
 [ext_resource type="PackedScene" uid="uid://dbu668ekihfba" path="res://Scenes/Editors/Generic/StatsModifierEditor.tscn" id="2_vwq3c"]
 [ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="3_alvgb"]
-[ext_resource type="Script" path="res://Scripts/GameData/StatusEffects/StatusDataEditor.cs" id="5_kxich"]
+[ext_resource type="Script" path="res://Scripts/GameEditors/StatusEffects/StatusDataEditor.cs" id="5_kxich"]
 [ext_resource type="PackedScene" uid="uid://cluitb55rrco4" path="res://Scenes/Editors/Generic/PhantasyScriptEditor.tscn" id="8_x18m7"]
 
 [node name="StatusEditor" type="ScrollContainer" node_paths=PackedStringArray("DataLoader")]

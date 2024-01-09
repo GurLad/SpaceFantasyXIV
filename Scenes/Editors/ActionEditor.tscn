@@ -1,16 +1,16 @@
 [gd_scene load_steps=12 format=3 uid="uid://ck1n5lnta84a2"]
 
 [ext_resource type="Theme" uid="uid://d2ehmxf06kkyu" path="res://EditorTheme.tres" id="1_31tnk"]
-[ext_resource type="Script" path="res://Scripts/GameData/Actions/ActionDataEditor.cs" id="1_gcq0s"]
+[ext_resource type="Script" path="res://Scripts/GameEditors/Actions/ActionDataEditor.cs" id="1_gcq0s"]
 [ext_resource type="PackedScene" uid="uid://cxmc7l3rhgs1u" path="res://Scenes/Loaders/ActionLoader.tscn" id="2_2382p"]
 [ext_resource type="Script" path="res://GGGE/Scripts/GameDataEditor.cs" id="2_jepiu"]
 [ext_resource type="FontFile" uid="uid://cpc708trkv7bh" path="res://VCRFont.ttf" id="3_ypq6y"]
-[ext_resource type="Script" path="res://Scripts/GameData/Actions/Types/AttackActionDataEditor.cs" id="6_by2rn"]
+[ext_resource type="Script" path="res://Scripts/GameEditors/Actions/Types/AttackActionDataEditor.cs" id="6_rrjk3"]
 [ext_resource type="PackedScene" uid="uid://b1wjn03tlxfwl" path="res://Scenes/Editors/Generic/ElementSelector.tscn" id="7_wp80a"]
 [ext_resource type="PackedScene" uid="uid://j2i51fa47axd" path="res://Scenes/Editors/Generic/VFXSelector.tscn" id="8_tisdo"]
 [ext_resource type="PackedScene" uid="uid://ddexk30hyjdhm" path="res://Scenes/Editors/Generic/StatusWithLifespanEditor.tscn" id="8_y1l4f"]
-[ext_resource type="Script" path="res://Scripts/GameData/Actions/Types/BuffActionDataEditor.cs" id="10_vpq80"]
-[ext_resource type="Script" path="res://Scripts/GameData/Actions/Types/LimitActionDataEditor.cs" id="11_3dw2d"]
+[ext_resource type="Script" path="res://Scripts/GameEditors/Actions/Types/BuffActionDataEditor.cs" id="10_apjp8"]
+[ext_resource type="Script" path="res://Scripts/GameEditors/Actions/Types/LimitActionDataEditor.cs" id="11_24o2r"]
 
 [node name="ActionEditor" type="ScrollContainer" node_paths=PackedStringArray("DataLoader")]
 anchors_preset = 15
@@ -108,7 +108,7 @@ size_flags_horizontal = 3
 [node name="AttackEditor" type="PanelContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer" node_paths=PackedStringArray("physicalEdit", "powerEdit", "elementEdit", "vfxNameEdit", "inflictEdit")]
 visible = false
 layout_mode = 2
-script = ExtResource("6_by2rn")
+script = ExtResource("6_rrjk3")
 physicalEdit = NodePath("VBoxContainer/GridContainer/HBoxContainer/Physical")
 powerEdit = NodePath("VBoxContainer/GridContainer/HBoxContainer/PowerEdit")
 elementEdit = NodePath("VBoxContainer/GridContainer/ElementSelector")
@@ -165,7 +165,7 @@ layout_mode = 2
 [node name="BuffEditor" type="PanelContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer" node_paths=PackedStringArray("vfxNameEdit", "gainEdit")]
 visible = false
 layout_mode = 2
-script = ExtResource("10_vpq80")
+script = ExtResource("10_apjp8")
 vfxNameEdit = NodePath("VBoxContainer/GridContainer/VFXSelector")
 gainEdit = NodePath("VBoxContainer/GridContainer/StatusWithLifespanEditor")
 
@@ -195,7 +195,7 @@ layout_mode = 2
 [node name="LimitEditor" type="PanelContainer" parent="InnerEditor/InnerDataOuterEditor/VBoxContainer" node_paths=PackedStringArray("physicalEdit", "powerEdit", "elementEdit", "inflictEdit", "gainEdit")]
 visible = false
 layout_mode = 2
-script = ExtResource("11_3dw2d")
+script = ExtResource("11_24o2r")
 physicalEdit = NodePath("VBoxContainer/GridContainer/HBoxContainer/Physical")
 powerEdit = NodePath("VBoxContainer/GridContainer/HBoxContainer/PowerEdit")
 elementEdit = NodePath("VBoxContainer/GridContainer/ElementSelector")

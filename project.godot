@@ -48,7 +48,8 @@ folder_colors={
 "res://Scenes/Editors/": "pink",
 "res://Scenes/Editors/Generic/": "orange",
 "res://Scenes/Loaders/": "blue",
-"res://Scripts/GameData/": "teal"
+"res://Scripts/GameData/": "teal",
+"res://Scripts/GameEditors/": "green"
 }
 
 [gui]

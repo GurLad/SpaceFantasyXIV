@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://7qtu5nk5atfs"]
 
-[ext_resource type="Script" path="res://Scripts/GameData/Formulas/FormulaEditor.cs" id="1_rb42e"]
+[ext_resource type="Script" path="res://Scripts/GameEditors/Formulas/FormulaEditor.cs" id="1_rb42e"]
 
 [node name="FormulaEditor" type="HBoxContainer" node_paths=PackedStringArray("iconHolder", "nameLabel", "formulaEditor")]
 anchors_preset = 15
