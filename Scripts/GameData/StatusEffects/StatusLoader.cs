@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public partial class StatusLoader : AGameDataLoader
 {
-    private static StatusLoader ICON_LOADER { get; } = new StatusLoader();
-
     // Exports
     [Export]
     private Sprite2D icon;
@@ -32,10 +30,5 @@ public partial class StatusLoader : AGameDataLoader
             AddChild(icon = new Sprite2D());
             icon.Visible = false;
         }
-    }
-
-    public static Texture2D GetStatusIcon(string statusName)
-    {
-        return ICON_LOADER.GetIcon(statusName);
     }
 }

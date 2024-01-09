@@ -30,7 +30,7 @@ public partial class StatusWithLifespanEditor : Node
     public override void _Ready()
     {
         base._Ready();
-        GameDataPreloader.Current.GetAllNames("StatusEffects").ForEach(a => statusSelect.AddIconItem(StatusLoader.GetStatusIcon(a), a));
+        GameDataPreloader.Current.GetAllNames("StatusEffects").ForEach(a => statusSelect.AddIconItem(GameDataPreloader.Current.GetIcon("StatusEffects", a), a));
         statusSelect.ItemSelected += (i) => EmitSignal(SignalName.ValueChanged);
         lifespanEdit.ValueChanged += (i) => { EmitSignal(SignalName.ValueChanged); statusSelect.Disabled = i <= 0; };
         statusSelect.Disabled = true;

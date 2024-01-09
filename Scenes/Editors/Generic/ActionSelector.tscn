@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bx3yq34isfm11"]
 
-[ext_resource type="Script" path="res://Scripts/GameData/Actions/ActionSelector.cs" id="1_3cqne"]
+[ext_resource type="Script" path="res://Scripts/GameData/DataSelector.cs" id="1_7gmpu"]
 
 [node name="ActionSelector" type="OptionButton"]
 anchors_preset = 15
@@ -8,4 +8,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3cqne")
+script = ExtResource("1_7gmpu")
+DataFolder = "Actions"

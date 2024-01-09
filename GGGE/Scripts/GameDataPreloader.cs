@@ -60,6 +60,11 @@ public partial class GameDataPreloader : Node
         return preloadedData[dataFolder].ConvertAll(a => a.Item1);
     }
 
+    public Texture2D GetIcon(string dataFolder, string dataName)
+    {
+        return dataLoaders.Find(a => a.DataFolder == dataFolder)?.GetIcon(dataName);
+    }
+
     private void LoadAll(AGameDataLoader template)
     {
         string folderPath = FileSystem.GameDataDirectory + FileSystem.SEPERATOR + template.DataFolder;

@@ -30,7 +30,7 @@ public partial class StatsModifierEditor : ASerializableDataEditor<StatsModifier
         }
         foreach (string element in GameDataPreloader.Current.GetAllNames("Elements"))
         {
-            editors.Add(CreateEditor(elementsContainer, ElementLoader.GetElementIcon(element), element, data.GetElementFormula(element)));
+            editors.Add(CreateEditor(elementsContainer, GameDataPreloader.Current.GetIcon("Elements", element), element, data.GetElementFormula(element)));
         }
 
     }

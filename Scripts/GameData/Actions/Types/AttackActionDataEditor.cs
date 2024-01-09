@@ -9,9 +9,9 @@ public partial class AttackActionDataEditor : AActionInnerDataEditor<AttackActio
     [Export]
     private Godot.Range powerEdit;
     [Export]
-    private ElementSelector elementEdit;
+    private DataSelector elementEdit;
     [Export]
-    private VFXSelector vfxNameEdit;
+    private DataSelector vfxNameEdit;
     [Export]
     private StatusWithLifespanEditor inflictEdit;
 

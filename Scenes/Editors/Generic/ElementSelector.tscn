@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b1wjn03tlxfwl"]
 
-[ext_resource type="Script" path="res://Scripts/GameData/Elements/ElementSelector.cs" id="1_00pjb"]
+[ext_resource type="Script" path="res://Scripts/GameData/DataSelector.cs" id="1_elbhx"]
 
 [node name="ElementSelector" type="OptionButton"]
 anchors_preset = 15
@@ -8,4 +8,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_00pjb")
+script = ExtResource("1_elbhx")
+DataFolder = "Elements"

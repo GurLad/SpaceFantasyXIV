@@ -5,7 +5,7 @@ public partial class BuffActionDataEditor : AActionInnerDataEditor<BuffActionDat
 {
     [ExportCategory("Internal")]
     [Export]
-    private VFXSelector vfxNameEdit;
+    private DataSelector vfxNameEdit;
     [Export]
     private StatusWithLifespanEditor gainEdit;
 

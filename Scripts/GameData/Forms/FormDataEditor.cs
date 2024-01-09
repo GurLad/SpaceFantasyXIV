@@ -26,10 +26,10 @@ public partial class FormDataEditor : ASerializableDataEditor<FormData>
         description1Edit.TextChanged += (s) => { data.Description1 = s; SetDirty(); };
         description2Edit.TextChanged += (s) => { data.Description2 = s; SetDirty(); };
         sortOrderEdit.ValueChanged += (i) => { data.SortOrder = (int)i; SetDirty(); };
-        actionsEdit.Init<ActionSelector, string>(
+        actionsEdit.Init<DataSelector, string>(
             (selector) => selector.Text,
             (selector, s) => selector.Text = s,
-            (selector) => selector.ItemSelected += (i) => { data.Actions = actionsEdit.GetDatas<string>(); SetDirty(); },
+            (selector) => { selector.DataFolder = "Actions"; selector.ItemSelected += (i) => { data.Actions = actionsEdit.GetDatas<string>(); SetDirty(); }; },
             () => { data.Actions = actionsEdit.GetDatas<string>(); SetDirty(); });
     }
 

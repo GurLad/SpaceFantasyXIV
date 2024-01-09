@@ -10,7 +10,7 @@ public partial class LimitActionDataEditor : AActionInnerDataEditor<LimitActionD
     [Export]
     private Godot.Range powerEdit;
     [Export]
-    private ElementSelector elementEdit;
+    private DataSelector elementEdit;
     [Export]
     private StatusWithLifespanEditor inflictEdit;
     [Export]
