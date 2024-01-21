@@ -32,6 +32,7 @@ layout_mode = 2
 dataKey = "Animation"
 loader = NodePath("../../../VFXLoader")
 targetResolution = Vector2i(66, 64)
+speedEditMode = 0
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2

@@ -24,8 +24,13 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
         this.baseAnimations = baseAnimations.ToList();
     }
 
-    //public GameDataAnimatedSpritePart(string name, AnimatedSprite2D sourceNode, string fileExtension, params string[] baseAnimations) :
-    //    this(name, sourceNode, fileExtension, baseAnimations.ToList().ConvertAll(a => new AnimationData(a, 1, true)).ToArray()) { }
+    public GameDataAnimatedSpritePart(string name, AnimatedSprite2D sourceNode, string fileExtension, params string[] baseAnimations) :
+        this(name, sourceNode, fileExtension, baseAnimations.ToList().ConvertAll(a => new AnimationData(a, 1, true)).ToArray())
+    { }
+
+    public GameDataAnimatedSpritePart(string name, AnimatedSprite2D sourceNode, string fileExtension, int defaultSpeed, bool defaultLoop, params string[] baseAnimations) :
+        this(name, sourceNode, fileExtension, baseAnimations.ToList().ConvertAll(a => new AnimationData(a, defaultSpeed, defaultLoop)).ToArray())
+    { }
 
     public override void Clear()
     {

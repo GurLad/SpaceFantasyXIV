@@ -12,7 +12,7 @@ public partial class BattleBackgroundLoader : AGameDataLoader
 
     protected override List<AGameDataPart> gameDatas => new List<AGameDataPart>()
     {
-        new GameDataAnimatedSpritePart("Animation", renderer, ".png", "default")
+        new GameDataAnimatedSpritePart("Animation", renderer, ".png")
     };
 
 }

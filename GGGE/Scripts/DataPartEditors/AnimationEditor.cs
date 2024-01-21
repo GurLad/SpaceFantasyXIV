@@ -16,15 +16,15 @@ public partial class AnimationEditor : Control
     private AGameDataLoader loader;
     [Export]
     private Vector2I targetResolution;
-    [ExportCategory("Optional data editors")]
+    [ExportGroup("Optional data editors")]
     [Export]
     private DataEditorMode frameCountEditMode;
     [Export]
     private DataEditorMode speedEditMode;
     [Export]
     private DataEditorMode loopEditMode;
-    [ExportGroup("Internal exports")]
-    [ExportCategory("Animation editing")]
+    [ExportCategory("Internal exports")]
+    [ExportGroup("Animation editing")]
     [Export]
     private TextureRect previewRect;
     [Export]
@@ -33,7 +33,7 @@ public partial class AnimationEditor : Control
     private Button togglePreview;
     [Export]
     private FileDialog fileDialog;
-    [ExportCategory("Data editing")]
+    [ExportGroup("Data editing")]
     [Export]
     private SpinBox frameCountEdit;
     [Export]
@@ -160,10 +160,13 @@ public partial class AnimationEditor : Control
             InitExtraEditor(frameCountEdit, frameCountEditMode,
                 () => frameCountEdit.ValueChanged += (i) =>
                 {
-                    int value = Mathf.RoundToInt(i);
-                    if (value != frames.Count)
+                    if (frames.Count > 0)
                     {
-                        frames = frames.Combine().Split(value);
+                        int value = Mathf.RoundToInt(i);
+                        if (value != frames.Count)
+                        {
+                            frames = frames.Combine().Split(value);
+                        }
                     }
                 },
                 () => frameCountEdit.Value = data.SpriteFrames.GetFrameCount(animationName),
@@ -219,11 +222,11 @@ public partial class AnimationEditor : Control
         {
             loader.OnExternalChange += () => refresh();
             OnDirty += () => refresh();
-            editor.Visible = true;
+            editor.GetParent<Control>().Visible = true;
         }
         else
         {
-            editor.Visible = false;
+            editor.GetParent<Control>().Visible = false;
         }
     }
 

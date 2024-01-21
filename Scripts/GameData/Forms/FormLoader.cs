@@ -20,7 +20,10 @@ public partial class FormLoader : AGameDataLoader
         new GameDataSerializablePart("StatsModifier", statsModifier),
         new GameDataSerializablePart("Data", data),
         new GameDataSpritePart("Icon", icon),
-        new GameDataAnimatedSpritePart("Animations", renderer, ".png", "Idle", "Attack", "Hurt"),
+        new GameDataAnimatedSpritePart("Animations", renderer, ".png",
+            new GameDataAnimatedSpritePart.AnimationData("Idle", 9, true),
+            new GameDataAnimatedSpritePart.AnimationData("Attack", 9, false),
+            new GameDataAnimatedSpritePart.AnimationData("Hurt", 9, false)),
     };
 
     protected override string iconKey => "Icon";
