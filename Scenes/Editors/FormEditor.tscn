@@ -133,6 +133,7 @@ text = "Idle:"
 [node name="SmallAnimationEditor" parent="VBoxContainer/AnimationsEditor/GridContainer" node_paths=PackedStringArray("loader") instance=ExtResource("7_uxm1u")]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 animationName = "Idle"
 dataKey = "Animations"
 loader = NodePath("../../../../FormLoader")
@@ -147,6 +148,7 @@ text = "Attack:"
 [node name="SmallAnimationEditor2" parent="VBoxContainer/AnimationsEditor/GridContainer" node_paths=PackedStringArray("loader") instance=ExtResource("7_uxm1u")]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 animationName = "Attack"
 dataKey = "Animations"
 loader = NodePath("../../../../FormLoader")
@@ -161,6 +163,7 @@ text = "Hurt:"
 [node name="SmallAnimationEditor3" parent="VBoxContainer/AnimationsEditor/GridContainer" node_paths=PackedStringArray("loader") instance=ExtResource("7_uxm1u")]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 animationName = "Hurt"
 dataKey = "Animations"
 loader = NodePath("../../../../FormLoader")

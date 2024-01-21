@@ -1,6 +1,8 @@
 [
   {
     "Name": "Idle",
-    "NumFrames": 4
+    "NumFrames": 4,
+    "Speed": -1,
+    "Loops": true
   }
 ]

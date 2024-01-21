@@ -1,6 +1,8 @@
 [
   {
     "Name": "default",
-    "NumFrames": 4
+    "NumFrames": 4,
+    "Speed": -1,
+    "Loops": false
   }
 ]
