@@ -81,7 +81,7 @@ public static class FileSystem
 
     public static List<Texture2D> LoadAnimatedTextureFile(string path, int numFrames, string extension = ".png")
     {
-        return LoadImageFile(path, extension)?.SplitImage(numFrames) ?? new List<Texture2D>();
+        return LoadImageFile(path, extension)?.Split(numFrames) ?? new List<Texture2D>();
     }
 
     public static string GetFolderPath(this AGameDataLoader gameDataLoader, string name, string folder, bool save)

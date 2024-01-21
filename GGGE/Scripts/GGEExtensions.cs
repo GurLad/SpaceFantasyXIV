@@ -23,7 +23,7 @@ namespace GGE.Internal
             return str.Replace("\"", "").Replace("\\", "").Replace("/", "").Replace(":", "").Replace("?", "").Replace("|", "").Replace("*", "").Replace("<", "").Replace(">", "");
         }
 
-        public static List<Texture2D> SplitImage(this Image source, int numFrames)
+        public static List<Texture2D> Split(this Image source, int numFrames)
         {
             List<Texture2D> result = new List<Texture2D>();
             int frameWidth = source.GetWidth() / numFrames;
@@ -32,6 +32,25 @@ namespace GGE.Internal
                 result.Add(ImageTexture.CreateFromImage(source.GetRegion(new Rect2I(i * frameWidth, 0, frameWidth, source.GetHeight()))));
             }
             return result;
+        }
+
+        public static Image Combine(this List<Texture2D> source)
+        {
+            if (source.Count > 0)
+            {
+                Image template = source[0].GetImage();
+                Image result = Image.Create(template.GetWidth() * source.Count, template.GetHeight(), false, template.GetFormat());
+                Rect2I sourceRect = new Rect2I(0, 0, template.GetWidth(), template.GetHeight());
+                for (int i = 0; i < source.Count; i++)
+                {
+                    result.BlitRect(source[i].GetImage(), sourceRect, new Vector2I(i * template.GetWidth(), 0));
+                }
+                return result;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static void Init(this FileDialog fileDialog)

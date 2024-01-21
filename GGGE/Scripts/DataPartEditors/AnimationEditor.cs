@@ -5,6 +5,8 @@ using GGE.Internal;
 
 public partial class AnimationEditor : Control
 {
+    public enum DataEditorMode { Allow, ReadOnly, Hidden }
+
     // Exports
     [Export]
     private string animationName = "default";
@@ -14,7 +16,15 @@ public partial class AnimationEditor : Control
     private AGameDataLoader loader;
     [Export]
     private Vector2I targetResolution;
-    [ExportCategory("Internal exports")]
+    [ExportCategory("Optional data editors")]
+    [Export]
+    private DataEditorMode frameCountEditMode;
+    [Export]
+    private DataEditorMode speedEditMode;
+    [Export]
+    private DataEditorMode loopEditMode;
+    [ExportGroup("Internal exports")]
+    [ExportCategory("Animation editing")]
     [Export]
     private TextureRect previewRect;
     [Export]
@@ -23,6 +33,13 @@ public partial class AnimationEditor : Control
     private Button togglePreview;
     [Export]
     private FileDialog fileDialog;
+    [ExportCategory("Data editing")]
+    [Export]
+    private SpinBox frameCountEdit;
+    [Export]
+    private SpinBox speedEdit;
+    [Export]
+    private CheckBox loopEdit;
     // Properties
     private AnimatedSprite2D data;
     private int currentFrame;
@@ -34,8 +51,10 @@ public partial class AnimationEditor : Control
         set
         {
             _frames = value;
-            data.SpriteFrames.RemoveAnimation(animationName);
-            data.SpriteFrames.AddAnimation(animationName);
+            while (data.SpriteFrames.GetFrameCount(animationName) > 0)
+            {
+                data.SpriteFrames.RemoveFrame(animationName, 0);
+            }
             frames.ForEach(a => data.SpriteFrames.AddFrame(animationName, a));
         }
     }
@@ -56,18 +75,22 @@ public partial class AnimationEditor : Control
             {
                 frames.Add(data.SpriteFrames.GetFrameTexture(animationName, i));
             }
+            UpdateTimerData();
             UpdatePreview();
         };
         // Init preview timer
         AddChild(previewTimer = new Timer());
-        previewTimer.OneShot = false;
-        previewTimer.WaitTime = 0.1f; // TEMP - need to add a way to add custom animation speeds in the future
+        UpdateTimerData();
         previewTimer.Timeout += () =>
         {
             if (frames.Count > 0)
             {
                 currentFrame = (currentFrame + 1) % frames.Count;
                 UpdatePreview();
+            }
+            if (previewTimer.OneShot)
+            {
+                togglePreview.Text = "Play";
             }
         };
         togglePreview.Pressed += () =>
@@ -94,7 +117,7 @@ public partial class AnimationEditor : Control
             Image source = Image.LoadFromFile(path);
             if (targetResolution.X > 0)
             {
-                frames = source.SplitImage(source.GetWidth() / targetResolution.X);
+                frames = source.Split(source.GetWidth() / targetResolution.X);
                 UpdatePreview();
                 SetDirty();
             }
@@ -117,7 +140,7 @@ public partial class AnimationEditor : Control
                     int frameCount;
                     if (int.TryParse(s, out frameCount) && frameCount > 0)
                     {
-                        frames = source.SplitImage(frameCount);
+                        frames = source.Split(frameCount);
                         UpdatePreview();
                         SetDirty();
                     }
@@ -130,6 +153,36 @@ public partial class AnimationEditor : Control
         };
         browseButton.Pressed += fileDialog.Show;
         AddChild(fileDialog);
+        // Init extra editors
+        if (frameCountEdit != null)
+        {
+            frameCountEdit.Rounded = true;
+            InitExtraEditor(frameCountEdit, frameCountEditMode,
+                () => frameCountEdit.ValueChanged += (i) =>
+                {
+                    int value = Mathf.RoundToInt(i);
+                    if (value != frames.Count)
+                    {
+                        frames = frames.Combine().Split(value);
+                    }
+                },
+                () => frameCountEdit.Value = data.SpriteFrames.GetFrameCount(animationName),
+                (editable) => frameCountEdit.Editable = editable);
+        }
+        if (speedEdit != null)
+        {
+            InitExtraEditor(speedEdit, speedEditMode,
+                () => speedEdit.ValueChanged += (i) => data.SpriteFrames.SetAnimationSpeed(animationName, i),
+                () => speedEdit.Value = data.SpriteFrames.GetAnimationSpeed(animationName),
+                (editable) => speedEdit.Editable = editable);
+        }
+        if (loopEdit != null)
+        {
+            InitExtraEditor(loopEdit, loopEditMode,
+                () => loopEdit.Toggled += (b) => data.SpriteFrames.SetAnimationLoop(animationName, b),
+                () => loopEdit.ToggleMode = data.SpriteFrames.GetAnimationLoop(animationName),
+                (editable) => loopEdit.Disabled = !editable);
+        }
     }
 
     private void UpdatePreview()
@@ -141,6 +194,36 @@ public partial class AnimationEditor : Control
         else
         {
             previewRect.Texture = null;
+        }
+    }
+
+    private void UpdateTimerData()
+    {
+        previewTimer.WaitTime = data.SpriteFrames.GetAnimationSpeed(animationName);
+        previewTimer.WaitTime = previewTimer.WaitTime > 0 ? 1 / previewTimer.WaitTime : 1;
+        previewTimer.OneShot = data.SpriteFrames.GetAnimationLoop(animationName);
+    }
+
+    private void InitExtraEditor(Control editor, DataEditorMode mode, Action setValueChanged, Action refresh, Action<bool> setEditable)
+    {
+        if (mode == DataEditorMode.Allow)
+        {
+            setValueChanged();
+            setEditable(true);
+        }
+        else
+        {
+            setEditable(false);
+        }
+        if (mode != DataEditorMode.Hidden)
+        {
+            loader.OnExternalChange += () => refresh();
+            OnDirty += () => refresh();
+            editor.Visible = true;
+        }
+        else
+        {
+            editor.Visible = false;
         }
     }
 

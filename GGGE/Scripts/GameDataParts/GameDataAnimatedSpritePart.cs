@@ -8,7 +8,7 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
     protected override string DATA_FILE => "AnimationData.data";
 
     private bool lockAnimations = true;
-    private List<string> baseAnimations = new List<string>();
+    private List<AnimationData> baseAnimations = new List<AnimationData>();
     private SpriteFrames spriteFrames => SourceNode.SpriteFrames;
 
     public GameDataAnimatedSpritePart(string name, AnimatedSprite2D sourceNode, string fileExtension = ".png") :
@@ -17,19 +17,30 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
         lockAnimations = false;
     }
 
-    public GameDataAnimatedSpritePart(string name, AnimatedSprite2D sourceNode, string fileExtension, params string[] baseAnimations) :
+    public GameDataAnimatedSpritePart(string name, AnimatedSprite2D sourceNode, string fileExtension, params AnimationData[] baseAnimations) :
         base(name, sourceNode, fileExtension)
     {
         lockAnimations = true;
         this.baseAnimations = baseAnimations.ToList();
     }
 
+    //public GameDataAnimatedSpritePart(string name, AnimatedSprite2D sourceNode, string fileExtension, params string[] baseAnimations) :
+    //    this(name, sourceNode, fileExtension, baseAnimations.ToList().ConvertAll(a => new AnimationData(a, 1, true)).ToArray()) { }
+
     public override void Clear()
     {
         spriteFrames.ClearAll();
         if (lockAnimations)
         {
-            baseAnimations.FindAll(a => a != "default").ForEach(a => spriteFrames.AddAnimation(a));
+            baseAnimations.ForEach(a =>
+            {
+                if (a.Name != "default")
+                {
+                    spriteFrames.AddAnimation(a.Name);
+                }
+                spriteFrames.SetAnimationSpeed(a.Name, a.Speed);
+                spriteFrames.SetAnimationLoop(a.Name, a.Loops);
+            });
         }
     }
 
@@ -39,7 +50,7 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
         string basePath = GetFullPath(folderPath, false);
         string data = FileSystem.LoadTextFile(basePath + SEPERATOR + DATA_FILE, "");
         List<AnimationData> animationData = data.JsonToObject<List<AnimationData>>();
-        List<string> animations = lockAnimations ? baseAnimations : animationData.ConvertAll(a => a.Name);
+        List<string> animations = lockAnimations ? baseAnimations.ConvertAll(a => a.Name) : animationData.ConvertAll(a => a.Name);
         for (int i = 0; i < animations.Count; i++)
         {
             string animation = animations[i];
@@ -47,10 +58,19 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
             {
                 spriteFrames.AddAnimation(animation);
             }
-            if (i < animationData.Count)
+            if (i < animationData.Count && animation == animationData[i].Name)
             {
                 List<Texture2D> frames = FileSystem.LoadAnimatedTextureFile(basePath + SEPERATOR + animation, animationData[i].NumFrames);
                 frames.ForEach(a => spriteFrames.AddFrame(animation, a));
+                if (animationData[i].Speed > 0)
+                {
+                    spriteFrames.SetAnimationSpeed(animation, animationData[i].Speed);
+                }
+                else if (lockAnimations)
+                {
+                    spriteFrames.SetAnimationSpeed(animation, baseAnimations[i].Speed);
+                }
+                spriteFrames.SetAnimationLoop(animation, animationData[i].Loops);
             }
         }
     }
@@ -61,7 +81,7 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
         {
             List<string> recordAnimations = record.GetAnimationNames().ToList();
             if (baseAnimations.Count != recordAnimations.Count ||
-                baseAnimations.Find(a => !recordAnimations.Contains(a)) != null)
+                baseAnimations.Find(a => !recordAnimations.Contains(a.Name)) != null)
             {
                 throw new Exception("Inconsistent record vs. source!" +
                     "\nSource: " + string.Join(", ", baseAnimations) +
@@ -75,7 +95,7 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
     {
         string basePath = GetFullPath(folderPath, false);
         List<AnimationData> animationData = new List<AnimationData>();
-        List<string> animations = lockAnimations ? baseAnimations : spriteFrames.GetAnimationNames().ToList();
+        List<string> animations = lockAnimations ? baseAnimations.ConvertAll(a => a.Name) : spriteFrames.GetAnimationNames().ToList();
         for (int i = 0; i < animations.Count; i++)
         {
             string animation = animations[i];
@@ -83,7 +103,14 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
             if (template != null)
             {
                 int numFrames = spriteFrames.GetFrameCount(animation);
-                animationData.Add(new AnimationData(animation, numFrames));
+                float speed = (float)spriteFrames.GetAnimationSpeed(animation);
+                // If animations are locked and the speed wasn't changed, save -1 to make changing default speed easier
+                if (lockAnimations && Mathf.Abs(baseAnimations[i].Speed - speed) < Mathf.Epsilon)
+                {
+                    speed = -1;
+                }
+                bool loops = spriteFrames.GetAnimationLoop(animation);
+                animationData.Add(new AnimationData(animation, numFrames, speed, loops));
                 Image result = Image.Create(template.GetWidth() * numFrames, template.GetHeight(), false, template.GetFormat());
                 Rect2I sourceRect = new Rect2I(0, 0, template.GetWidth(), template.GetHeight());
                 for (int j = 0; j < numFrames; j++)
@@ -106,5 +133,10 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
         return spriteFrames;
     }
 
-    private record AnimationData(string Name, int NumFrames);
+    public record AnimationData(string Name, int NumFrames, float Speed, bool Loops)
+    {
+        public AnimationData(string Name, float Speed, bool Loops) : this(Name, 0, Speed, Loops) { }
+
+        public AnimationData(string Name, int NumFrames) : this(Name, NumFrames, -1, true) { }
+    }
 }
