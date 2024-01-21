@@ -5,6 +5,9 @@ namespace GGE.Internal
 {
     public abstract class AGameDataPart<NodeType, RecordType> : AGameDataPart
     {
+        protected const char SEPERATOR = '-';
+        protected virtual string DATA_FILE => "Data.data";
+
         public NodeType SourceNode { get; init; }
         protected string fileExtension { get; init; }
 

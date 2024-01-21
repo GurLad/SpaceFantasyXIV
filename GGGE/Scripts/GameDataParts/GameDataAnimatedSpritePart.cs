@@ -5,8 +5,7 @@ using System.Linq;
 
 public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<AnimatedSprite2D, SpriteFrames>
 {
-    private const char SEPERATOR = '-';
-    private const string DATA_FILE = "AnimationData.data";
+    protected override string DATA_FILE => "AnimationData.data";
 
     private bool lockAnimations = true;
     private List<string> baseAnimations = new List<string>();
