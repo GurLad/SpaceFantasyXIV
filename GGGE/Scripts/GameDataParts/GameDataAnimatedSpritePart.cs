@@ -108,9 +108,9 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
             if (template != null)
             {
                 int numFrames = spriteFrames.GetFrameCount(animation);
-                float speed = (float)spriteFrames.GetAnimationSpeed(animation);
+                double speed = spriteFrames.GetAnimationSpeed(animation);
                 // If animations are locked and the speed wasn't changed, save -1 to make changing default speed easier
-                if (lockAnimations && Mathf.Abs(baseAnimations[i].Speed - speed) < Mathf.Epsilon)
+                if (lockAnimations && Mathf.Abs(baseAnimations[i].Speed - speed) < 0.01)
                 {
                     speed = -1;
                 }
@@ -138,10 +138,11 @@ public partial class GameDataAnimatedSpritePart : GGE.Internal.AGameDataPart<Ani
         return spriteFrames;
     }
 
-    public record AnimationData(string Name, int NumFrames, float Speed, bool Loops)
+    public record AnimationData(string Name, int NumFrames, double Speed, bool Loops)
     {
-        public AnimationData(string Name, float Speed, bool Loops) : this(Name, 0, Speed, Loops) { }
+        public AnimationData(string Name, double Speed, bool Loops) : this(Name, 0, Speed, Loops) { }
 
+        [System.Text.Json.Serialization.JsonConstructor]
         public AnimationData(string Name, int NumFrames) : this(Name, NumFrames, -1, true) { }
     }
 }

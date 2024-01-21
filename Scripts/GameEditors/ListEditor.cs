@@ -28,10 +28,13 @@ public partial class ListEditor : Control
     [Signal]
     public delegate void OnItemRemovedEventHandler();
 
+    [Signal]
+    public delegate void OnSetDataEventHandler();
+
     public override void _Ready()
     {
         base._Ready();
-        newButton.Pressed += () => NewEditor();
+        newButton.Pressed += () => { NewEditor(); EmitSignal(SignalName.OnItemAdded); };
     }
 
     public void Init<InnerEditorType, DataType>(
@@ -45,6 +48,7 @@ public partial class ListEditor : Control
         this.initEditor = (n) => { if (n is InnerEditorType innerEditor) initEditor((InnerEditorType)n); else throw new Exception("Inner editor type mismatch!"); };
         OnItemAdded += () => dirtyAction();
         OnItemRemoved += () => dirtyAction();
+        OnSetData += () => dirtyAction();
     }
 
     public List<DataType> GetDatas<DataType>()
@@ -57,6 +61,7 @@ public partial class ListEditor : Control
         items.ForEach(a => a.GetParent().QueueFree());
         items.Clear();
         datas.ForEach(a => setDataFunc(NewEditor(), a));
+        EmitSignal(SignalName.OnSetData);
     }
 
     private Control NewEditor()
@@ -66,7 +71,6 @@ public partial class ListEditor : Control
         initEditor(newEditor);
         items.Add(newEditor);
         newEditor.SizeFlagsHorizontal |= SizeFlags.ExpandFill;
-        EmitSignal(SignalName.OnItemAdded);
         // Create editor container
         Container container = (Container)itemContainerTemplate.Duplicate();
         BaseButton newDeleteButton = (BaseButton)deleteButtonTemplate.Duplicate();
@@ -74,7 +78,7 @@ public partial class ListEditor : Control
         container.AddChild(newEditor);
         listContainer.AddChild(container);
         container.Visible = newDeleteButton.Visible = newEditor.Visible = true;
-        newDeleteButton.Pressed += () => DeleteEditor(newEditor);
+        newDeleteButton.Pressed += () => { DeleteEditor(newEditor); EmitSignal(SignalName.OnItemRemoved); };
         return newEditor;
     }
 

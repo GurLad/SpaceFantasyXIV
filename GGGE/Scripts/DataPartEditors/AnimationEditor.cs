@@ -87,10 +87,11 @@ public partial class AnimationEditor : Control
             {
                 currentFrame = (currentFrame + 1) % frames.Count;
                 UpdatePreview();
-            }
-            if (previewTimer.OneShot)
-            {
-                togglePreview.Text = "Play";
+                if (currentFrame >= frames.Count - 1 && !data.SpriteFrames.GetAnimationLoop(animationName))
+                {
+                    previewTimer.Stop();
+                    togglePreview.Text = "Play";
+                }
             }
         };
         togglePreview.Pressed += () =>
@@ -168,6 +169,7 @@ public partial class AnimationEditor : Control
                             frames = frames.Combine().Split(value);
                         }
                     }
+                    SetDirty();
                 },
                 () => frameCountEdit.Value = data.SpriteFrames.GetFrameCount(animationName),
                 (editable) => frameCountEdit.Editable = editable);
@@ -175,15 +177,15 @@ public partial class AnimationEditor : Control
         if (speedEdit != null)
         {
             InitExtraEditor(speedEdit, speedEditMode,
-                () => speedEdit.ValueChanged += (i) => data.SpriteFrames.SetAnimationSpeed(animationName, i),
+                () => speedEdit.ValueChanged += (i) => { data.SpriteFrames.SetAnimationSpeed(animationName, i); SetDirty(); },
                 () => speedEdit.Value = data.SpriteFrames.GetAnimationSpeed(animationName),
                 (editable) => speedEdit.Editable = editable);
         }
         if (loopEdit != null)
         {
             InitExtraEditor(loopEdit, loopEditMode,
-                () => loopEdit.Toggled += (b) => data.SpriteFrames.SetAnimationLoop(animationName, b),
-                () => loopEdit.ToggleMode = data.SpriteFrames.GetAnimationLoop(animationName),
+                () => loopEdit.Toggled += (b) => { data.SpriteFrames.SetAnimationLoop(animationName, b); SetDirty(); },
+                () => loopEdit.ButtonPressed = data.SpriteFrames.GetAnimationLoop(animationName),
                 (editable) => loopEdit.Disabled = !editable);
         }
     }
@@ -204,7 +206,7 @@ public partial class AnimationEditor : Control
     {
         previewTimer.WaitTime = data.SpriteFrames.GetAnimationSpeed(animationName);
         previewTimer.WaitTime = previewTimer.WaitTime > 0 ? 1 / previewTimer.WaitTime : 1;
-        previewTimer.OneShot = data.SpriteFrames.GetAnimationLoop(animationName);
+        previewTimer.OneShot = false;
     }
 
     private void InitExtraEditor(Control editor, DataEditorMode mode, Action setValueChanged, Action refresh, Action<bool> setEditable)
