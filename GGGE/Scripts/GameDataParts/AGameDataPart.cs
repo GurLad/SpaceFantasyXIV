@@ -43,7 +43,7 @@ namespace GGE.Internal
 
 public abstract class AGameDataPart
 {
-    public string Name { get; init; }
+    public string Name { get; set; }
 
     public abstract void Save(string folderPath);
 
